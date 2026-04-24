@@ -18,7 +18,7 @@
     --cream:  #ffffff;
     --beige:  #f5f3ee;
     --orange: #f06118;
-    --brown:  #8c6e2a;
+    --brown:  #aa804a;
     --blue:   #9fb3d4;
     --text:   #1a1208;
     --muted:  #6b5a34;
@@ -220,7 +220,7 @@
 
   .lieu-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 8px; border: 1.5px solid; white-space: nowrap; }
   .b-scene { background: rgba(240,97,24,0.1); color: var(--orange); border-color: var(--orange); }
-  .b-atelier { background: rgba(140,110,42,0.1); color: var(--brown); border-color: var(--brown); }
+  .b-atelier { background: rgba(170,128,74,0.1); color: var(--brown); border-color: var(--brown); }
   .b-eaton { background: rgba(159,179,212,0.25); color: #4a6090; border-color: #7898c8; }
   .live-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; background: #fff; color: var(--orange); padding: 3px 8px; border-radius: 6px; }
   .event-arrow { font-size: 18px; color: var(--muted); line-height: 1; }
@@ -386,7 +386,7 @@
 
 
 /* TICKER */
-.ticker{background:#8c6e2a;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
+.ticker{background:#aa804a;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
 .ticker-inner{display:inline-block;animation:tick 26s linear infinite}
 .ticker-inner span{margin:0 22px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -1298,9 +1298,9 @@ function drawTOM(){
   // ESPACE ATELIER (haut droite — texte + flèche)
   const atX=460, atY=80;
   fl.append(el('rect',{x:atX-4,y:atY-18,width:'88',height:'38',rx:'5',
-    fill:'rgba(140,110,42,0.10)',stroke:'#8c6e2a','stroke-width':'1.2'}));
-  fl.append(svgTxt('ESPACE',atX+40,atY-2,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#8c6e2a','font-family':ff}));
-  fl.append(svgTxt('ATELIER',atX+40,atY+11,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#8c6e2a','font-family':ff}));
+    fill:'rgba(170,128,74,0.10)',stroke:'#aa804a','stroke-width':'1.2'}));
+  fl.append(svgTxt('ESPACE',atX+40,atY-2,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#aa804a','font-family':ff}));
+  fl.append(svgTxt('ATELIER',atX+40,atY+11,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#aa804a','font-family':ff}));
   // Flèche verte vers atelier
   fl.append(svgTxt('⟶',atX-22,atY+4,{'font-size':'13','fill':'#4a8a4a','font-family':ff}));
 
