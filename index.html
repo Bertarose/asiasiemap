@@ -6,102 +6,104 @@
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <title>Carte — Festival Asiasie 2026</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body {
-  height: 100%; overflow: hidden;
-  font-family: 'Figtree', -apple-system, sans-serif;
-  background: #f8f6f1; color: #1a1208;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* ── LAYOUT ── */
-.app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-serif;background:#f8f6f1;color:#1a1208;-webkit-text-size-adjust:100%}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
 /* TICKER */
-.ticker { background: #f06118; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 0; white-space: nowrap; overflow: hidden; flex-shrink: 0; }
-.ticker-inner { display: inline-block; animation: tick 26s linear infinite; }
-.ticker-inner span { margin: 0 22px; }
-@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.ticker{background:#f06118;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
+.ticker-inner{display:inline-block;animation:tick 26s linear infinite}
+.ticker-inner span{margin:0 22px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* HEADER */
-.header { padding: 11px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1.5px solid #1a1208; background: #fff; flex-shrink: 0; }
-.logo { height: 26px; width: auto; flex-shrink: 0; }
-.logo path, .logo rect, .logo polygon { fill: #1a1208; }
-.header-title { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #6b5a34; flex: 1; }
-.view-toggle { display: flex; border: 1.5px solid #1a1208; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
-.view-btn { padding: 7px 13px; background: transparent; border: none; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #6b5a34; cursor: pointer; font-family: 'Figtree', sans-serif; -webkit-tap-highlight-color: transparent; transition: all 0.12s; touch-action: manipulation; }
-.view-btn + .view-btn { border-left: 1px solid #1a1208; }
-.view-btn.active { background: #1a1208; color: #fff; }
+.hdr{padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0}
+.logo{height:26px;width:auto;flex-shrink:0}
+.logo path,.logo rect,.logo polygon{fill:#1a1208}
+.hdr-title{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;flex:1}
+.vtoggle{display:flex;border:1.5px solid #1a1208;border-radius:8px;overflow:hidden;flex-shrink:0}
+.vbtn{padding:7px 12px;background:transparent;border:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation}
+.vbtn+.vbtn{border-left:1px solid #1a1208}
+.vbtn.on{background:#1a1208;color:#fff}
 
 /* FILTERS */
-.filters { display: flex; gap: 6px; padding: 10px 14px; overflow-x: auto; border-bottom: 1px solid rgba(26,18,8,0.1); background: #fff; flex-shrink: 0; scrollbar-width: none; }
-.filters::-webkit-scrollbar { display: none; }
-.f-btn { display: flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 20px; border: 1.5px solid rgba(26,18,8,0.15); background: transparent; color: #6b5a34; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; white-space: nowrap; font-family: 'Figtree', sans-serif; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: all 0.15s; flex-shrink: 0; }
-.f-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-/* filter active states */
-.f-btn.f-all.on   { background: #1a1208; border-color: #1a1208; color: #fff; }
-.f-btn.f-bouffe.on { background: #f5d9c0; border-color: #e8a87a; color: #7a3d10; font-weight: 800; }
-.f-btn.f-art.on    { background: #d6e8d0; border-color: #a8cc9e; color: #2d5e25; font-weight: 800; }
-.f-btn.f-mode.on   { background: #f5cdd4; border-color: #e8939f; color: #7a2535; font-weight: 800; }
-.f-btn.f-bien.on   { background: #c8d8ed; border-color: #8aacd4; color: #1e3d6b; font-weight: 800; }
-.f-btn.f-activ.on  { background: #e8e0f0; border-color: #b89cd4; color: #4a2080; font-weight: 800; }
+.filters{display:flex;gap:6px;padding:9px 14px;overflow-x:auto;border-bottom:1px solid rgba(26,18,8,.1);background:#fff;flex-shrink:0;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fbtn{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;border:1.5px solid rgba(26,18,8,.15);background:transparent;color:#6b5a34;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;flex-shrink:0}
+.fdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.fbtn.fa{background:#1a1208;border-color:#1a1208;color:#fff}
+.fbtn.fb{background:#f5d9c0;border-color:#e8a87a;color:#7a3d10;font-weight:800}
+.fbtn.far{background:#d6e8d0;border-color:#a8cc9e;color:#2d5e25;font-weight:800}
+.fbtn.fm{background:#f5cdd4;border-color:#e8939f;color:#7a2535;font-weight:800}
+.fbtn.fbi{background:#c8d8ed;border-color:#8aacd4;color:#1e3d6b;font-weight:800}
+.fbtn.fac{background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800}
 
 /* CONTENT */
-.content { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+.content{flex:1;position:relative;overflow:hidden;min-height:0}
 
-/* ── MAP ── */
-#mapPanel { position: absolute; inset: 0; display: flex; flex-direction: column; }
-.map-wrap { flex: 1; overflow: hidden; position: relative; min-height: 0; background: #f0ede5; }
-#mapCanvas { width: 100%; height: 100%; touch-action: none; cursor: grab; display: block; }
-#mapCanvas:active { cursor: grabbing; }
-.map-hint { position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%); background: rgba(26,18,8,0.75); color: #fff; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em; pointer-events: none; opacity: 1; transition: opacity 1s; }
-.map-hint.hide { opacity: 0; }
+/* MAP PANEL */
+#mapPanel{position:absolute;inset:0;display:flex;flex-direction:column}
+.map-scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f0ede5;cursor:grab}
+.map-scroll:active{cursor:grabbing}
+.map-scroll.panning{cursor:grabbing}
+
+/* THE SVG MAP */
+#themap{display:block;touch-action:none;user-select:none;-webkit-user-select:none}
+
+/* Kiosque pins — use SVG group + circle + text so they scale naturally */
+.kpin{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kpin circle{transition:r .15s,stroke-width .15s}
+.kpin:hover circle,.kpin.hi circle{r:18;stroke-width:2.5}
+.kpin.dim{opacity:.15;pointer-events:none}
+.kpin text{pointer-events:none;font-family:'Figtree',sans-serif;font-weight:900;text-anchor:middle;dominant-baseline:central}
+
+/* Zoom controls */
+.zoom-ctrls{position:absolute;bottom:52px;right:12px;display:flex;flex-direction:column;gap:6px}
+.zcbtn{width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid #1a1208;font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:1;color:#1a1208;box-shadow:0 2px 8px rgba(0,0,0,.12)}
 
 /* Map legend */
-.map-legend { display: flex; gap: 10px; padding: 8px 14px; background: #fff; border-top: 1px solid rgba(26,18,8,0.1); overflow-x: auto; scrollbar-width: none; flex-shrink: 0; }
-.map-legend::-webkit-scrollbar { display: none; }
-.leg-item { display: flex; align-items: center; gap: 5px; white-space: nowrap; font-size: 10px; font-weight: 700; color: #6b5a34; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
-.leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+.map-leg{display:flex;gap:10px;padding:8px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0;align-items:center}
+.map-leg::-webkit-scrollbar{display:none}
+.legitem{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:10px;font-weight:700;color:#6b5a34;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}
+.legdot{width:10px;height:10px;border-radius:50%}
 
-/* ── LIST ── */
-#listPanel { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: none; padding: 10px 14px 100px; }
-.grp-title { font-size: 10px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 0 8px; border-bottom: 1.5px solid #1a1208; margin-bottom: 8px; }
-.vendor-card { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1.5px solid #1a1208; border-radius: 10px; background: #fff; margin-bottom: 7px; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background 0.1s; }
-.vendor-card:active { background: #ede8da; }
-.vendor-card.faded { opacity: 0.18; pointer-events: none; }
-.v-num { font-size: 16px; font-weight: 900; color: #f06118; min-width: 28px; line-height: 1; }
-.v-info { flex: 1; min-width: 0; }
-.v-name { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.25; }
-.v-sub { font-size: 11px; color: #6b5a34; margin-top: 2px; font-weight: 500; }
-.v-badge { font-size: 9px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 8px; border: 1.5px solid; white-space: nowrap; flex-shrink: 0; }
-.v-arr { font-size: 18px; color: #6b5a34; flex-shrink: 0; }
+/* LIST PANEL */
+#listPanel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:10px 14px 100px;background:#f8f6f1}
+.grptitle{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:14px 0 8px;border-bottom:1.5px solid #1a1208;margin-bottom:8px}
+.vcard{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1.5px solid #1a1208;border-radius:10px;background:#fff;margin-bottom:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s}
+.vcard:active{background:#ede8da}
+.vcard.dim{opacity:.18;pointer-events:none}
+.vnum{font-size:16px;font-weight:900;color:#f06118;min-width:28px;line-height:1}
+.vinfo{flex:1;min-width:0}
+.vname{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.25}
+.vsub{font-size:11px;color:#6b5a34;margin-top:2px;font-weight:500}
+.vbadge{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:8px;border:1.5px solid;white-space:nowrap;flex-shrink:0}
+.varr{font-size:18px;color:#6b5a34;flex-shrink:0}
 
-/* ── DRAWER ── */
-.overlay { position: fixed; inset: 0; background: rgba(26,18,8,0.55); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
-.overlay.on { opacity: 1; pointer-events: all; }
-.drawer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-radius: 16px 16px 0 0; border-top: 1.5px solid #1a1208; z-index: 201; max-height: 82vh; overflow-y: auto; overscroll-behavior: contain; transform: translateY(110%); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1); padding-bottom: env(safe-area-inset-bottom, 16px); -webkit-overflow-scrolling: touch; }
-.drawer.on { transform: translateY(0); }
-.drawer-pull { display: flex; justify-content: center; padding: 12px 0 6px; cursor: pointer; position: sticky; top: 0; background: #fff; z-index: 1; border-bottom: 0.5px solid rgba(26,18,8,0.1); }
-.drawer-pill { width: 36px; height: 4px; border-radius: 2px; background: rgba(26,18,8,0.18); }
-.drawer-head { padding: 16px 18px 12px; border-bottom: 1px solid rgba(26,18,8,0.1); }
-.d-badge { display: inline-block; font-size: 9px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; border: 1.5px solid; margin-bottom: 10px; }
-.d-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-.d-num { font-size: 30px; font-weight: 900; color: #f06118; line-height: 1; }
-.d-name { font-size: clamp(17px,5vw,23px); font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.15; }
-.d-lieu { font-size: 12px; color: #6b5a34; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-.drawer-body { padding: 16px 18px 8px; }
-.d-desc { font-size: 15px; line-height: 1.7; color: #1a1208; }
-.d-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
-.d-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 11px; border-radius: 12px; border: 1.5px solid rgba(26,18,8,0.12); color: #6b5a34; }
-.d-locate { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; padding: 13px 14px; border: 1.5px solid #1a1208; border-radius: 10px; background: #f8f6f1; font-size: 12px; font-weight: 700; color: #1a1208; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-.d-close { display: block; width: 100%; margin: 12px 0 0; padding: 17px; background: #1a1208; color: #fff; font-size: 13px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 10px; cursor: pointer; font-family: 'Figtree', sans-serif; touch-action: manipulation; }
+/* DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.on{opacity:1;pointer-events:all}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;border-top:1.5px solid #1a1208;z-index:201;max-height:82vh;overflow-y:auto;overscroll-behavior:contain;transform:translateY(110%);transition:transform .3s cubic-bezier(.32,.72,0,1);padding-bottom:env(safe-area-inset-bottom,16px);-webkit-overflow-scrolling:touch}
+.drawer.on{transform:translateY(0)}
+.dpull{display:flex;justify-content:center;padding:12px 0 6px;cursor:pointer;position:sticky;top:0;background:#fff;z-index:1;border-bottom:.5px solid rgba(26,18,8,.1)}
+.dpill{width:36px;height:4px;border-radius:2px;background:rgba(26,18,8,.18)}
+.dhead{padding:16px 18px 12px;border-bottom:1px solid rgba(26,18,8,.1)}
+.dbadge{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:10px;border:1.5px solid;margin-bottom:10px}
+.dtop{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.dnum{font-size:30px;font-weight:900;color:#f06118;line-height:1}
+.dname{font-size:clamp(17px,5vw,23px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
+.dlieu{font-size:12px;color:#6b5a34;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.dbody{padding:16px 18px 8px}
+.ddesc{font-size:15px;line-height:1.7;color:#1a1208}
+.dtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.dtag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 11px;border-radius:12px;border:1.5px solid rgba(26,18,8,.12);color:#6b5a34}
+.dlocate{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding:13px 14px;border:1.5px solid #1a1208;border-radius:10px;background:#f8f6f1;font-size:12px;font-weight:700;color:#1a1208;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.dclose{display:block;width:100%;margin:12px 0 0;padding:17px;background:#1a1208;color:#fff;font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;font-family:inherit;touch-action:manipulation}
 
-@media (min-width: 600px) {
-  .drawer { max-width: 520px; left: 50%; right: auto; transform: translateX(-50%) translateY(110%); }
-  .drawer.on { transform: translateX(-50%) translateY(0); }
-  #listPanel { padding: 12px 24px 100px; }
+@media(min-width:600px){
+  .drawer{max-width:520px;left:50%;right:auto;transform:translateX(-50%) translateY(110%)}
+  .drawer.on{transform:translateX(-50%) translateY(0)}
+  #listPanel{padding:12px 24px 100px}
 }
 </style>
 </head>
@@ -115,7 +117,7 @@ html, body {
   </div>
 </div>
 
-<div class="header">
+<div class="hdr">
   <svg class="logo" viewBox="0 0 1152.78 275.35" xmlns="http://www.w3.org/2000/svg">
     <rect x="412.53" y="5.12" width="59.25" height="265.73"/>
     <rect x="909.03" y="5.12" width="59.25" height="265.73"/>
@@ -125,645 +127,571 @@ html, body {
     <path d="M890.19,183.76c-.11-.94-.24-1.84-.37-2.74-2.88-20.38-11.37-33.61-22.79-42.93-25.55-20.85-65.75-22.22-90.51-40.56-23.63-17.5-17.83-56.07,9.99-59.42,28.48-3.43,43.27,22.47,42.28,54.68h60.75c-.28-83.99-80.85-104.05-135-85.38-35.92,12.38-60.31,50.85-47.6,97.21,4.14,15.11,12.09,25.62,22.1,33.47,24.85,19.48,62.4,22.51,86,38.56,6.75,4.59,11.31,10.69,13.9,17.25,6.49,18.67-2.26,40.77-23.29,43.3-29.26,3.52-44.46-23.09-43.44-56.18h-62.42c0,.42.02.84.02,1.26.6,47.24,26.13,74.54,58.2,86.24,25.79,9.41,55.81,8.74,80.49.23,6.43-2.22,12.5-5.26,18.08-9,20.38-12.88,34.42-34.08,34.29-64.51-.02-3.69-.22-7.5-.66-11.47Z"/>
     <path d="M393.71,183.68c-.11-.94-.24-1.84-.37-2.74-2.88-20.38-11.37-33.61-22.79-42.93-25.55-20.85-65.75-22.22-90.51-40.56-23.63-17.5-17.83-56.07,9.99-59.42,28.48-3.43,43.27,22.47,42.28,54.68h60.75c-.28-83.99-80.85-104.05-135-85.38-35.92,12.38-60.31,50.85-47.6,97.21,4.14,15.11,12.09,25.62,22.1,33.47,24.85,19.48,62.4,22.51,86,38.56,6.75,4.59,11.31,10.69,13.9,17.25,6.49,18.67-2.26,40.77-23.29,43.3-29.26,3.52-44.46-23.09-43.44-56.18h-62.42c0,.42.02.84.02,1.26.6,47.24,26.13,74.54,58.2,86.24,25.79,9.41,55.81,8.74,80.49.23,6.43-2.22,12.5-5.26,18.08-9,20.38-12.88,34.42-34.08,34.29-64.51-.02-3.69-.22-7.5-.66-11.47Z"/>
   </svg>
-  <span class="header-title">Plan des marchands</span>
-  <div class="view-toggle">
-    <button class="view-btn active" id="btnMap" onclick="showView('map')">🗺 Carte</button>
-    <button class="view-btn" id="btnList" onclick="showView('list')">☰ Liste</button>
+  <span class="hdr-title">Plan des marchands</span>
+  <div class="vtoggle">
+    <button class="vbtn on" id="btnMap" onclick="showView('map')">🗺 Carte</button>
+    <button class="vbtn" id="btnList" onclick="showView('list')">☰ Liste</button>
   </div>
 </div>
 
 <div class="filters">
-  <button class="f-btn f-all on"    onclick="setFilter('all')">Tous (30)</button>
-  <button class="f-btn f-bouffe"    onclick="setFilter('bouffe')"><div class="f-dot" style="background:#7a3d10"></div>Bouffe</button>
-  <button class="f-btn f-art"       onclick="setFilter('art')"><div class="f-dot" style="background:#2d5e25"></div>Art</button>
-  <button class="f-btn f-mode"      onclick="setFilter('mode')"><div class="f-dot" style="background:#7a2535"></div>Mode</button>
-  <button class="f-btn f-bien"      onclick="setFilter('bien')"><div class="f-dot" style="background:#1e3d6b"></div>Bien-être</button>
-  <button class="f-btn f-activ"     onclick="setFilter('activ')"><div class="f-dot" style="background:#4a2080"></div>Activités</button>
+  <button class="fbtn fa" onclick="setFilter('all')">Tous (30)</button>
+  <button class="fbtn" data-cat="bouffe" onclick="setFilter('bouffe')"><div class="fdot" style="background:#7a3d10"></div>Bouffe</button>
+  <button class="fbtn" data-cat="art"    onclick="setFilter('art')"><div class="fdot" style="background:#2d5e25"></div>Art</button>
+  <button class="fbtn" data-cat="mode"   onclick="setFilter('mode')"><div class="fdot" style="background:#7a2535"></div>Mode</button>
+  <button class="fbtn" data-cat="bien"   onclick="setFilter('bien')"><div class="fdot" style="background:#1e3d6b"></div>Bien-être</button>
+  <button class="fbtn" data-cat="activ"  onclick="setFilter('activ')"><div class="fdot" style="background:#4a2080"></div>Activités</button>
 </div>
 
 <div class="content">
   <div id="mapPanel">
-    <div class="map-wrap">
-      <canvas id="mapCanvas"></canvas>
-      <div class="map-hint" id="mapHint">Pince pour zoomer · Glisse pour naviguer</div>
+    <div class="map-scroll" id="mapScroll">
+
+      <!-- THE MAP — single SVG, scrollable container handles pan -->
+      <!-- Mobile: stacked (TOM top, CE bottom), Desktop: side by side -->
+      <svg id="themap" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M30 0L0 0 0 30" fill="none" stroke="rgba(26,18,8,0.04)" stroke-width="0.5"/>
+          </pattern>
+          <!-- Wood floor texture simulation -->
+          <linearGradient id="woodTOM" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c8a882" stop-opacity=".25"/>
+            <stop offset="50%" stop-color="#d4b48e" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#c8a882" stop-opacity=".25"/>
+          </linearGradient>
+          <linearGradient id="woodCE" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#b8c8d8" stop-opacity=".18"/>
+            <stop offset="50%" stop-color="#c4d2e0" stop-opacity=".15"/>
+            <stop offset="100%" stop-color="#b8c8d8" stop-opacity=".18"/>
+          </linearGradient>
+        </defs>
+
+        <!-- drawn by JS -->
+        <g id="mapBg"></g>
+        <g id="mapFloor"></g>
+        <g id="mapPins"></g>
+      </svg>
+
+      <!-- Zoom controls -->
+      <div class="zoom-ctrls">
+        <button class="zcbtn" onclick="zoom(1.25)" aria-label="Zoom in">+</button>
+        <button class="zcbtn" onclick="zoom(0.8)"  aria-label="Zoom out">−</button>
+        <button class="zcbtn" style="font-size:13px" onclick="resetZoom()" aria-label="Reset">⌂</button>
+      </div>
     </div>
-    <div class="map-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:#7a3d10"></div>Bouffe & Resto</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#2d5e25"></div>Art & Artisanat</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#7a2535"></div>Mode & Beauté</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#1e3d6b"></div>Bien-être</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#4a2080"></div>Activités</div>
+
+    <div class="map-leg">
+      <div class="legitem"><div class="legdot" style="background:#7a3d10"></div>Bouffe & Resto</div>
+      <div class="legitem"><div class="legdot" style="background:#2d5e25"></div>Art & Artisanat</div>
+      <div class="legitem"><div class="legdot" style="background:#7a2535"></div>Mode & Beauté</div>
+      <div class="legitem"><div class="legdot" style="background:#1e3d6b"></div>Bien-être</div>
+      <div class="legitem"><div class="legdot" style="background:#4a2080"></div>Activités</div>
     </div>
   </div>
+
   <div id="listPanel"></div>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-pull" onclick="closeDrawer()"><div class="drawer-pill"></div></div>
-  <div class="drawer-head" id="drawerHead"></div>
-  <div class="drawer-body" id="drawerBody"></div>
+  <div class="dpull" onclick="closeDrawer()"><div class="dpill"></div></div>
+  <div class="dhead" id="dhead"></div>
+  <div class="dbody" id="dbody"></div>
 </div>
 
 <script>
-// ──────────────────────────────────────
-// DATA
-// ──────────────────────────────────────
+// ── CATEGORIES ──
 const CATS = {
-  bouffe: { label:'Bouffe & Resto',   bg:'#f5d9c0', text:'#7a3d10', bd:'#e8a87a' },
-  art:    { label:'Art & Artisanat',  bg:'#d6e8d0', text:'#2d5e25', bd:'#a8cc9e' },
-  mode:   { label:'Mode & Beauté',    bg:'#f5cdd4', text:'#7a2535', bd:'#e8939f' },
-  bien:   { label:'Bien-être',        bg:'#c8d8ed', text:'#1e3d6b', bd:'#8aacd4' },
-  activ:  { label:'Activités & Exp.', bg:'#e8e0f0', text:'#4a2080', bd:'#b89cd4' },
+  bouffe:{ label:'Bouffe & Resto',  bg:'#f5d9c0', text:'#7a3d10', bd:'#e8a87a' },
+  art:   { label:'Art & Artisanat', bg:'#d6e8d0', text:'#2d5e25', bd:'#a8cc9e' },
+  mode:  { label:'Mode & Beauté',   bg:'#f5cdd4', text:'#7a2535', bd:'#e8939f' },
+  bien:  { label:'Bien-être',       bg:'#c8d8ed', text:'#1e3d6b', bd:'#8aacd4' },
+  activ: { label:'Activités & Exp.',bg:'#e8e0f0', text:'#4a2080', bd:'#b89cd4' },
 };
 
-// W=900, H=560 virtual canvas
-// Time Out Market: x=20..490, y=20..420
-// Centre Eaton:    x=530..880, y=20..420
-const V = [
-  // TIME OUT MARKET — Bouffe
-  {id:1,  name:'Ramen Ichiban',      cat:'bouffe', lieu:'Time Out Market', x:80,  y:80,  desc:'Ramens artisanaux au bouillon mijoté 18h, nouilles fraîches, garnitures traditionnelles. Spécialité : tonkotsu épicé et miso végétarien.', tags:['Japon','Végé dispo','Sans gluten']},
-  {id:2,  name:'Bánh Mì Saigon',    cat:'bouffe', lieu:'Time Out Market', x:80,  y:155, desc:'Bánh mì croustillants garnis de légumes marinés, coriandre et sauces maison. Recette familiale transmise sur 3 générations.', tags:['Vietnam','Végétarien dispo','Halal']},
-  {id:3,  name:'Dumpling House',     cat:'bouffe', lieu:'Time Out Market', x:80,  y:230, desc:'Dumplings vapeur et frits, gyoza, bao farcis. Pâte faite main chaque matin. Plus de 12 garnitures au choix.', tags:['Chine','Végétarien','Fruits de mer']},
-  {id:4,  name:'Seoul BBQ',          cat:'bouffe', lieu:'Time Out Market', x:200, y:80,  desc:'Galbi, bulgogi, poulet dakgalbi. Marinades maison 24h. Banchan (accompagnements) faits maison chaque jour.', tags:['Corée','BBQ','Halal dispo']},
-  {id:5,  name:'Matcha & Co',        cat:'bouffe', lieu:'Time Out Market', x:200, y:155, desc:'Lattes matcha, glaces mochi, affogato, parfaits japonais. Matcha importé directement d\'Uji, Kyoto — grade cérémonie.', tags:['Japon','Végétarien','Desserts']},
-  {id:6,  name:'Pad Thai Express',   cat:'bouffe', lieu:'Time Out Market', x:200, y:230, desc:'Pad thaï wok haute flamme avec nouilles de riz, crevettes ou tofu, cacahuètes grillées. Aussi : khao pad, larb.', tags:['Thaïlande','Végé dispo','Épicé']},
-  {id:7,  name:'Bao Brothers',       cat:'bouffe', lieu:'Time Out Market', x:320, y:80,  desc:'Gua baos farcis de porc braisé, poulet frit, ou jackfruit épicé. Pains cuits vapeur le matin. Sauces exclusives maison.', tags:['Taïwan','Street food','Végé dispo']},
-  {id:8,  name:'Mochi & Mango',      cat:'bouffe', lieu:'Time Out Market', x:320, y:155, desc:'Mochis glacés, mangue sticky rice, taiyaki sucrés-salés. Glaces artisanales aux fruits asiatiques.', tags:['Japon / Thaïlande','Desserts','Végétarien']},
-  // TOM — Art
-  {id:9,  name:'Galerie Hanami',     cat:'art',    lieu:'Time Out Market', x:420, y:80,  desc:'Estampes japonaises contemporaines, illustrations encre de Chine. Éditions limitées signées par des artistes montréalais.', tags:['Japon','Estampes','Éditions limitées']},
-  {id:10, name:'Céramiques Zen',     cat:'art',    lieu:'Time Out Market', x:420, y:155, desc:'Bols à thé, vases, assiettes inspirés de la céramique coréenne céladon et du wabi-sabi japonais. Cuites au four à bois.', tags:['Corée / Japon','Fait main','Artisanat']},
-  {id:11, name:'Studio Origami',     cat:'art',    lieu:'Time Out Market', x:320, y:230, desc:'Origami d\'art encadrés, kits thématiques, ateliers de pliage. Œuvres signées par artistes de la diaspora asiatique montréalaise.', tags:['Japon','Atelier dispo','Cadeaux']},
-  // TOM — Mode
-  {id:12, name:'Kimono Moderne',     cat:'mode',   lieu:'Time Out Market', x:80,  y:330, desc:'Kimonos contemporains adaptés au quotidien, yukata d\'été, obi colorés. Du casual au cérémonial — stylisme inspiré du Japon moderne.', tags:['Japon','Prêt-à-porter','Accessoires']},
-  {id:13, name:'K-Beauty Studio',    cat:'mode',   lieu:'Time Out Market', x:200, y:330, desc:'Soins coréens : sérum 10 étapes, masques, cushions, produits glow. Conseils personnalisés par esthéticiennes coréennes diplômées.', tags:['Corée','Beauté','Soins']},
-  {id:14, name:'Calligraphie MTL',   cat:'mode',   lieu:'Time Out Market', x:320, y:330, desc:'Portraits calligraphiés en chinois, coréen et japonais. Kakemonos, estampes de prénoms. Démonstrations en direct.', tags:['Chine / Corée','Sur commande','Démo']},
-  // TOM — Bien-être
-  {id:15, name:'Thés Guru',          cat:'bien',   lieu:'Time Out Market', x:420, y:230, desc:'40 thés premium : sencha, gyokuro, oolong, pu-erh, darjeeling. Dégustation guidée, accessoires de cérémonie, conseils d\'infusion.', tags:['Asie','Thé','Bien-être']},
-  {id:16, name:'Aromathérapie Zen',  cat:'bien',   lieu:'Time Out Market', x:420, y:330, desc:'Huiles essentielles, encens japonais, diffuseurs bambou, sels de bain cerisier. Produits naturels inspirés rituels asiatiques.', tags:['Japon','Naturel','Artisanat']},
-  // TOM — Activités
-  {id:17, name:'Atelier Nerikiri',   cat:'activ',  lieu:'Time Out Market', x:80,  y:390, desc:'KOTOAN vous initie à la confiserie japonaise sculptée. Créez vos wagashi en pâte de haricots blancs. Chaque participant repart avec ses créations.', tags:['Japon','Atelier payant','Places limitées']},
-  {id:18, name:'Photobooth CBC',     cat:'activ',  lieu:'Time Out Market', x:220, y:390, desc:'Photobooth officiel CBC/Radio-Canada aux couleurs du festival. Décors exclusifs, impressions instantanées. Accès gratuit toute la soirée.', tags:['Gratuit','Photo','Tout public']},
+// ── MAP LAYOUT CONSTANTS ──
+// TOM: cross/diamond shape, inspired by real plan
+// CE: rectangular grid
+// Positions in SVG units (scaled by zoom)
+const TOM = { ox:30, oy:30, w:460, h:460 };  // bounding box of TOM
+const CE  = { ox:30, oy:30, w:380, h:340 };  // bounding box of CE
 
-  // CENTRE EATON — Bouffe
-  {id:19, name:'Takoyaki Osaka',     cat:'bouffe', lieu:'Centre Eaton',    x:585, y:80,  desc:'Boulettes de poulpe croustillantes garnies de bonite séchée, mayonnaise Kewpie, sauce okonomiyaki. Cuisson en direct sur plaques traditionnelles.', tags:['Japon','Street food','Fruits de mer']},
-  {id:20, name:'Bubble Tea House',   cat:'bouffe', lieu:'Centre Eaton',    x:585, y:155, desc:'Thé aux perles de tapioca en 20+ saveurs. Brown sugar boba, taro, matcha, fruit teas. Perles artisanales cuites toutes les heures.', tags:['Taïwan','Boissons','Végétarien']},
-  {id:21, name:'Phở Hà Nội',        cat:'bouffe', lieu:'Centre Eaton',    x:585, y:230, desc:'Phở boeuf et poulet mijotés toute la nuit aux épices anisées. Fines herbes fraîches, germes de soja, citron vert. Recette familiale 3 générations.', tags:['Vietnam','Soupe','Halal dispo']},
-  {id:22, name:'Mango Sticky Rice',  cat:'bouffe', lieu:'Centre Eaton',    x:700, y:80,  desc:'Riz gluant au lait de coco avec mangue fraîche et sésame grillé. Aussi : banane frite, pandan cake, khanom chan coloré.', tags:['Thaïlande','Desserts','Végétarien']},
-  {id:23, name:'Gyoza Bar',          cat:'bouffe', lieu:'Centre Eaton',    x:700, y:155, desc:'Gyoza poêlés croustillants et à la vapeur. Garnitures : porc-ciboulette, crevette-gingembre, légumes-tofu. Sauce ponzu et rayu maison.', tags:['Japon','Végétarien dispo','Apéro']},
-  {id:24, name:'Onigiri Shop',       cat:'bouffe', lieu:'Centre Eaton',    x:700, y:230, desc:'Onigiris (boulettes de riz) farcis aux saveurs japonaises classiques et créatives. Nori croustillant, garnitures surprises du jour.', tags:['Japon','Végétarien dispo','À emporter']},
+// 30 vendors with positions relative to their building's coordinate system
+// TOM coords: 0..460, 0..460 | CE coords: 0..380, 0..340
+const V = [
+  // TIME OUT MARKET — bouffe (around perimeter)
+  {id:1,  name:'Ramen Ichiban',      cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:80,  desc:'Ramens artisanaux au bouillon mijoté 18h, nouilles fraîches maison. Spécialité : tonkotsu épicé et miso végétarien.',          tags:['Japon','Végé dispo','Sans gluten']},
+  {id:2,  name:'Bánh Mì Saigon',    cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:160, desc:'Bánh mì croustillants garnis de légumes marinés, coriandre et sauces maison. Recette familiale 3 générations.',               tags:['Vietnam','Végétarien dispo','Halal']},
+  {id:3,  name:'Dumpling House',     cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:240, desc:'Dumplings vapeur et frits, gyoza, bao farcis. Pâte faite main chaque matin. Plus de 12 garnitures.',                          tags:['Chine','Végétarien','Fruits de mer']},
+  {id:4,  name:'Seoul BBQ',          cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:320, desc:'Galbi, bulgogi, poulet dakgalbi. Marinades maison 24h. Banchan faits maison chaque jour.',                                     tags:['Corée','BBQ','Halal dispo']},
+  {id:5,  name:'Matcha & Co',        cat:'bouffe',lieu:'Time Out Market',tx:170, ty:60,  desc:'Lattes matcha, glaces mochi, affogato, parfaits japonais. Matcha importé d\'Uji, Kyoto — grade cérémonie.',                   tags:['Japon','Végétarien','Desserts']},
+  {id:6,  name:'Pad Thai Express',   cat:'bouffe',lieu:'Time Out Market',tx:290, ty:60,  desc:'Pad thaï wok haute flamme avec crevettes ou tofu, cacahuètes grillées. Aussi : khao pad, larb.',                              tags:['Thaïlande','Végé dispo','Épicé']},
+  {id:7,  name:'Bao Brothers',       cat:'bouffe',lieu:'Time Out Market',tx:400, ty:80,  desc:'Gua baos farcis de porc braisé, poulet frit ou jackfruit épicé. Pains vapeur le matin. Sauces exclusives.',                   tags:['Taïwan','Street food','Végé dispo']},
+  {id:8,  name:'Mochi & Mango',      cat:'bouffe',lieu:'Time Out Market',tx:400, ty:200, desc:'Mochis glacés, mangue sticky rice, taiyaki sucrés-salés. Glaces artisanales aux fruits asiatiques.',                          tags:['Japon/Thaïlande','Desserts','Végétarien']},
+  // TOM — Art
+  {id:9,  name:'Galerie Hanami',     cat:'art',   lieu:'Time Out Market',tx:400, ty:320, desc:'Estampes japonaises contemporaines, illustrations encre de Chine. Éditions limitées signées par artistes montréalais.',        tags:['Japon','Estampes','Éditions limitées']},
+  {id:10, name:'Céramiques Zen',     cat:'art',   lieu:'Time Out Market',tx:290, ty:400, desc:'Bols à thé, vases, assiettes inspirés de la céramique coréenne céladon et du wabi-sabi japonais.',                            tags:['Corée/Japon','Fait main','Artisanat']},
+  {id:11, name:'Studio Origami',     cat:'art',   lieu:'Time Out Market',tx:170, ty:400, desc:'Origami d\'art encadrés, kits thématiques, ateliers de pliage. Œuvres signées par artistes de la diaspora.',                  tags:['Japon','Atelier dispo','Cadeaux']},
+  // TOM — Mode
+  {id:12, name:'Kimono Moderne',     cat:'mode',  lieu:'Time Out Market',tx:60,  ty:400, desc:'Kimonos contemporains adaptés au quotidien, yukata d\'été, obi colorés. Du casual au cérémonial.',                            tags:['Japon','Prêt-à-porter','Accessoires']},
+  {id:13, name:'K-Beauty Studio',    cat:'mode',  lieu:'Time Out Market',tx:400, ty:400, desc:'Soins coréens : sérum 10 étapes, masques, cushions, produits glow. Conseils par esthéticiennes coréennes.',                   tags:['Corée','Beauté','Soins']},
+  {id:14, name:'Calligraphie MTL',   cat:'mode',  lieu:'Time Out Market',tx:170, ty:200, desc:'Portraits calligraphiés en chinois, coréen et japonais. Kakemonos, estampes de prénoms. Démonstrations en direct.',           tags:['Chine/Corée','Sur commande','Démo']},
+  // TOM — Bien-être
+  {id:15, name:'Thés Guru',          cat:'bien',  lieu:'Time Out Market',tx:290, ty:200, desc:'40 thés premium : sencha, gyokuro, oolong, pu-erh, darjeeling. Dégustation guidée et conseils d\'infusion.',                  tags:['Asie','Thé','Bien-être']},
+  {id:16, name:'Aromathérapie Zen',  cat:'bien',  lieu:'Time Out Market',tx:230, ty:290, desc:'Huiles essentielles, encens japonais, diffuseurs bambou, sels de bain cerisier. Produits naturels inspirés rituels asiatiques.',tags:['Japon','Naturel','Artisanat']},
+  // TOM — Activités
+  {id:17, name:'Atelier Nerikiri',   cat:'activ', lieu:'Time Out Market',tx:170, ty:290, desc:'KOTOAN vous initie à la confiserie japonaise sculptée. Créez vos wagashi. Chaque participant repart avec ses créations.',       tags:['Japon','Atelier payant','Places limitées']},
+  {id:18, name:'Photobooth CBC',     cat:'activ', lieu:'Time Out Market',tx:290, ty:290, desc:'Photobooth officiel CBC/Radio-Canada. Décors exclusifs, impressions instantanées. Accès gratuit toute la soirée.',             tags:['Gratuit','Photo','Tout public']},
+
+  // CENTRE EATON — bouffe
+  {id:19, name:'Takoyaki Osaka',     cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:50,  desc:'Boulettes de poulpe croustillantes garnies de bonite séchée, mayo Kewpie. Cuisson en direct sur plaques traditionnelles.',    tags:['Japon','Street food','Fruits de mer']},
+  {id:20, name:'Bubble Tea House',   cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:130, desc:'Thé aux perles de tapioca en 20+ saveurs. Brown sugar boba, taro, matcha, fruit teas. Perles cuites toutes les heures.',       tags:['Taïwan','Boissons','Végétarien']},
+  {id:21, name:'Phở Hà Nội',        cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:210, desc:'Phở boeuf et poulet mijotés toute la nuit. Fines herbes fraîches, germes de soja, citron vert. Recette familiale.',           tags:['Vietnam','Soupe','Halal dispo']},
+  {id:22, name:'Mango Sticky Rice',  cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:290, desc:'Riz gluant au lait de coco avec mangue fraîche. Aussi banane frite, pandan cake, khanom chan.',                               tags:['Thaïlande','Desserts','Végétarien']},
+  {id:23, name:'Gyoza Bar',          cat:'bouffe',lieu:'Centre Eaton',   ex:200, ey:50,  desc:'Gyoza poêlés croustillants et vapeur. Garnitures : porc-ciboulette, crevette, légumes-tofu. Sauce ponzu maison.',             tags:['Japon','Végétarien dispo','Apéro']},
+  {id:24, name:'Onigiri Shop',       cat:'bouffe',lieu:'Centre Eaton',   ex:200, ey:130, desc:'Onigiris farcis aux saveurs japonaises classiques et créatives. Nori croustillant, garnitures surprises du jour.',             tags:['Japon','Végétarien dispo','À emporter']},
   // CE — Art
-  {id:25, name:'Ink & Washi',        cat:'art',    lieu:'Centre Eaton',    x:820, y:80,  desc:'Papiers washi, livres d\'artiste, carnets reliés main, tampons traditionnels. Atelier de reliure japonaise le samedi après-midi.', tags:['Japon','Papeterie','Atelier']},
-  {id:26, name:'Batik Nusantara',    cat:'art',    lieu:'Centre Eaton',    x:820, y:155, desc:'Tissus batik peints à la cire, sarongs, tentures, tableaux textiles. Démonstration du procédé traditionnel de teinture en direct.', tags:['Indonésie','Textile','Fait main']},
+  {id:25, name:'Ink & Washi',        cat:'art',   lieu:'Centre Eaton',   ex:340, ey:50,  desc:'Papiers washi, livres d\'artiste, carnets reliés main. Atelier de reliure japonaise le samedi après-midi.',                   tags:['Japon','Papeterie','Atelier']},
+  {id:26, name:'Batik Nusantara',    cat:'art',   lieu:'Centre Eaton',   ex:340, ey:130, desc:'Tissus batik peints à la cire, sarongs, tentures. Démonstration du procédé traditionnel en direct.',                          tags:['Indonésie','Textile','Fait main']},
   // CE — Mode
-  {id:27, name:'Hanbok Moderne',     cat:'mode',   lieu:'Centre Eaton',    x:585, y:330, desc:'Hanbok coréen contemporain revisité pour le quotidien. Robes, vestes jeogori, saekdong colorés. Location de tenues pour photos.', tags:['Corée','Prêt-à-porter','Location']},
-  {id:28, name:'Bijoux Lotus',       cat:'mode',   lieu:'Centre Eaton',    x:700, y:330, desc:'Bijoux artisanaux inspirés des motifs floraux asiatiques : lotus, cerisier, chrysanthème. Or, argent, jade. Pièces uniques faites à Montréal.', tags:['Artisanat','Bijoux','Fait main']},
+  {id:27, name:'Hanbok Moderne',     cat:'mode',  lieu:'Centre Eaton',   ex:200, ey:210, desc:'Hanbok coréen contemporain revisité. Robes, vestes jeogori, saekdong colorés. Location pour photos.',                         tags:['Corée','Prêt-à-porter','Location']},
+  {id:28, name:'Bijoux Lotus',       cat:'mode',  lieu:'Centre Eaton',   ex:340, ey:210, desc:'Bijoux inspirés de motifs floraux asiatiques : lotus, cerisier, chrysanthème. Or, argent, jade. Pièces uniques.',             tags:['Artisanat','Bijoux','Fait main']},
   // CE — Bien-être
-  {id:29, name:'Shiatsu Express',    cat:'bien',   lieu:'Centre Eaton',    x:820, y:230, desc:'Séances de shiatsu de 15 à 30 min. Massage assis habillé aux points d\'acupression japonais. Réservation sur place ou à l\'avance.', tags:['Japon','15-30 min','Réservation']},
+  {id:29, name:'Shiatsu Express',    cat:'bien',  lieu:'Centre Eaton',   ex:200, ey:290, desc:'Séances shiatsu de 15 à 30 min. Massage assis habillé aux points d\'acupression japonais. Réservation sur place.',           tags:['Japon','15-30 min','Réservation']},
   // CE — Activités
-  {id:30, name:'Veils of Bollywood', cat:'activ',  lieu:'Centre Eaton',    x:820, y:330, desc:'Cours de danse bollywoodienne de 30 min. Aucune expérience requise ! Mouvements emblématiques du cinéma indien dans une ambiance festive et inclusive.', tags:['Inde','Danse','Participatif']},
+  {id:30, name:'Veils of Bollywood', cat:'activ', lieu:'Centre Eaton',   ex:340, ey:290, desc:'Cours de danse bollywoodienne interactifs de 30 min. Aucune expérience requise. Ambiance festive et inclusive.',              tags:['Inde','Danse','Participatif']},
 ];
 
-// ──────────────────────────────────────
-// STATE
-// ──────────────────────────────────────
+// ── STATE ──
 let filter = 'all';
-let view = 'map';
+let curView = 'map';
+let scale = 1;
 let highlighted = null;
 
-// ──────────────────────────────────────
-// CANVAS MAP
-// ──────────────────────────────────────
-const canvas = document.getElementById('mapCanvas');
-const ctx = canvas.getContext('2d');
+// ── LAYOUT ──
+// SVG total size depends on mobile vs desktop
+const MOBILE_W = 460;  // single column width
+const DESK_W   = 980;  // TOM(460) + gap(60) + CE(460)
+const TOM_SIZE = 480;  // square bounding box
+const CE_W     = 420, CE_H = 380;
+const GAP      = 50;   // gap between buildings
 
-// Transform state
-let camX = 0, camY = 0, camZ = 1;
-const W = 900, H = 560;
+function isMob(){ return window.innerWidth < 640; }
 
-// Pan/zoom
-let isDragging = false, dragStartX, dragStartY, camStartX, camStartY;
-let lastPinchDist = null;
-let didDrag = false;
-
-// Layout mode
-function isMobile() { return window.innerWidth < 600; }
-
-// Virtual canvas dimensions change based on layout
-// Desktop: W=900, H=560 (side by side)
-// Mobile:  W=460, H=1000 (stacked)
-function getVirtualDims() {
-  return isMobile()
-    ? { vw: 460, vh: 1020 }
-    : { vw: 900, vh: 560 };
-}
-
-function resize() {
-  const wrap = canvas.parentElement;
-  const cw = wrap.clientWidth;
-  const ch = wrap.clientHeight;
-  canvas.width  = cw * devicePixelRatio;
-  canvas.height = ch * devicePixelRatio;
-  canvas.style.width  = cw + 'px';
-  canvas.style.height = ch + 'px';
-  const { vw, vh } = getVirtualDims();
-  const scaleX = cw / vw;
-  const scaleY = ch / vh;
-  camZ = Math.min(scaleX, scaleY) * 0.92;
-  camX = (cw - vw * camZ) / 2;
-  camY = isMobile() ? 10 : (ch - vh * camZ) / 2;
-  drawMap();
-}
-
-function drawMap() {
-  const w = canvas.width / devicePixelRatio;
-  const h = canvas.height / devicePixelRatio;
-  ctx.save();
-  ctx.scale(devicePixelRatio, devicePixelRatio);
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = '#f0ede5';
-  ctx.fillRect(0, 0, w, h);
-  ctx.save();
-  ctx.translate(camX, camY);
-  ctx.scale(camZ, camZ);
-  if (isMobile()) {
-    drawFloorPlanMobile();
+// Build absolute SVG positions for each vendor
+function vendorPos(v){
+  const mob = isMob();
+  if(v.tx !== undefined){
+    // Time Out Market
+    const ox = mob ? 10 : 10;
+    const oy = mob ? 10 : (TOM_SIZE/2 - 200);
+    return { x: ox + v.tx, y: oy + v.ty };
   } else {
-    drawFloorPlan();
+    // Centre Eaton
+    const ox = mob ? 10 : (TOM_SIZE + GAP + 10);
+    const oy = mob ? (TOM_SIZE + 80 + 10) : 60;
+    return { x: ox + v.ex, y: oy + v.ey };
   }
-  drawVendors();
-  ctx.restore();
-  ctx.restore();
 }
 
-function drawRoundRect(x, y, w, h, r, fill, stroke, sw=1.5) {
-  ctx.beginPath();
-  ctx.moveTo(x+r, y);
-  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
-  ctx.closePath();
-  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = sw; ctx.stroke(); }
+function svgTotalSize(){
+  const mob = isMob();
+  if(mob){
+    return { w: MOBILE_W, h: TOM_SIZE + 80 + CE_H + 60 };
+  } else {
+    return { w: DESK_W, h: Math.max(TOM_SIZE, CE_H) + 80 };
+  }
 }
 
-function drawFloorPlan() {
-  // ─── TIME OUT MARKET ───
-  // Building
-  drawRoundRect(20, 20, 465, 420, 10, '#fff', '#1a1208', 2);
-  // Label
-  ctx.fillStyle = '#1a1208'; ctx.font = 'bold 13px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.letterSpacing = '2px';
-  ctx.fillText('TIME OUT MARKET', 252, 45);
-  // Sub label
-  ctx.fillStyle = '#6b5a34'; ctx.font = '10px Figtree,sans-serif';
-  ctx.fillText('Sainte-Catherine Ouest', 252, 58);
+// ── BUILD SVG MAP ──
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs){
+  const e = document.createElementNS(NS, tag);
+  for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  return e;
+}
+function txt(content, x, y, attrs={}){
+  const t = el('text', {x, y, ...attrs});
+  t.textContent = content;
+  return t;
+}
+function rr(x,y,w,h,r,fill,stroke,sw=2){
+  const p = el('rect', {x,y,width:w,height:h,rx:r});
+  if(fill) p.setAttribute('fill', fill);
+  if(stroke){ p.setAttribute('stroke', stroke); p.setAttribute('stroke-width', sw); }
+  return p;
+}
+
+function buildMap(){
+  const mob = isMob();
+  const {w,h} = svgTotalSize();
+  const svg = document.getElementById('themap');
+  svg.setAttribute('width', w * scale);
+  svg.setAttribute('height', h * scale);
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+  // Background + grid
+  const bg = document.getElementById('mapBg');
+  bg.innerHTML = '';
+  const bgRect = rr(0,0,w,h,0,'#f0ede5',null);
+  const gridRect = rr(0,0,w,h,0,'url(#grid)',null);
+  bg.append(bgRect, gridRect);
+
+  // Floor plan
+  const fl = document.getElementById('mapFloor');
+  fl.innerHTML = '';
+
+  if(mob){
+    buildTOM(fl, 10, 10);
+    // separator
+    const sep = el('g',{});
+    sep.append(rr(10, TOM_SIZE+10+20, MOBILE_W-20, 40, 6, '#ede8da', 'rgba(26,18,8,0.08)', 1));
+    const st = txt('── RUE SAINTE-CATHERINE OUEST ──', MOBILE_W/2, TOM_SIZE+10+20+25, {'text-anchor':'middle','font-size':'9','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif','letter-spacing':'1'});
+    sep.append(st);
+    fl.append(sep);
+    buildCE(fl, 10, TOM_SIZE + 10 + 80);
+  } else {
+    const tomY = (Math.max(TOM_SIZE, CE_H+60) - TOM_SIZE) / 2 + 30;
+    const ceY  = (Math.max(TOM_SIZE, CE_H+60) - CE_H) / 2 + 30;
+    buildTOM(fl, 10, tomY);
+    // vertical separator
+    const sepX = TOM_SIZE + 10 + GAP/2;
+    const sepLine = el('line', {x1:sepX, y1:20, x2:sepX, y2:h-20, stroke:'rgba(26,18,8,0.15)', 'stroke-width':'1', 'stroke-dasharray':'6,4'});
+    const sepTxt = el('text', {x:sepX, y:h/2, 'text-anchor':'middle', transform:`rotate(-90,${sepX},${h/2})`, 'font-size':'8', 'font-weight':'700', fill:'rgba(26,18,8,0.3)', 'font-family':'Figtree,sans-serif'});
+    sepTxt.textContent = 'RUE SAINTE-CATHERINE OUEST';
+    fl.append(sepLine, sepTxt);
+    buildCE(fl, TOM_SIZE + 10 + GAP, ceY);
+  }
+
+  buildPins();
+}
+
+function buildTOM(parent, ox, oy){
+  // TOM cross/diamond shape inspired by real plan
+  // Outer walls — octagonal shape approximating the cross
+  const S = TOM_SIZE - 20;
+
+  // Main outer shape — octagon (cut corners)
+  const cut = 60;
+  const pts = [
+    [ox+cut, oy], [ox+S-cut, oy],
+    [ox+S, oy+cut], [ox+S, oy+S-cut],
+    [ox+S-cut, oy+S], [ox+cut, oy+S],
+    [ox, oy+S-cut], [ox, oy+cut]
+  ].map(p=>p.join(',')).join(' ');
+
+  const outer = el('polygon', {points:pts, fill:'#fff', stroke:'#1a1208', 'stroke-width':'2'});
+  parent.append(outer);
+
+  // Wood floor (central area)
+  const wf = el('polygon', {points:pts, fill:'url(#woodTOM)'});
+  parent.append(wf);
+
+  // Central open courtyard (ellipse, like real TOM)
+  const cx = ox + S/2, cy = oy + S/2 + 10;
+  const court = el('ellipse', {cx, cy, rx:55, ry:40, fill:'#e8e2d4', stroke:'rgba(26,18,8,0.12)', 'stroke-width':'1'});
+  const courtTxt = txt('SCÈNE', cx, cy-4, {'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'});
+  const courtTxt2 = txt('PRINCIPALE', cx, cy+8, {'text-anchor':'middle','font-size':'7','fill':'rgba(240,97,24,0.7)','font-family':'Figtree,sans-serif'});
+  parent.append(court, courtTxt, courtTxt2);
+
+  // Inner allées (cross pattern)
+  const m = ox + S/2, my = oy + S/2;
+  // horizontal allée
+  const ha = rr(ox+20, my-12, S-40, 24, 2, 'rgba(26,18,8,0.04)', null);
+  // vertical allée
+  const va = rr(m-12, oy+20, 24, S-40, 2, 'rgba(26,18,8,0.04)', null);
+  parent.append(ha, va);
+
+  // Stand zones — small rectangles around perimeter
+  const zones = [
+    // top row
+    {x:ox+80, y:oy+10, w:70, h:38, label:'Zone A'},
+    {x:ox+170,y:oy+10, w:70, h:38, label:'Zone B'},
+    {x:ox+260,y:oy+10, w:70, h:38, label:'Zone C'},
+    // bottom row
+    {x:ox+80, y:oy+S-48,w:70, h:38, label:'Zone D'},
+    {x:ox+170,y:oy+S-48,w:70, h:38, label:'Zone E'},
+    {x:ox+260,y:oy+S-48,w:70, h:38, label:'Zone F'},
+    // left col
+    {x:ox+10, y:oy+90, w:38, h:60, label:''},
+    {x:ox+10, y:oy+190,w:38, h:60, label:''},
+    {x:ox+10, y:oy+290,w:38, h:60, label:''},
+    // right col
+    {x:ox+S-48,y:oy+90, w:38, h:60, label:''},
+    {x:ox+S-48,y:oy+190,w:38, h:60, label:''},
+    {x:ox+S-48,y:oy+290,w:38, h:60, label:''},
+  ];
+  zones.forEach(z=>{
+    const r = rr(z.x, z.y, z.w, z.h, 3, '#f5f0e8', 'rgba(26,18,8,0.12)', 1);
+    parent.append(r);
+    if(z.label){
+      const t = txt(z.label, z.x+z.w/2, z.y+z.h/2+3, {'text-anchor':'middle','font-size':'7','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif'});
+      parent.append(t);
+    }
+  });
+
+  // Bar central
+  const bar = rr(ox+S/2-45, oy+S/2-18, 90, 36, 4, '#ede8da', 'rgba(26,18,8,0.15)', 1);
+  const barT = txt('BAR', ox+S/2, oy+S/2+4, {'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif'});
+  parent.append(bar, barT);
+
+  // Atelier zone (top-right corner)
+  const at = rr(ox+S-50, oy+5, 50, 50, 4, 'rgba(140,110,42,0.12)', '#8c6e2a', 1.5);
+  const atT = txt('ATELIER', ox+S-25, oy+34, {'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#8c6e2a','font-family':'Figtree,sans-serif'});
+  parent.append(at, atT);
+
+  // Entrances (4 sides of octagon)
+  const entrees = [
+    {x:ox+S/2-25, y:oy+S-3, w:50, h:8, label:'SUD'},
+    {x:ox+S/2-25, y:oy-5,   w:50, h:8, label:'NORD'},
+    {x:ox-5,      y:oy+S/2-15, w:8, h:30, label:''},
+    {x:ox+S-3,    y:oy+S/2-15, w:8, h:30, label:''},
+  ];
+  entrees.forEach(e=>{
+    const er = rr(e.x,e.y,e.w,e.h,2,'#f06118',null);
+    parent.append(er);
+  });
+
+  // Title
+  parent.append(txt('TIME OUT MARKET', ox+S/2, oy-12, {'text-anchor':'middle','font-size':'12','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'2'}));
+  parent.append(txt('Sainte-Catherine Ouest', ox+S/2, oy-1, {'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
+
+  // Academy / shop labels (inspired by real plan)
+  parent.append(txt('TOM Academy', ox+14, oy+S/2+70, {'font-size':'6','fill':'rgba(26,18,8,0.35)','font-family':'Figtree,sans-serif','font-style':'italic'}));
+  parent.append(txt('Shop', ox+14, oy+S/2-60, {'font-size':'6','fill':'rgba(26,18,8,0.35)','font-family':'Figtree,sans-serif','font-style':'italic'}));
+
+  // Compass
+  const cx2 = ox+S-18, cy2 = oy+S+16;
+  const comp = el('circle',{cx:cx2,cy:cy2,r:12,fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'});
+  const compT = txt('N',cx2,cy2+3,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'});
+  parent.append(comp, compT);
+}
+
+function buildCE(parent, ox, oy){
+  // Centre Eaton — modern rectangular layout with atrium
+  const W = CE_W - 20, H = CE_H - 20;
+
+  // Outer walls
+  const outer = rr(ox, oy, W, H, 8, '#fff', '#1a1208', 2);
+  parent.append(outer);
+  const fill = rr(ox, oy, W, H, 8, 'url(#woodCE)', null);
+  parent.append(fill);
+
+  // Central atrium
+  const atrX = ox + W/2 - 50, atrY = oy + H/2 - 35;
+  const atr = rr(atrX, atrY, 100, 70, 6, '#dce8f0', 'rgba(159,179,212,0.5)', 1.5);
+  const atrT = txt('SCÈNE', ox+W/2, atrY+30, {'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#4a6090','font-family':'Figtree,sans-serif'});
+  const atrT2 = txt('EATON', ox+W/2, atrY+43, {'text-anchor':'middle','font-size':'7','fill':'rgba(74,96,144,0.7)','font-family':'Figtree,sans-serif'});
+  parent.append(atr, atrT, atrT2);
 
   // Allées
-  ctx.fillStyle = 'rgba(26,18,8,0.04)';
-  ctx.fillRect(155, 70, 8, 340);
-  ctx.fillRect(285, 70, 8, 340);
-  ctx.fillRect(40, 215, 420, 8);
+  const alleeH = rr(ox+10, oy+H/2-8, W-20, 16, 2, 'rgba(26,18,8,0.04)', null);
+  const alleeV = rr(ox+W/2-8, oy+10, 16, H-20, 2, 'rgba(26,18,8,0.04)', null);
+  parent.append(alleeH, alleeV);
 
-  // Zone scène
-  drawRoundRect(35, 355, 115, 70, 6, 'rgba(240,97,24,0.08)', '#f06118', 1.5);
-  ctx.fillStyle = '#f06118'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('SCÈNE', 92, 385);
-  ctx.font = '8px Figtree,sans-serif'; ctx.fillStyle = 'rgba(240,97,24,0.7)';
-  ctx.fillText('PRINCIPALE', 92, 396);
+  // Stand zones
+  [[ox+15,oy+15,75,55],[ox+W-90,oy+15,75,55],
+   [ox+15,oy+H-70,75,55],[ox+W-90,oy+H-70,75,55],
+   [ox+W/2-45,oy+15,90,38],[ox+W/2-45,oy+H-53,90,38]
+  ].forEach(([x,y,w,h])=>{
+    parent.append(rr(x,y,w,h,3,'#f0f4f8','rgba(159,179,212,0.4)',1));
+  });
 
-  // Zone atelier
-  drawRoundRect(355, 355, 115, 70, 6, 'rgba(140,110,42,0.08)', '#8c6e2a', 1.5);
-  ctx.fillStyle = '#8c6e2a'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ATELIER', 412, 395);
+  // Entrance
+  const entCE = rr(ox+W/2-30, oy+H-3, 60, 8, 2, '#9fb3d4', null);
+  const entCET = txt('ENTRÉE', ox+W/2, oy+H+7, {'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#4a6090','font-family':'Figtree,sans-serif'});
+  parent.append(entCE, entCET);
 
-  // Bar/tables
-  drawRoundRect(170, 230, 120, 35, 4, 'rgba(26,18,8,0.05)', 'rgba(26,18,8,0.12)', 1);
-  ctx.fillStyle = '#6b5a34'; ctx.font = '8px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('BAR / TABLES', 230, 252);
-
-  // Entrée TOM
-  drawRoundRect(185, 436, 90, 12, 3, '#f06118', null);
-  ctx.fillStyle = '#fff'; ctx.font = 'bold 7px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ENTRÉE', 230, 446);
-
-  // ─── SÉPARATEUR ───
-  ctx.setLineDash([6,4]);
-  ctx.strokeStyle = 'rgba(26,18,8,0.2)'; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(495,20); ctx.lineTo(495,450); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.save(); ctx.translate(495, 230);
-  ctx.rotate(-Math.PI/2);
-  ctx.fillStyle = 'rgba(26,18,8,0.3)'; ctx.font = '8px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('RUE SAINTE-CATHERINE', 0, 4);
-  ctx.restore();
-
-  // ─── CENTRE EATON ───
-  drawRoundRect(515, 20, 365, 420, 10, '#fff', '#1a1208', 2);
-  ctx.fillStyle = '#1a1208'; ctx.font = 'bold 13px Figtree,sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('CENTRE EATON', 697, 45);
-  ctx.fillStyle = '#6b5a34'; ctx.font = '10px Figtree,sans-serif';
-  ctx.fillText('Sainte-Catherine Ouest', 697, 58);
-
-  // Allées Eaton
-  ctx.fillStyle = 'rgba(26,18,8,0.04)';
-  ctx.fillRect(650, 70, 8, 340);
-  ctx.fillRect(530, 215, 340, 8);
-
-  // Zone scène Eaton
-  drawRoundRect(530, 355, 105, 70, 6, 'rgba(159,179,212,0.15)', '#9fb3d4', 1.5);
-  ctx.fillStyle = '#4a6090'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('SCÈNE EATON', 582, 395);
-
-  // Entrée CE
-  drawRoundRect(605, 436, 90, 12, 3, '#9fb3d4', null);
-  ctx.fillStyle = '#fff'; ctx.font = 'bold 7px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ENTRÉE', 650, 446);
-
-  // ─── BOUSSOLE ───
-  ctx.save();
-  ctx.translate(860, 50);
-  ctx.beginPath(); ctx.arc(0,0,16,0,Math.PI*2);
-  ctx.fillStyle='#fff'; ctx.fill();
-  ctx.strokeStyle='#1a1208'; ctx.lineWidth=1.5; ctx.stroke();
-  ctx.fillStyle='#f06118'; ctx.font='bold 10px Figtree,sans-serif';
-  ctx.textAlign='center'; ctx.fillText('N',0,-4);
-  ctx.restore();
-
-  // ─── LÉGENDES DE ZONES ───
-  ctx.fillStyle='rgba(26,18,8,0.18)'; ctx.font='7px Figtree,sans-serif';
-  ctx.textAlign='left';
-  ctx.fillText('Zone A', 35,80);
-  ctx.fillText('Zone B', 165,80);
-  ctx.fillText('Zone C', 295,80);
-  ctx.fillText('Zone D', 425,80);
-  ctx.fillText('Zone E', 530,80);
-  ctx.fillText('Zone F', 660,80);
-  ctx.fillText('Zone G', 800,80);
+  // Title
+  parent.append(txt('CENTRE EATON', ox+W/2, oy-12, {'text-anchor':'middle','font-size':'12','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'2'}));
+  parent.append(txt('Sainte-Catherine Ouest', ox+W/2, oy-1, {'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
 }
 
+function buildPins(){
+  const pinGroup = document.getElementById('mapPins');
+  pinGroup.innerHTML = '';
 
-function drawFloorPlanMobile() {
-  // ─── TIME OUT MARKET ─── (x:20,y:20,w:420,h:460)
-  drawRoundRect(20, 20, 420, 460, 10, '#fff', '#1a1208', 2);
-  ctx.fillStyle = '#1a1208'; ctx.font = 'bold 14px Figtree,sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('TIME OUT MARKET', 230, 45);
-  ctx.fillStyle = '#6b5a34'; ctx.font = '10px Figtree,sans-serif';
-  ctx.fillText('Sainte-Catherine Ouest', 230, 60);
-
-  // Allées TOM
-  ctx.fillStyle = 'rgba(26,18,8,0.04)';
-  ctx.fillRect(150, 75, 7, 370); ctx.fillRect(280, 75, 7, 370);
-  ctx.fillRect(30, 245, 400, 7);
-
-  // Zones TOM
-  drawRoundRect(35, 400, 115, 65, 6, 'rgba(240,97,24,0.08)', '#f06118', 1.5);
-  ctx.fillStyle = '#f06118'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('SCÈNE', 92, 430);
-  ctx.font = '8px Figtree,sans-serif'; ctx.fillStyle = 'rgba(240,97,24,0.6)';
-  ctx.fillText('PRINCIPALE', 92, 442);
-
-  drawRoundRect(310, 400, 115, 65, 6, 'rgba(140,110,42,0.08)', '#8c6e2a', 1.5);
-  ctx.fillStyle = '#8c6e2a'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ATELIER', 367, 437);
-
-  // Bar
-  drawRoundRect(160, 248, 120, 32, 4, 'rgba(26,18,8,0.04)', 'rgba(26,18,8,0.1)', 1);
-  ctx.fillStyle = '#6b5a34'; ctx.font = '8px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('BAR / TABLES', 220, 269);
-
-  // Entrée TOM
-  drawRoundRect(175, 476, 80, 10, 3, '#f06118', null);
-  ctx.fillStyle = '#fff'; ctx.font = 'bold 7px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ENTRÉE', 215, 484);
-
-  // Zone labels
-  ctx.fillStyle='rgba(26,18,8,0.18)'; ctx.font='7px Figtree,sans-serif'; ctx.textAlign='left';
-  ctx.fillText('Zone A',30,80); ctx.fillText('Zone B',158,80); ctx.fillText('Zone C',288,80); ctx.fillText('Zone D',390,80);
-
-  // ─── SEPARATOR ───
-  ctx.fillStyle = '#ede8da';
-  ctx.fillRect(20, 495, 420, 40);
-  ctx.fillStyle = '#6b5a34'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('── RUE SAINTE-CATHERINE OUEST ──', 230, 519);
-
-  // ─── CENTRE EATON ─── (x:20,y:540,w:420,h:460)
-  drawRoundRect(20, 540, 420, 460, 10, '#fff', '#1a1208', 2);
-  ctx.fillStyle = '#1a1208'; ctx.font = 'bold 14px Figtree,sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('CENTRE EATON', 230, 565);
-  ctx.fillStyle = '#6b5a34'; ctx.font = '10px Figtree,sans-serif';
-  ctx.fillText('Sainte-Catherine Ouest', 230, 580);
-
-  // Allées CE
-  ctx.fillStyle = 'rgba(26,18,8,0.04)';
-  ctx.fillRect(150, 595, 7, 370); ctx.fillRect(280, 595, 7, 370);
-  ctx.fillRect(30, 765, 400, 7);
-
-  // Zone scène CE
-  drawRoundRect(35, 920, 115, 65, 6, 'rgba(159,179,212,0.15)', '#9fb3d4', 1.5);
-  ctx.fillStyle = '#4a6090'; ctx.font = 'bold 9px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('SCÈNE EATON', 92, 957);
-
-  // Entrée CE
-  drawRoundRect(175, 996, 80, 10, 3, '#9fb3d4', null);
-  ctx.fillStyle = '#fff'; ctx.font = 'bold 7px Figtree,sans-serif';
-  ctx.textAlign = 'center'; ctx.fillText('ENTRÉE', 215, 1004);
-
-  // Zone labels CE
-  ctx.fillStyle='rgba(26,18,8,0.18)'; ctx.font='7px Figtree,sans-serif'; ctx.textAlign='left';
-  ctx.fillText('Zone E',30,600); ctx.fillText('Zone F',158,600); ctx.fillText('Zone G',288,600); ctx.fillText('Zone H',390,600);
-
-  // Boussole
-  ctx.save(); ctx.translate(410, 550);
-  ctx.beginPath(); ctx.arc(0,0,14,0,Math.PI*2);
-  ctx.fillStyle='#fff'; ctx.fill();
-  ctx.strokeStyle='#1a1208'; ctx.lineWidth=1.5; ctx.stroke();
-  ctx.fillStyle='#f06118'; ctx.font='bold 9px Figtree,sans-serif';
-  ctx.textAlign='center'; ctx.fillText('N',0,-3);
-  ctx.restore();
-}
-
-function drawVendors() {
-  const mobile = isMobile();
-  V.forEach(v => {
+  V.forEach(v=>{
     const c = CATS[v.cat];
-    const active = (filter === 'all' || filter === v.cat);
-    const isHigh = (highlighted === v.id);
-    const vx = mobile ? v.mx : v.x;
-    const vy = mobile ? v.my : v.y;
-    if (!vx || !vy) return;
+    const pos = vendorPos(v);
+    const active = filter==='all' || filter===v.cat;
+    const hi = highlighted===v.id;
 
-    ctx.globalAlpha = active ? 1 : 0.12;
-    const r = isHigh ? 18 : 15;
+    const g = el('g', {'class':`kpin${!active?' dim':''}${hi?' hi':''}`, 'data-id':v.id});
 
-    if (isHigh) { ctx.shadowColor = c.text; ctx.shadowBlur = 14; }
-
-    ctx.beginPath();
-    ctx.arc(vx, vy, r, 0, Math.PI*2);
-    ctx.fillStyle = c.bg;
-    ctx.fill();
-    ctx.strokeStyle = c.text;
-    ctx.lineWidth = isHigh ? 2.5 : 2;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    ctx.fillStyle = c.text;
-    ctx.font = `bold ${isHigh?11:10}px Figtree,sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(v.id, vx, vy);
-    ctx.textBaseline = 'alphabetic';
-    ctx.globalAlpha = 1;
-  });
-}
-
-// Hit test
-function hitTest(screenX, screenY) {
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / devicePixelRatio / rect.width;
-  const scaleY = canvas.height / devicePixelRatio / rect.height;
-  const cx = (screenX - rect.left) * scaleX;
-  const cy = (screenY - rect.top) * scaleY;
-  const wx = (cx - camX) / camZ;
-  const wy = (cy - camY) / camZ;
-  const mobile = isMobile();
-  return V.find(v => {
-    const vx = mobile ? v.mx : v.x;
-    const vy = mobile ? v.my : v.y;
-    const dx = wx - vx, dy = wy - vy;
-    return Math.sqrt(dx*dx+dy*dy) < 20;
-  });
-}
-
-// Mouse events
-canvas.addEventListener('mousedown', e => {
-  isDragging = true; didDrag = false;
-  dragStartX = e.clientX; dragStartY = e.clientY;
-  camStartX = camX; camStartY = camY;
-});
-window.addEventListener('mouseup', e => {
-  if (!didDrag) {
-    const hit = hitTest(e.clientX, e.clientY);
-    if (hit) openDrawer(hit.id);
-  }
-  isDragging = false;
-});
-window.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
-  if (Math.abs(dx)+Math.abs(dy) > 4) didDrag = true;
-  camX = camStartX + dx; camY = camStartY + dy;
-  drawMap();
-});
-canvas.addEventListener('wheel', e => {
-  e.preventDefault();
-  const rect = canvas.getBoundingClientRect();
-  const mx = (e.clientX - rect.left) / rect.width * canvas.width/devicePixelRatio;
-  const my = (e.clientY - rect.top) / rect.height * canvas.height/devicePixelRatio;
-  const factor = e.deltaY < 0 ? 1.1 : 0.92;
-  const nz = Math.min(5, Math.max(0.4, camZ * factor));
-  camX = mx - (mx - camX) * (nz/camZ);
-  camY = my - (my - camY) * (nz/camZ);
-  camZ = nz;
-  drawMap();
-}, {passive:false});
-
-// Touch events
-let touch1 = null, touch2 = null, tcamX, tcamY, tcamZ;
-canvas.addEventListener('touchstart', e => {
-  e.preventDefault();
-  didDrag = false;
-  if (e.touches.length === 1) {
-    touch1 = e.touches[0]; touch2 = null;
-    dragStartX = touch1.clientX; dragStartY = touch1.clientY;
-    camStartX = camX; camStartY = camY;
-  } else if (e.touches.length === 2) {
-    touch1 = e.touches[0]; touch2 = e.touches[1];
-    lastPinchDist = Math.hypot(touch2.clientX-touch1.clientX, touch2.clientY-touch1.clientY);
-    tcamX = camX; tcamY = camY; tcamZ = camZ;
-    didDrag = true;
-  }
-}, {passive:false});
-
-canvas.addEventListener('touchmove', e => {
-  e.preventDefault();
-  if (e.touches.length === 1 && !touch2) {
-    const t = e.touches[0];
-    const dx = t.clientX - dragStartX, dy = t.clientY - dragStartY;
-    if (Math.abs(dx)+Math.abs(dy) > 5) didDrag = true;
-    camX = camStartX + dx; camY = camStartY + dy;
-    drawMap();
-  } else if (e.touches.length === 2) {
-    const t1 = e.touches[0], t2 = e.touches[1];
-    const dist = Math.hypot(t2.clientX-t1.clientX, t2.clientY-t1.clientY);
-    const factor = dist / lastPinchDist;
-    const nz = Math.min(5, Math.max(0.4, tcamZ * factor));
-    const mx = (t1.clientX+t2.clientX)/2;
-    const my = (t1.clientY+t2.clientY)/2;
-    const rect = canvas.getBoundingClientRect();
-    const px = (mx-rect.left)/rect.width * canvas.width/devicePixelRatio;
-    const py = (my-rect.top)/rect.height * canvas.height/devicePixelRatio;
-    camX = px - (px - tcamX) * (nz/tcamZ);
-    camY = py - (py - tcamY) * (nz/tcamZ);
-    camZ = nz;
-    drawMap();
-  }
-}, {passive:false});
-
-canvas.addEventListener('touchend', e => {
-  if (!didDrag && e.changedTouches.length === 1) {
-    const t = e.changedTouches[0];
-    const hit = hitTest(t.clientX, t.clientY);
-    if (hit) openDrawer(hit.id);
-  }
-  if (e.touches.length < 2) { touch2 = null; lastPinchDist = null; }
-  if (e.touches.length === 0) { touch1 = null; }
-}, {passive:true});
-
-// ──────────────────────────────────────
-// LIST VIEW
-// ──────────────────────────────────────
-function renderList() {
-  const panel = document.getElementById('listPanel');
-  const cats = filter === 'all' ? Object.keys(CATS) : [filter];
-  let html = '';
-  cats.forEach(cat => {
-    const items = V.filter(v => v.cat === cat);
-    if (!items.length) return;
-    const c = CATS[cat];
-    html += `<div class="grp-title" style="color:${c.text}">${c.label} (${items.length})</div>`;
-    items.forEach(v => {
-      html += `<div class="vendor-card" onclick="openDrawer(${v.id})">
-        <div class="v-num">${v.id}</div>
-        <div class="v-info">
-          <div class="v-name">${v.name}</div>
-          <div class="v-sub">📍 ${v.lieu}</div>
-        </div>
-        <span class="v-badge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</span>
-        <div class="v-arr">›</div>
-      </div>`;
-    });
-  });
-  panel.innerHTML = html;
-}
-
-// ──────────────────────────────────────
-// DRAWER
-// ──────────────────────────────────────
-let drawerTouchY = 0;
-
-function openDrawer(id) {
-  const v = V.find(x => x.id === id);
-  if (!v) return;
-  const c = CATS[v.cat];
-  document.getElementById('drawerHead').innerHTML = `
-    <div class="d-badge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</div>
-    <div class="d-top">
-      <span class="d-num">${v.id}</span>
-      <span class="d-name">${v.name}</span>
-    </div>
-    <div class="d-lieu">📍 ${v.lieu}</div>
-  `;
-  const tags = (v.tags||[]).map(t=>`<span class="d-tag">${t}</span>`).join('');
-  document.getElementById('drawerBody').innerHTML = `
-    <p class="d-desc">${v.desc}</p>
-    ${tags ? `<div class="d-tags">${tags}</div>` : ''}
-    <div class="d-locate" onclick="locatePin(${v.id})">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1208" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-      Voir sur la carte
-    </div>
-    <button class="d-close" onclick="closeDrawer()">Fermer</button>
-  `;
-  document.getElementById('drawer').scrollTop = 0;
-  requestAnimationFrame(() => {
-    document.getElementById('overlay').classList.add('on');
-    document.getElementById('drawer').classList.add('on');
-    document.body.style.overflow = 'hidden';
-  });
-}
-
-function closeDrawer() {
-  document.getElementById('overlay').classList.remove('on');
-  document.getElementById('drawer').classList.remove('on');
-  document.body.style.overflow = '';
-}
-
-function locatePin(id) {
-  closeDrawer();
-  showView('map');
-  setTimeout(() => {
-    highlighted = id;
-    drawMap();
-    // Center on the vendor
-    const v = V.find(x => x.id === id);
-    if (v) {
-      const w = canvas.width/devicePixelRatio, h = canvas.height/devicePixelRatio;
-      const vx = isMobile() ? v.mx : v.x;
-      const vy = isMobile() ? v.my : v.y;
-      camX = w/2 - vx * camZ;
-      camY = h/2 - vy * camZ;
-      drawMap();
+    // Outer glow for highlighted
+    if(hi){
+      const glow = el('circle',{cx:pos.x,cy:pos.y,r:'24',fill:c.bg,opacity:'0.4'});
+      g.append(glow);
     }
-    setTimeout(() => { highlighted = null; drawMap(); }, 3000);
-  }, 350);
+
+    const circle = el('circle',{cx:pos.x, cy:pos.y, r:hi?'19':'16', fill:c.bg, stroke:c.text, 'stroke-width':hi?'2.5':'2'});
+    const label = el('text',{x:pos.x, y:pos.y, 'font-size':hi?'11':'10', fill:c.text, 'font-family':'Figtree,sans-serif', 'font-weight':'900', 'text-anchor':'middle', 'dominant-baseline':'central'});
+    label.textContent = v.id;
+
+    g.append(circle, label);
+
+    g.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(v.id); });
+    g.addEventListener('touchend', (e)=>{ e.preventDefault(); e.stopPropagation(); openDrawer(v.id); }, {passive:false});
+
+    pinGroup.append(g);
+  });
 }
 
-// Swipe to close drawer
-document.getElementById('drawer').addEventListener('touchstart', e => {
-  drawerTouchY = e.touches[0].clientY;
-}, {passive:true});
-document.getElementById('drawer').addEventListener('touchmove', e => {
-  if (e.touches[0].clientY - drawerTouchY > 70 && document.getElementById('drawer').scrollTop <= 0) closeDrawer();
-}, {passive:true});
-document.addEventListener('keydown', e => { if (e.key==='Escape') closeDrawer(); });
+// ── ZOOM ──
+function zoom(factor){
+  scale = Math.min(4, Math.max(0.5, scale * factor));
+  applyZoom();
+}
+function resetZoom(){
+  scale = 1;
+  applyZoom();
+  const sc = document.getElementById('mapScroll');
+  sc.scrollTo({top:0, left:0, behavior:'smooth'});
+}
+function applyZoom(){
+  const {w,h} = svgTotalSize();
+  const svg = document.getElementById('themap');
+  svg.setAttribute('width', w * scale);
+  svg.setAttribute('height', h * scale);
+}
 
-// ──────────────────────────────────────
-// FILTER & VIEW
-// ──────────────────────────────────────
-function setFilter(cat) {
+// ── PINCH TO ZOOM ──
+let pinchDist0 = null, scale0 = 1;
+const sc = document.getElementById('mapScroll');
+sc.addEventListener('touchstart', e=>{
+  if(e.touches.length===2){
+    pinchDist0 = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
+    scale0 = scale;
+  }
+},{passive:true});
+sc.addEventListener('touchmove', e=>{
+  if(e.touches.length===2 && pinchDist0){
+    e.preventDefault();
+    const d = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
+    scale = Math.min(4, Math.max(0.5, scale0 * d/pinchDist0));
+    applyZoom();
+  }
+},{passive:false});
+sc.addEventListener('touchend', e=>{ if(e.touches.length<2) pinchDist0=null; },{passive:true});
+
+// ── FILTER ──
+function setFilter(cat){
   filter = cat;
-  document.querySelectorAll('.f-btn').forEach(b => {
-    b.className = b.className.replace(' on','');
-    if (b.classList.contains('f-'+cat) || (cat==='all' && b.classList.contains('f-all'))) {
-      b.classList.add('on');
+  // update buttons
+  document.querySelectorAll('.fbtn').forEach(b=>{
+    const bc = b.dataset.cat || 'all';
+    b.className = 'fbtn';
+    if(bc===cat){
+      if(cat==='all') b.className='fbtn fa';
+      else b.className='fbtn f'+cat.substring(0,1)+(cat==='bouffe'?'b':cat==='art'?'ar':cat==='mode'?'m':cat==='bien'?'bi':'ac');
     }
   });
-  drawMap();
+  buildPins();
   renderList();
 }
 
-function showView(v) {
-  view = v;
-  document.getElementById('mapPanel').style.display = v==='map' ? 'flex' : 'none';
-  document.getElementById('listPanel').style.display = v==='list' ? 'block' : 'none';
-  document.getElementById('btnMap').classList.toggle('active', v==='map');
-  document.getElementById('btnList').classList.toggle('active', v==='list');
-  if (v==='map') { requestAnimationFrame(drawMap); }
+// ── VIEW ──
+function showView(v){
+  curView=v;
+  document.getElementById('mapPanel').style.display = v==='map'?'flex':'none';
+  document.getElementById('listPanel').style.display = v==='list'?'block':'none';
+  document.getElementById('btnMap').classList.toggle('on', v==='map');
+  document.getElementById('btnList').classList.toggle('on', v==='list');
 }
 
-// Mobile coordinates
-const MOBILE_COORDS = {1: (70, 70), 2: (70, 154), 3: (70, 239), 4: (186, 70), 5: (186, 154), 6: (186, 239), 7: (302, 70), 8: (302, 154), 9: (400, 70), 10: (400, 154), 11: (302, 239), 12: (70, 352), 13: (186, 352), 14: (302, 352), 15: (400, 239), 16: (400, 352), 17: (70, 420), 18: (205, 420), 19: (70, 555), 20: (70, 639), 21: (70, 724), 22: (231, 555), 23: (231, 639), 24: (231, 724), 25: (400, 555), 26: (400, 639), 27: (70, 837), 28: (231, 837), 29: (400, 724), 30: (400, 837)};
-V.forEach(v => { if (MOBILE_COORDS[v.id]) { v.mx = MOBILE_COORDS[v.id][0]; v.my = MOBILE_COORDS[v.id][1]; } });
+// ── LIST ──
+function renderList(){
+  const panel = document.getElementById('listPanel');
+  const cats = filter==='all' ? Object.keys(CATS) : [filter];
+  let html='';
+  cats.forEach(cat=>{
+    const items = V.filter(v=>v.cat===cat);
+    if(!items.length) return;
+    const c = CATS[cat];
+    html+=`<div class="grptitle" style="color:${c.text}">${c.label} (${items.length})</div>`;
+    items.forEach(v=>{
+      html+=`<div class="vcard" onclick="openDrawer(${v.id})">
+        <div class="vnum">${v.id}</div>
+        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${v.lieu}</div></div>
+        <span class="vbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</span>
+        <div class="varr">›</div>
+      </div>`;
+    });
+  });
+  panel.innerHTML=html;
+}
 
-// ──────────────────────────────────────
-// INIT
-// ──────────────────────────────────────
-window.addEventListener('resize', resize);
-window.addEventListener('orientationchange', () => setTimeout(resize, 200));
-resize();
-renderList();
+// ── DRAWER ──
+let dtouchY=0;
+function openDrawer(id){
+  const v=V.find(x=>x.id===id); if(!v) return;
+  const c=CATS[v.cat];
+  document.getElementById('dhead').innerHTML=`
+    <div class="dbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</div>
+    <div class="dtop"><span class="dnum">${v.id}</span><span class="dname">${v.name}</span></div>
+    <div class="dlieu">📍 ${v.lieu}</div>`;
+  const tags=(v.tags||[]).map(t=>`<span class="dtag">${t}</span>`).join('');
+  document.getElementById('dbody').innerHTML=`
+    <p class="ddesc">${v.desc}</p>
+    ${tags?`<div class="dtags">${tags}</div>`:''}
+    <div class="dlocate" onclick="locatePin(${v.id})">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+      Voir sur la carte
+    </div>
+    <button class="dclose" onclick="closeDrawer()">Fermer</button>`;
+  document.getElementById('drawer').scrollTop=0;
+  requestAnimationFrame(()=>{
+    document.getElementById('overlay').classList.add('on');
+    document.getElementById('drawer').classList.add('on');
+    document.body.style.overflow='hidden';
+  });
+}
+function closeDrawer(){
+  document.getElementById('overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+  document.body.style.overflow='';
+}
+function locatePin(id){
+  closeDrawer();
+  showView('map');
+  highlighted=id;
+  buildPins();
+  // Scroll to pin
+  setTimeout(()=>{
+    const pos = vendorPos(V.find(v=>v.id===id));
+    const sc2 = document.getElementById('mapScroll');
+    const {w,h}=svgTotalSize();
+    sc2.scrollTo({
+      left: Math.max(0, pos.x*scale - sc2.clientWidth/2),
+      top:  Math.max(0, pos.y*scale - sc2.clientHeight/2),
+      behavior:'smooth'
+    });
+    setTimeout(()=>{ highlighted=null; buildPins(); }, 2500);
+  },350);
+}
 
-// Hide hint after 4s
-setTimeout(() => {
-  const h = document.getElementById('mapHint');
-  if (h) h.classList.add('hide');
-}, 4000);
+// Swipe to close
+document.getElementById('drawer').addEventListener('touchstart',e=>{dtouchY=e.touches[0].clientY;},{passive:true});
+document.getElementById('drawer').addEventListener('touchmove',e=>{
+  if(e.touches[0].clientY-dtouchY>70 && document.getElementById('drawer').scrollTop<=0) closeDrawer();
+},{passive:true});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+
+// ── INIT & RESIZE ──
+function init(){
+  buildMap();
+  renderList();
+  // setFilter resets button classes properly
+  document.querySelectorAll('.fbtn').forEach(b=>{
+    if(!b.dataset.cat) b.dataset.cat='all';
+  });
+}
+
+window.addEventListener('resize', ()=>{ buildMap(); renderList(); });
+window.addEventListener('orientationchange', ()=>setTimeout(()=>{ buildMap(); renderList(); }, 200));
+init();
 </script>
 </body>
 </html>
