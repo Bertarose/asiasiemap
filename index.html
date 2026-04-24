@@ -342,7 +342,12 @@ function buildMap(){
   svg.setAttribute('width', Math.round(vw*svgScale));
   svg.setAttribute('height', Math.round(vh*svgScale));
   // Center in container
-  svg.style.margin=`${Math.max(0,(wh-vh*svgScale)/2)}px ${Math.max(0,(ww-vw*svgScale)/2)}px`;
+  const mTop=Math.max(0,(wh-vh*svgScale)/2);
+  const mLeft=Math.max(0,(ww-vw*svgScale)/2);
+  svg.style.margin=`${mTop}px ${mLeft}px`;
+  // Reset scroll so centering is via margin, not scroll offset
+  const wrap2=document.getElementById('mapWrap');
+  if(wrap2){ wrap2.scrollTop=0; wrap2.scrollLeft=0; }
 
   // Background
   const bg=document.getElementById('mapBg');
@@ -706,23 +711,39 @@ function closeDrawer(){
 function locatePin(id){
   closeDrawer();
   const v=V.find(x=>x.id===id); if(!v) return;
-  // Switch location tab if needed
-  // Only TOM — no location switching needed
-  // Switch to map view
   showView('map');
-  // Highlight — inverted colors + pulsing animation
   highlighted=id;
   buildPins();
-  // Scroll to center the pin
+  // Centre la carte sur le pin — rebuild sans reset du scale
   setTimeout(()=>{
     const wrap=document.getElementById('mapWrap');
     const svg=document.getElementById('themap');
+    const ww=wrap.offsetWidth, wh=wrap.offsetHeight;
+    // Pin position dans le SVG scalé
+    const pinX=v.x*svgScale;
+    const pinY=v.y*svgScale;
+    // Calcule le margin pour centrer le SVG, puis ajuste le scroll
+    const svgW=parseFloat(svg.getAttribute('width'))||TOM_VW*svgScale;
+    const svgH=parseFloat(svg.getAttribute('height'))||TOM_VH*svgScale;
+    // Remove margin (set by buildMap centering)
     svg.style.margin='0';
-    wrap.scrollTo({
-      left:Math.max(0,v.x*svgScale-wrap.clientWidth/2),
-      top:Math.max(0,v.y*svgScale-wrap.clientHeight/2),
-      behavior:'smooth'
-    });
+    // Si SVG plus petit que le wrap, on doit d'abord zoomer un peu
+    if(svgW<ww && svgH<wh){
+      // SVG fits — just scroll to pin within padded area
+      const marginLeft=Math.max(0,(ww-svgW)/2);
+      const marginTop=Math.max(0,(wh-svgH)/2);
+      wrap.scrollTo({
+        left:Math.max(0,marginLeft+pinX-ww/2),
+        top:Math.max(0,marginTop+pinY-wh/2),
+        behavior:'smooth'
+      });
+    } else {
+      wrap.scrollTo({
+        left:Math.max(0,pinX-ww/2),
+        top:Math.max(0,pinY-wh/2),
+        behavior:'smooth'
+      });
+    }
     setTimeout(()=>{ highlighted=null; buildPins(); },3000);
   },400);
 }
