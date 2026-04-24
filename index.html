@@ -22,7 +22,7 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .logo path,.logo rect,.logo polygon{fill:#1a1208}
 .hdr-title{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vtoggle{display:flex;border:1.5px solid #1a1208;border-radius:8px;overflow:hidden;flex-shrink:0}
-.vbtn{padding:6px 10px;background:transparent;border:none;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation;white-space:nowrap}
+.vbtn{padding:8px 14px;background:transparent;border:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation;white-space:nowrap}
 .vbtn+.vbtn{border-left:1px solid #1a1208}
 .vbtn.on{background:#1a1208;color:#fff}
 
@@ -46,18 +46,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 
 /* SPLIT LAYOUT */
 #mapPanel{display:flex;flex-direction:column;flex:1;min-width:0}
-#legendPanel{
-  width:220px;flex-shrink:0;
-  border-left:1.5px solid #1a1208;
-  overflow-y:auto;-webkit-overflow-scrolling:touch;
-  background:#fff;display:none; /* hidden on mobile by default */
-  flex-direction:column;
-}
-@media(min-width:640px){
-  #legendPanel{display:flex;}
-  .vtoggle{display:none;} /* hide map/list toggle on desktop */
-  #listPanel{display:none!important;} /* list integrated in legend */
-}
+#legendPanel{display:none}
+
 .legend-header{
   padding:10px 14px 8px;border-bottom:1.5px solid #1a1208;
   font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;
@@ -83,8 +73,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 
 /* MAP PANEL */
 #mapPanel{position:absolute;inset:0;display:flex;flex-direction:column}
-.map-wrap{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f0ede5;display:flex;align-items:center;justify-content:center}
-#themap{display:block;touch-action:pan-x pan-y pinch-zoom}
+.map-wrap{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f8f6f1;cursor:grab;display:flex;align-items:flex-start;justify-content:flex-start}
+#themap{display:block;touch-action:pan-x pan-y pinch-zoom;user-select:none}
 
 /* Pins */
 .kpin{cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -95,8 +85,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 @keyframes ringpulse{0%{r:20;opacity:0.45}100%{r:26;opacity:0.08}}
 
 /* Zoom buttons */
-.zctrls{position:absolute;bottom:10px;right:10px;display:flex;flex-direction:column;gap:5px;z-index:10}
-.zcbtn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.92);border:1.5px solid #1a1208;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 8px rgba(0,0,0,.12);line-height:1;font-family:inherit;backdrop-filter:blur(4px)}
+.zctrls{position:absolute;bottom:16px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:10}
+.zcbtn{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid rgba(26,18,8,0.25);font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 14px rgba(0,0,0,.15);line-height:1;font-family:inherit}
 
 /* Legend */
 .map-leg{display:flex;gap:8px;padding:6px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
@@ -105,18 +95,24 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .legdot{width:8px;height:8px;border-radius:50%}
 
 /* LIST */
-#listPanel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:10px 14px 100px;background:#f8f6f1}
-.grptitle{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:14px 0 8px;border-bottom:1.5px solid #1a1208;margin-bottom:8px}
-.vcard{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1.5px solid #1a1208;border-radius:10px;background:#fff;margin-bottom:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s}
+#listPanel{
+  position:absolute;inset:0;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  display:none;
+  padding:10px 16px 100px;
+  background:#f8f6f1;
+}
+.grptitle{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:14px 0 10px;border-bottom:1.5px solid #1a1208;margin-bottom:10px}
+.vcard{display:flex;align-items:center;gap:12px;padding:15px 16px;border:1.5px solid #1a1208;border-radius:12px;background:#fff;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s}
 .vcard:active{background:#ede8da}
 .vcard.dim{opacity:.18;pointer-events:none}
-.vnum{font-size:16px;font-weight:900;color:#f06118;min-width:28px;line-height:1}
+.vnum{font-size:18px;font-weight:900;color:#f06118;min-width:32px;line-height:1}
 .vinfo{flex:1;min-width:0}
-.vname{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.25}
-.vsub{font-size:11px;color:#6b5a34;margin-top:2px;font-weight:500}
+.vname{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.25}
+.vsub{font-size:12px;color:#6b5a34;margin-top:3px;font-weight:500}
 .vbadge{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:8px;border:1.5px solid;white-space:nowrap;flex-shrink:0}
 .varr{font-size:18px;color:#6b5a34;flex-shrink:0}
-.vlocate{display:flex;align-items:center;gap:4px;padding:5px 9px;border-radius:8px;border:1.5px solid #1a1208;background:transparent;color:#1a1208;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.vlocate{display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:10px;border:1.5px solid #1a1208;background:transparent;color:#1a1208;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap;flex-shrink:0;transition:all .15s}
 .vlocate:active,.vlocate:hover{background:#1a1208;color:#fff}
 
 /* EMPTY STATE */
@@ -336,20 +332,17 @@ function svgTxt(content,x,y,attrs){
 function buildMap(){
   const wrap=document.getElementById('mapWrap');
   const svg=document.getElementById('themap');
-  const vw=TOM_VW;
-  const vh=TOM_VH;
-
-  // Always refit to wrap when scale is reset
-  const ww=Math.max(wrap.clientWidth||360, 320);
-  const wh=Math.max(wrap.clientHeight||400, 300);
-  const fitScale=Math.min(ww/vw, wh/vh)*0.88;
-  if(svgScale===1 || svgScale<0.1) svgScale=Math.max(0.5,fitScale);
-
+  const vw=TOM_VW, vh=TOM_VH;
+  // Always fit on (re)load
+  const ww=wrap.offsetWidth||wrap.clientWidth||360;
+  const wh=wrap.offsetHeight||wrap.clientHeight||500;
+  svgScale=Math.min((ww/vw)*0.96,(wh/vh)*0.96);
+  svgScale=Math.max(0.3,Math.min(svgScale,1.5));
   svg.setAttribute('viewBox',`0 0 ${vw} ${vh}`);
-  svg.style.minWidth='unset';
-  svg.style.minHeight='unset';
-  svg.setAttribute('width', vw*svgScale);
-  svg.setAttribute('height', vh*svgScale);
+  svg.setAttribute('width', Math.round(vw*svgScale));
+  svg.setAttribute('height', Math.round(vh*svgScale));
+  // Center in container
+  svg.style.margin=`${Math.max(0,(wh-vh*svgScale)/2)}px ${Math.max(0,(ww-vw*svgScale)/2)}px`;
 
   // Background
   const bg=document.getElementById('mapBg');
@@ -541,33 +534,46 @@ function buildPins(){
 function zoom(f){
   const wrap=document.getElementById('mapWrap');
   const svg=document.getElementById('themap');
-  const vw=TOM_VW;
-  const vh=TOM_VH;
-  // When zooming, switch to scroll mode
-  wrap.style.alignItems='flex-start';
-  wrap.style.justifyContent='flex-start';
-  // When zooming, switch to scroll mode (remove flex centering)
-  const curW=svg.clientWidth, curH=svg.clientHeight;
-  const scrollX=wrap.scrollLeft+wrap.clientWidth/2;
-  const scrollY=wrap.scrollTop+wrap.clientHeight/2;
-  svgScale=Math.min(5,Math.max(0.4,svgScale*f));
-  const newW=vw*svgScale, newH=vh*svgScale;
+  const cx=wrap.scrollLeft+wrap.clientWidth/2;
+  const cy=wrap.scrollTop+wrap.clientHeight/2;
+  const oldW=svg.clientWidth, oldH=svg.clientHeight;
+  svgScale=Math.min(5,Math.max(0.3,svgScale*f));
+  const newW=Math.round(TOM_VW*svgScale), newH=Math.round(TOM_VH*svgScale);
+  svg.style.margin='0';
   svg.setAttribute('width',newW);
   svg.setAttribute('height',newH);
-  // Re-center scroll around midpoint
-  wrap.scrollLeft=scrollX*(newW/curW)-wrap.clientWidth/2;
-  wrap.scrollTop=scrollY*(newH/curH)-wrap.clientHeight/2;
+  wrap.scrollLeft=cx*(newW/oldW)-wrap.clientWidth/2;
+  wrap.scrollTop=cy*(newH/oldH)-wrap.clientHeight/2;
 }
 function resetZoom(){
   svgScale=1;
-  const wrap=document.getElementById('mapWrap');
-  wrap.style.alignItems='center';
-  wrap.style.justifyContent='center';
-  wrap.scrollTo({top:0,left:0,behavior:'smooth'});
   buildMap();
 }
 
 // Pinch-to-zoom on scroll container
+// ── MOUSE PAN (desktop drag) ──
+(function(){
+  const wrap=document.getElementById('mapWrap');
+  let down=false,sx,sy,sl,st;
+  wrap.addEventListener('mousedown',e=>{
+    if(e.target.closest('.zctrls')) return;
+    down=true; sx=e.clientX; sy=e.clientY;
+    sl=wrap.scrollLeft; st=wrap.scrollTop;
+    wrap.style.cursor='grabbing'; e.preventDefault();
+  });
+  window.addEventListener('mouseup',()=>{ down=false; document.getElementById('mapWrap').style.cursor='grab'; });
+  window.addEventListener('mousemove',e=>{
+    if(!down) return;
+    wrap.scrollLeft=sl-(e.clientX-sx);
+    wrap.scrollTop=st-(e.clientY-sy);
+  });
+  // Mouse wheel zoom
+  wrap.addEventListener('wheel',e=>{
+    e.preventDefault();
+    zoom(e.deltaY<0?1.12:0.9);
+  },{passive:false});
+})();
+
 let pinch0=null, scale0=1;
 const mw=document.getElementById('mapWrap');
 mw.addEventListener('touchstart',e=>{
@@ -609,10 +615,10 @@ function setFilter(cat){
 // ── VIEW ──
 function showView(v){
   curView=v;
-  document.getElementById('mapPanel').style.display=v==='map'?'flex':'none';
-  document.getElementById('listPanel').style.display=v==='list'?'block':'none';
-  document.getElementById('btnMap').classList.toggle('on',v==='map');
-  document.getElementById('btnList').classList.toggle('on',v==='list');
+  document.getElementById('mapPanel').style.display = v==='map' ? 'flex' : 'none';
+  document.getElementById('listPanel').style.display = v==='list' ? 'block' : 'none';
+  document.getElementById('btnMap').classList.toggle('on', v==='map');
+  document.getElementById('btnList').classList.toggle('on', v==='list');
 }
 
 // ── LIST ──
@@ -710,16 +716,13 @@ function locatePin(id){
   // Scroll to center the pin
   setTimeout(()=>{
     const wrap=document.getElementById('mapWrap');
-    const pinX=v.x*svgScale;
-    const pinY=v.y*svgScale;
-    wrap.style.alignItems='flex-start';
-    wrap.style.justifyContent='flex-start';
+    const svg=document.getElementById('themap');
+    svg.style.margin='0';
     wrap.scrollTo({
-      left:Math.max(0,pinX-wrap.clientWidth/2),
-      top:Math.max(0,pinY-wrap.clientHeight/2),
+      left:Math.max(0,v.x*svgScale-wrap.clientWidth/2),
+      top:Math.max(0,v.y*svgScale-wrap.clientHeight/2),
       behavior:'smooth'
     });
-    // Stop pulsing after 3s
     setTimeout(()=>{ highlighted=null; buildPins(); },3000);
   },400);
 }
@@ -728,10 +731,10 @@ document.getElementById('drawer').addEventListener('touchstart',e=>{dtouchY=e.to
 document.getElementById('drawer').addEventListener('touchmove',e=>{if(e.touches[0].clientY-dtouchY>70&&document.getElementById('drawer').scrollTop<=0)closeDrawer();},{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 
-window.addEventListener('resize',()=>{ svgScale=1; buildMap(); renderList(); renderLegend(); renderLegend(); });
-window.addEventListener('orientationchange',()=>setTimeout(()=>{ svgScale=1; buildMap(); renderList(); renderLegend(); renderLegend(); },200));
+window.addEventListener('resize',()=>{ svgScale=1; buildMap(); renderList(); renderLegend(); });
+window.addEventListener('orientationchange',()=>setTimeout(()=>{ svgScale=1; buildMap(); },200));
 
-buildMap(); renderList(); renderLegend(); renderLegend();
+buildMap(); renderList(); renderLegend();
 </script>
 </body>
 </html>
