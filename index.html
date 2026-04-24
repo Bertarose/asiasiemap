@@ -26,14 +26,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .vbtn+.vbtn{border-left:1px solid #1a1208}
 .vbtn.on{background:#1a1208;color:#fff}
 
-/* LOCATION TABS */
-.loc-tabs{display:flex;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0}
-.loc-tab{flex:1;padding:10px 8px;text-align:center;cursor:pointer;border:none;background:transparent;font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;position:relative}
-.loc-tab+.loc-tab{border-left:1px solid rgba(26,18,8,0.15)}
-.loc-tab.on{color:#1a1208;background:#f8f6f1}
-.loc-tab.on::after{content:'';position:absolute;bottom:-1.5px;left:0;right:0;height:3px;background:#f06118}
-.loc-tab .loc-count{font-size:9px;font-weight:700;opacity:.6;margin-left:4px}
-.loc-tab.ce.on::after{background:#9fb3d4}
+.venue-label{padding:8px 14px;background:#f8f6f1;border-bottom:1px solid rgba(26,18,8,0.1);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f06118;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.venue-dot{width:7px;height:7px;border-radius:50%;background:#f06118;flex-shrink:0}
 
 /* FILTERS */
 .filters{display:flex;gap:5px;padding:8px 12px;overflow-x:auto;border-bottom:1px solid rgba(26,18,8,.08);background:#fff;flex-shrink:0;scrollbar-width:none}
@@ -48,30 +42,65 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .fbtn.act-activ {background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800}
 
 /* CONTENT */
-.content{flex:1;position:relative;overflow:hidden;min-height:0}
+.content{flex:1;position:relative;overflow:hidden;min-height:0;display:flex}
+
+/* SPLIT LAYOUT */
+#mapPanel{display:flex;flex-direction:column;flex:1;min-width:0}
+#legendPanel{
+  width:220px;flex-shrink:0;
+  border-left:1.5px solid #1a1208;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:#fff;display:none; /* hidden on mobile by default */
+  flex-direction:column;
+}
+@media(min-width:640px){
+  #legendPanel{display:flex;}
+  .vtoggle{display:none;} /* hide map/list toggle on desktop */
+  #listPanel{display:none!important;} /* list integrated in legend */
+}
+.legend-header{
+  padding:10px 14px 8px;border-bottom:1.5px solid #1a1208;
+  font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;
+  flex-shrink:0;
+}
+.legend-grp-title{
+  font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  padding:10px 14px 5px;color:#6b5a34;border-bottom:.5px solid rgba(26,18,8,.08);
+}
+.legend-row{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px;border-bottom:.5px solid rgba(26,18,8,.06);
+  cursor:pointer;transition:background .1s;-webkit-tap-highlight-color:transparent;
+}
+.legend-row:hover,.legend-row:active{background:#ede8da}
+.legend-row.dim{opacity:.22;pointer-events:none}
+.legend-num{
+  font-size:10px;font-weight:900;color:#f06118;
+  min-width:20px;line-height:1;flex-shrink:0;
+}
+.legend-dot-sm{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-name{font-size:11px;font-weight:700;color:#1a1208;line-height:1.3;flex:1;min-width:0}
 
 /* MAP PANEL */
 #mapPanel{position:absolute;inset:0;display:flex;flex-direction:column}
-.map-wrap{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f0ede5;display:flex;align-items:center;justify-content:center}
-#themap{display:block;touch-action:pan-x pan-y pinch-zoom}
+.map-wrap{flex:1;position:relative;overflow:hidden;min-height:0;background:#f8f6f1;cursor:grab}
+.map-wrap.panning{cursor:grabbing}
+/* SVG lives inside a transform wrapper */
+.map-inner{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+#themap{display:block;touch-action:none;user-select:none;-webkit-user-select:none}
 
 /* Pins */
 .kpin{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .kpin.dim{opacity:.12}
-.kpin.hi circle.pulse{animation:pinpulse 0.7s ease-in-out infinite alternate}
-@keyframes pinpulse{
-  0%{r:17;opacity:1;stroke-width:2}
-  100%{r:23;opacity:0.9;stroke-width:3}
-}
-.kpin.hi .pin-ring{animation:ringpulse 0.7s ease-in-out infinite alternate}
-@keyframes ringpulse{
-  0%{r:26;opacity:0.4}
-  100%{r:34;opacity:0.1}
-}
+.kpin.hi circle.pulse{animation:pinpulse 0.6s ease-in-out infinite alternate}
+@keyframes pinpulse{0%{r:13;stroke-width:2.5}100%{r:17;stroke-width:1.5}}
+.kpin.hi .pin-ring{animation:ringpulse 0.6s ease-in-out infinite alternate}
+@keyframes ringpulse{0%{r:20;opacity:0.45}100%{r:26;opacity:0.08}}
 
 /* Zoom buttons */
-.zctrls{position:absolute;bottom:10px;right:10px;display:flex;flex-direction:column;gap:5px;z-index:10}
-.zcbtn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.92);border:1.5px solid #1a1208;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 8px rgba(0,0,0,.12);line-height:1;font-family:inherit;backdrop-filter:blur(4px)}
+.zctrls{position:absolute;bottom:14px;right:14px;display:flex;flex-direction:column;gap:8px;z-index:10}
+.zcbtn{width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid rgba(26,18,8,0.3);font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 12px rgba(0,0,0,.18);line-height:1;font-family:inherit;}
+.zcbtn:active{background:#f8f6f1;transform:scale(0.95)}
 
 /* Legend */
 .map-leg{display:flex;gap:8px;padding:6px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
@@ -122,7 +151,7 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
   .drawer.on{transform:translateX(-50%) translateY(0)}
   #listPanel{padding:12px 24px 100px}
   .vbtn{padding:7px 13px;font-size:11px}
-  .loc-tab{font-size:12px;padding:13px 16px}
+
 }
 </style>
 </head>
@@ -131,7 +160,7 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 
 <div class="ticker">
   <div class="ticker-inner">
-    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>30 MARCHANDS</span><span>TIME OUT MARKET · CENTRE EATON</span>
+    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>28 MARCHANDS</span><span>TIME OUT MARKET</span>
     <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>30 MARCHANDS</span><span>TIME OUT MARKET · CENTRE EATON</span>
   </div>
 </div>
@@ -153,14 +182,10 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
   </div>
 </div>
 
-<!-- LOCATION TABS -->
-<div class="loc-tabs">
-  <button class="loc-tab on" id="ltTOM" onclick="setLoc('tom')">
-    Time Out Market <span class="loc-count">(18)</span>
-  </button>
-  <button class="loc-tab ce" id="ltCE"  onclick="setLoc('eaton')">
-    Centre Eaton <span class="loc-count">(12)</span>
-  </button>
+<!-- VENUE LABEL -->
+<div class="venue-label">
+  <div class="venue-label-dot"></div>
+  Time Out Market — 28 marchands
 </div>
 
 <!-- FILTERS -->
@@ -187,6 +212,7 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
         <g id="mapFloor"></g>
         <g id="mapPins"></g>
       </svg>
+      </div><!-- /map-inner -->
       <!-- Zoom controls -->
       <div class="zctrls">
         <button class="zcbtn" onclick="zoom(1.3)"  aria-label="Zoom +">+</button>
@@ -205,6 +231,11 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 
   <!-- LIST -->
   <div id="listPanel"></div>
+  <!-- LEGEND PANEL (desktop right sidebar) -->
+  <div id="legendPanel">
+    <div class="legend-header">Légende — 28 marchands</div>
+    <div id="legendContent"></div>
+  </div>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
@@ -228,40 +259,48 @@ const CATS={
 // TOM positions: virtual canvas 480×490 (with padding)
 // CE positions:  virtual canvas 420×400 (with padding)
 const V=[
-  // TIME OUT MARKET
-  {id:1, name:'Ramen Ichiban',     cat:'bouffe',loc:'tom', x:55,  y:75,  desc:'Ramens artisanaux au bouillon mijoté 18h, nouilles fraîches maison. Spécialité : tonkotsu épicé et miso végétarien.',tags:['Japon','Végé dispo','Sans gluten']},
-  {id:2, name:'Bánh Mì Saigon',   cat:'bouffe',loc:'tom', x:55,  y:165, desc:'Bánh mì croustillants garnis de légumes marinés, coriandre et sauces maison. Recette familiale 3 générations.',tags:['Vietnam','Végétarien dispo','Halal']},
-  {id:3, name:'Dumpling House',    cat:'bouffe',loc:'tom', x:55,  y:255, desc:'Dumplings vapeur et frits, gyoza, bao farcis. Pâte faite main chaque matin. Plus de 12 garnitures.',tags:['Chine','Végétarien','Fruits de mer']},
-  {id:4, name:'Seoul BBQ',         cat:'bouffe',loc:'tom', x:55,  y:345, desc:'Galbi, bulgogi, poulet dakgalbi. Marinades maison 24h. Banchan faits maison chaque jour.',tags:['Corée','BBQ','Halal dispo']},
-  {id:5, name:'Matcha & Co',       cat:'bouffe',loc:'tom', x:165, y:55,  desc:'Lattes matcha, glaces mochi, affogato, parfaits japonais. Matcha importé d\'Uji, Kyoto.',tags:['Japon','Végétarien','Desserts']},
-  {id:6, name:'Pad Thai Express',  cat:'bouffe',loc:'tom', x:295, y:55,  desc:'Pad thaï wok haute flamme, crevettes ou tofu, cacahuètes grillées. Aussi : khao pad, larb.',tags:['Thaïlande','Végé dispo','Épicé']},
-  {id:7, name:'Bao Brothers',      cat:'bouffe',loc:'tom', x:420, y:75,  desc:'Gua baos farcis de porc braisé, poulet frit ou jackfruit épicé. Pains vapeur du matin.',tags:['Taïwan','Street food','Végé dispo']},
-  {id:8, name:'Mochi & Mango',     cat:'bouffe',loc:'tom', x:420, y:210, desc:'Mochis glacés, mangue sticky rice, taiyaki. Glaces artisanales aux fruits asiatiques.',tags:['Japon/Thaïlande','Desserts','Végétarien']},
-  {id:9, name:'Galerie Hanami',    cat:'art',   loc:'tom', x:420, y:340, desc:'Estampes japonaises contemporaines, illustrations encre de Chine. Éditions limitées signées.',tags:['Japon','Estampes','Éditions limitées']},
-  {id:10,name:'Céramiques Zen',    cat:'art',   loc:'tom', x:295, y:430, desc:'Bols à thé, vases, assiettes inspirés de la céramique coréenne céladon et du wabi-sabi.',tags:['Corée/Japon','Fait main','Artisanat']},
-  {id:11,name:'Studio Origami',    cat:'art',   loc:'tom', x:165, y:430, desc:'Origami d\'art encadrés, kits thématiques, ateliers. Œuvres de la diaspora asiatique montréalaise.',tags:['Japon','Atelier dispo','Cadeaux']},
-  {id:12,name:'Kimono Moderne',    cat:'mode',  loc:'tom', x:55,  y:430, desc:'Kimonos contemporains pour le quotidien, yukata d\'été, obi colorés. Du casual au cérémonial.',tags:['Japon','Prêt-à-porter','Accessoires']},
-  {id:13,name:'K-Beauty Studio',   cat:'mode',  loc:'tom', x:420, y:430, desc:'Soins coréens : sérum 10 étapes, masques, cushions, produits glow. Conseils personnalisés.',tags:['Corée','Beauté','Soins']},
-  {id:14,name:'Calligraphie MTL',  cat:'mode',  loc:'tom', x:175, y:210, desc:'Portraits calligraphiés en chinois, coréen et japonais. Kakemonos, estampes. Démos en direct.',tags:['Chine/Corée','Sur commande','Démo']},
-  {id:15,name:'Thés Guru',         cat:'bien',  loc:'tom', x:305, y:210, desc:'40 thés premium : sencha, gyokuro, oolong, pu-erh. Dégustation guidée et conseils d\'infusion.',tags:['Asie','Thé','Bien-être']},
-  {id:16,name:'Aromathérapie Zen', cat:'bien',  loc:'tom', x:240, y:305, desc:'Huiles essentielles, encens japonais, diffuseurs bambou, sels de bain cerisier. 100% naturel.',tags:['Japon','Naturel','Artisanat']},
-  {id:17,name:'Atelier Nerikiri',  cat:'activ', loc:'tom', x:165, y:305, desc:'KOTOAN initie à la confiserie japonaise sculptée. Créez vos wagashi. Vous repartez avec vos créations.',tags:['Japon','Atelier payant','Places limitées']},
-  {id:18,name:'Photobooth CBC',    cat:'activ', loc:'tom', x:315, y:305, desc:'Photobooth officiel CBC/Radio-Canada. Décors festifs exclusifs, impressions instantanées. Gratuit.',tags:['Gratuit','Photo','Tout public']},
+  // ── MUR GAUCHE — 8 marchands (x=46, espacés de 68px à partir de y=130) ──
+  {id:1,  name:"KayTran Eyewear",      cat:"mode",  loc:"tom", x:46, y:130, desc:"Lunettes et accessoires de mode asiatiques contemporains. Montures tendance, personnalisation sur place.", tags:["Mode","Accessoires","Sur commande"]},
+  {id:2,  name:"Alice & Theo",          cat:"art",   loc:"tom", x:46, y:198, desc:"Illustrations originales inspirées des cultures asiatiques. Affiches, tirages limités, carnets artistiques.", tags:["Art","Illustrations","Éditions limitées"]},
+  {id:3,  name:"Nijikai Saké",          cat:"bouffe",loc:"tom", x:46, y:266, desc:"Sakés artisanaux japonais premium. Dégustation guidée, accords mets-saké, bouteilles à emporter.", tags:["Japon","Saké","Dégustation"]},
+  {id:4,  name:"Calligraphie Maïka",    cat:"art",   loc:"tom", x:46, y:334, desc:"Calligraphie japonaise et coréenne en direct. Œuvres personnalisées, kakemonos, cartes sur commande.", tags:["Art","Calligraphie","Sur commande"]},
+  {id:5,  name:"kotoAn Wagashi",        cat:"bouffe",loc:"tom", x:46, y:402, desc:"Wagashi traditionnels japonais aux haricots rouges, matcha et yuzu. Fait main chaque matin.", tags:["Japon","Wagashi","Végétarien"]},
+  {id:6,  name:"Boutique Kodama",       cat:"mode",  loc:"tom", x:46, y:470, desc:"Vêtements et accessoires japonais. Pièces uniques, tissus importés, mode durable.", tags:["Mode","Japon","Artisanat"]},
+  {id:7,  name:"Thés Guru",             cat:"bien",  loc:"tom", x:46, y:538, desc:"40 thés premium asiatiques : sencha, gyokuro, oolong, pu-erh. Dégustation guidée.", tags:["Thé","Bien-être","Asie"]},
+  {id:8,  name:"Brasserie San-O",       cat:"bouffe",loc:"tom", x:46, y:606, desc:"Bières artisanales aux saveurs asiatiques. Gingembre, yuzu et matcha.", tags:["Bières","Local","Artisanat"]},
 
-  // CENTRE EATON
-  {id:19,name:'Takoyaki Osaka',    cat:'bouffe',loc:'eaton',x:55, y:65,  desc:'Boulettes de poulpe croustillantes, bonite séchée, mayo Kewpie. Cuisson en direct sur plaques.',tags:['Japon','Street food','Fruits de mer']},
-  {id:20,name:'Bubble Tea House',  cat:'bouffe',loc:'eaton',x:55, y:155, desc:'Thé aux perles de tapioca en 20+ saveurs. Brown sugar boba, taro, matcha, fruit teas artisanaux.',tags:['Taïwan','Boissons','Végétarien']},
-  {id:21,name:'Phở Hà Nội',       cat:'bouffe',loc:'eaton',x:55, y:245, desc:'Phở mijoté toute la nuit. Herbes fraîches, germes de soja, citron vert. Recette familiale.',tags:['Vietnam','Soupe','Halal dispo']},
-  {id:22,name:'Mango Sticky Rice', cat:'bouffe',loc:'eaton',x:55, y:325, desc:'Riz gluant au lait de coco, mangue fraîche. Aussi banane frite, pandan cake, khanom chan.',tags:['Thaïlande','Desserts','Végétarien']},
-  {id:23,name:'Gyoza Bar',         cat:'bouffe',loc:'eaton',x:205,y:65,  desc:'Gyoza poêlés croustillants et vapeur. Garnitures : porc-ciboulette, crevette, légumes-tofu.',tags:['Japon','Végétarien dispo','Apéro']},
-  {id:24,name:'Onigiri Shop',      cat:'bouffe',loc:'eaton',x:205,y:155, desc:'Onigiris farcis aux saveurs japonaises classiques et créatives. Nori croustillant, garnitures du jour.',tags:['Japon','Végétarien dispo','À emporter']},
-  {id:25,name:'Ink & Washi',       cat:'art',   loc:'eaton',x:360,y:65,  desc:'Papiers washi, livres d\'artiste, carnets reliés main. Atelier de reliure japonaise le samedi.',tags:['Japon','Papeterie','Atelier']},
-  {id:26,name:'Batik Nusantara',   cat:'art',   loc:'eaton',x:360,y:155, desc:'Tissus batik peints à la cire, sarongs, tentures. Démonstration du procédé traditionnel.',tags:['Indonésie','Textile','Fait main']},
-  {id:27,name:'Hanbok Moderne',    cat:'mode',  loc:'eaton',x:205,y:245, desc:'Hanbok coréen contemporain revisité. Robes jeogori, saekdong colorés. Location pour photos.',tags:['Corée','Prêt-à-porter','Location']},
-  {id:28,name:'Bijoux Lotus',      cat:'mode',  loc:'eaton',x:360,y:245, desc:'Bijoux inspirés de motifs floraux asiatiques. Or, argent, jade. Pièces uniques faites à Montréal.',tags:['Artisanat','Bijoux','Fait main']},
-  {id:29,name:'Shiatsu Express',   cat:'bien',  loc:'eaton',x:205,y:325, desc:'Séances shiatsu 15–30 min. Massage assis aux points d\'acupression japonais. Réservation sur place.',tags:['Japon','15-30 min','Réservation']},
-  {id:30,name:'Veils of Bollywood',cat:'activ', loc:'eaton',x:360,y:325, desc:'Cours de danse bollywoodienne de 30 min. Aucune expérience requise. Ambiance festive et inclusive.',tags:['Inde','Danse','Participatif']},
+  // ── MUR DROIT — 7 marchands (x=514, espacés de 68px à partir de y=198) ──
+  {id:9,  name:"Kimono Yuki",           cat:"mode",  loc:"tom", x:514, y:198, desc:"Kimonos contemporains, yukata d'été, obi colorés. Du casual au cérémonial.", tags:["Japon","Kimono","Prêt-à-porter"]},
+  {id:10, name:"Boutique Meico",        cat:"mode",  loc:"tom", x:514, y:266, desc:"K-fashion contemporain, bijoux, sacs et chaussures importés de Séoul.", tags:["Corée","Mode","K-Fashion"]},
+  {id:11, name:"Atelier Tsubaki",       cat:"bien",  loc:"tom", x:514, y:334, desc:"Soins beauté rituels japonais. Huiles de camélia, masques, sérum artisanal.", tags:["Japon","Beauté","Naturel"]},
+  {id:12, name:"Thé Sakao",             cat:"bien",  loc:"tom", x:514, y:402, desc:"Thés rares d'Asie de l'Est. Cérémonie du thé simplifiée à la théière.", tags:["Thé","Cérémonie","Bien-être"]},
+  {id:13, name:"Miya Candles",          cat:"bien",  loc:"tom", x:514, y:470, desc:"Bougies artisanales — cerisier, thé vert, encens japonais. Cires naturelles.", tags:["Bougies","Naturel","Artisanat"]},
+  {id:14, name:"Paper & Rice Co.",      cat:"art",   loc:"tom", x:514, y:538, desc:"Papeterie japonaise : papiers washi, carnets, tampons. Atelier de reliure le samedi.", tags:["Papeterie","Washi","Atelier"]},
+  {id:15, name:"Xie Dan Belle Studio",  cat:"mode",  loc:"tom", x:514, y:606, desc:"Maquillage et soins inspirés des tendances asiatiques. Séances express.", tags:["Beauté","Maquillage","Studio"]},
+
+  // ── RANGÉE DU HAUT — 2 stands ──
+  {id:16, name:"Chibi Chic",            cat:"mode",  loc:"tom", x:188, y:52,  desc:"Mode kawaii et streetwear japonais. Vêtements, accessoires, pins et patches.", tags:["Japon","Kawaii","Streetwear"]},
+  {id:17, name:"Cartes BaoBao",         cat:"art",   loc:"tom", x:330, y:52,  desc:"Cartes à jouer artistiques inspirées des cultures asiatiques. Éditions collector.", tags:["Art","Jeux","Collector"]},
+
+  // ── KIOSQUES BORD GAUCHE DE L'OVALE ──
+  {id:18, name:"Em Bakehouse",          cat:"bouffe",loc:"tom", x:148, y:300, desc:"Boulangerie fusion — shokupan japonais, brioche pandan, croissants au sésame noir.", tags:["Bouffe","Boulangerie","Fusion"]},
+  {id:19, name:"Café Triangle d'Or",    cat:"bouffe",loc:"tom", x:148, y:390, desc:"Cafés filtrés d'Asie du Sud-Est. Vietnam, Thaïlande, Indonésie.", tags:["Café","Vietnam","Thaïlande"]},
+
+  // ── KIOSQUES BORD DROIT DE L'OVALE ──
+  {id:27, name:"Good Vibes Shop",       cat:"activ", loc:"tom", x:412, y:300, desc:"Ateliers bien-être — méditation guidée, initiation au yoga, calligraphie zen.", tags:["Activités","Méditation","Yoga"]},
+  {id:28, name:"Bangkok Street",        cat:"bouffe",loc:"tom", x:412, y:390, desc:"Street food thaïlandaise — pad thaï, som tam, brochettes satay.", tags:["Thaïlande","Street food","Épicé"]},
+
+  // ── ARC DE KIOSQUES EN BAS DE L'OVALE (7 marchands en ligne courbe) ──
+  {id:20, name:"Bask Hour",             cat:"bouffe",loc:"tom", x:162, y:564, desc:"Bingsu (glace pilée coréenne), tteok (gâteaux de riz), mochi glacés.", tags:["Desserts","Corée","Végétarien"]},
+  {id:21, name:"ArtsByYamile",          cat:"art",   loc:"tom", x:210, y:594, desc:"Illustrations et peintures inspirées des mythologies asiatiques.", tags:["Art","Illustration","Peinture"]},
+  {id:22, name:"Bodhi Gourmet",         cat:"bouffe",loc:"tom", x:262, y:608, desc:"Cuisine végétarienne et végane bouddhiste. Rouleaux de printemps, tofu mariné.", tags:["Végétarien","Vegan","Asie"]},
+  {id:23, name:"Jus de Noix & Cie",     cat:"bouffe",loc:"tom", x:314, y:612, desc:"Jus santé aux superaliments asiatiques — lait de coco, yuzu, kombucha.", tags:["Boissons","Santé","Vegan"]},
+  {id:24, name:"Seoul Daisies",         cat:"mode",  loc:"tom", x:366, y:608, desc:"Bijoux floraux coréens. Bagues, colliers, boucles en résine et métal doré.", tags:["Bijoux","Corée","Artisanat"]},
+  {id:25, name:"Lotus Light",           cat:"bien",  loc:"tom", x:412, y:594, desc:"Cristaux, pierres naturelles et lithothérapie asiatique.", tags:["Bien-être","Cristaux","Lithothérapie"]},
+  {id:26, name:"Himalaya Shop",         cat:"bien",  loc:"tom", x:452, y:564, desc:"Produits du Népal et du Tibet — sel rose, tisanes, encens himalayens.", tags:["Népal","Naturel","Himalaya"]},
 ];
+
+
 
 // ── STATE ──
 let curLoc='tom', curFilter='all', curView='map';
@@ -269,14 +308,14 @@ let svgScale=1, highlighted=null;
 let dtouchY=0;
 
 // SVG virtual sizes
-const TOM_VW=490, TOM_VH=510;
+const TOM_VW=560, TOM_VH=820;
 const CE_VW=440,  CE_VH=420;
 
 function curVendors(){
   return V.filter(v=>v.loc===curLoc && (curFilter==='all'||v.cat===curFilter));
 }
 function allForLoc(){
-  return V.filter(v=>v.loc===curLoc);
+  return V; // single venue — all vendors shown
 }
 
 // ── SVG HELPERS ──
@@ -300,22 +339,12 @@ function svgTxt(content,x,y,attrs){
 
 // ── BUILD MAP ──
 function buildMap(){
-  const wrap=document.getElementById('mapWrap');
   const svg=document.getElementById('themap');
-  const vw=curLoc==='tom'?TOM_VW:CE_VW;
-  const vh=curLoc==='tom'?TOM_VH:CE_VH;
-
-  // Always refit to wrap when scale is reset
-  const ww=Math.max(wrap.clientWidth||360, 320);
-  const wh=Math.max(wrap.clientHeight||400, 300);
-  const fitScale=Math.min(ww/vw, wh/vh)*0.88;
-  if(svgScale===1 || svgScale<0.1) svgScale=Math.max(0.5,fitScale);
-
+  const vw=TOM_VW, vh=TOM_VH;
+  // SVG always at native size — transform handles scaling
   svg.setAttribute('viewBox',`0 0 ${vw} ${vh}`);
-  svg.style.minWidth='unset';
-  svg.style.minHeight='unset';
-  svg.setAttribute('width', vw*svgScale);
-  svg.setAttribute('height', vh*svgScale);
+  svg.setAttribute('width', vw);
+  svg.setAttribute('height', vh);
 
   // Background
   const bg=document.getElementById('mapBg');
@@ -327,8 +356,7 @@ function buildMap(){
 
   // Floor
   document.getElementById('mapFloor').innerHTML='';
-  if(curLoc==='tom') drawTOM();
-  else drawCE();
+  drawTOM();
 
   // Pins
   buildPins();
@@ -336,65 +364,90 @@ function buildMap(){
 
 function drawTOM(){
   const fl=document.getElementById('mapFloor');
-  const S=TOM_VW-30, ox=15, oy=30;
+  // 560 x 820 — fidèle au vrai plan Asiasie 2025
+  // Fond beige très clair, grand ovale gris pâle centré,
+  // repères texte uniquement (pas de rectangles), petits points de couleur
 
-  // Octagonal outer shape
-  const cut=60;
-  const pts=[[ox+cut,oy],[ox+S-cut,oy],[ox+S,oy+cut],[ox+S,oy+S-cut],[ox+S-cut,oy+S],[ox+cut,oy+S],[ox,oy+S-cut],[ox,oy+cut]].map(p=>p.join(',')).join(' ');
-  fl.append(el('polygon',{points:pts,fill:'#fff',stroke:'#1a1208','stroke-width':'2'}));
-  fl.append(el('polygon',{points:pts,fill:'rgba(200,168,130,0.12)'}));
+  const W=560, H=820, cx=W/2;
+  const ff="Figtree,sans-serif";
 
-  // Cross allées
-  const cx=ox+S/2, cy=oy+S/2;
-  fl.append(rr(ox+12,cy-13,S-24,26,2,'rgba(26,18,8,0.04)',null));
-  fl.append(rr(cx-13,oy+12,26,S-24,2,'rgba(26,18,8,0.04)',null));
+  // ── FOND GÉNÉRAL ──
+  fl.append(rr(0,0,W,H,0,'#f8f6f1',null));
 
-  // Central scène (ellipse)
-  const scene=el('ellipse',{cx,cy,rx:'58',ry:'42',fill:'#ede8da',stroke:'#f06118','stroke-width':'1.5','stroke-dasharray':'4,3'});
-  fl.append(scene);
-  fl.append(svgTxt('SCÈNE',cx,cy-6,{'text-anchor':'middle','font-size':'10','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'}));
-  fl.append(svgTxt('PRINCIPALE',cx,cy+8,{'text-anchor':'middle','font-size':'7','fill':'rgba(240,97,24,0.7)','font-family':'Figtree,sans-serif'}));
+  // ── TITRE ──
+  fl.append(svgTxt('MARCHÉ ASIASIE 2026',cx,16,{'text-anchor':'middle','font-size':'11','font-weight':'900','fill':'#1a1208','font-family':ff,'letter-spacing':'2'}));
+  fl.append(svgTxt('Time Out Market — Sainte-Catherine Ouest',cx,28,{'text-anchor':'middle','font-size':'7.5','fill':'#6b5a34','font-family':ff}));
 
-  // Stand rows — top & bottom
-  [[ox+90,oy+12,65,40],[ox+175,oy+12,65,40],[ox+270,oy+12,65,40],
-   [ox+90,oy+S-52,65,40],[ox+175,oy+S-52,65,40],[ox+270,oy+S-52,65,40]
-  ].forEach(([x,y,w,h])=>{
-    fl.append(rr(x,y,w,h,3,'#f5f0e8','rgba(26,18,8,0.1)',1));
+  // ── GRAND OVALE CENTRAL (gris très pâle, comme le vrai plan) ──
+  const ovalCX=cx, ovalCY=390, ovalRX=135, ovalRY=275;
+  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY,rx:ovalRX,ry:ovalRY,
+    fill:'#e8e4dc',stroke:'rgba(26,18,8,0.12)','stroke-width':'1.5'}));
+
+  // Sous-ovale RDC Centre Eaton (ovale blanc à l'intérieur en bas)
+  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY+80,rx:'85',ry:'55',
+    fill:'#fff',stroke:'rgba(26,18,8,0.12)','stroke-width':'1'}));
+  fl.append(svgTxt('RDC DU',ovalCX,ovalCY+68,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
+  fl.append(svgTxt('CENTRE EATON',ovalCX,ovalCY+80,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
+
+  // Icônes escalier/ascenseur (↑↑ comme le vrai plan)
+  fl.append(svgTxt('↑↑',ovalCX,ovalCY+102,{'text-anchor':'middle','font-size':'11','fill':'#9fb3d4','font-family':ff}));
+
+  // ── ZONES DE TEXTE (sans rectangles) ──
+  // ESPACE ATELIER (haut droite — texte + flèche)
+  const atX=460, atY=80;
+  fl.append(el('rect',{x:atX-4,y:atY-18,width:'88',height:'38',rx:'5',
+    fill:'rgba(140,110,42,0.10)',stroke:'#8c6e2a','stroke-width':'1.2'}));
+  fl.append(svgTxt('ESPACE',atX+40,atY-2,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#8c6e2a','font-family':ff}));
+  fl.append(svgTxt('ATELIER',atX+40,atY+11,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#8c6e2a','font-family':ff}));
+  // Flèche verte vers atelier
+  fl.append(svgTxt('⟶',atX-22,atY+4,{'font-size':'13','fill':'#4a8a4a','font-family':ff}));
+
+  // UNIQLO (haut droite, carré rouge)
+  fl.append(el('rect',{x:'396',y:'38',width:'55',height:'35',rx:'4',
+    fill:'#fff0f0',stroke:'#cc0000','stroke-width':'1.5'}));
+  fl.append(svgTxt('UNIQLO',423,60,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#cc0000','font-family':ff}));
+
+  // ESPACE BAR / SCÈNE (bas gauche — fond vert pâle)
+  fl.append(el('ellipse',{cx:'82',cy:'700',rx:'66',ry:'48',
+    fill:'rgba(76,153,76,0.15)',stroke:'#4a8a4a','stroke-width':'1.5'}));
+  fl.append(svgTxt('ESPACE BAR',82,696,{'text-anchor':'middle','font-size':'7.5','font-weight':'900','fill':'#4a8a4a','font-family':ff}));
+  fl.append(svgTxt('(SCÈNE)',82,708,{'text-anchor':'middle','font-size':'7','font-weight':'700','fill':'#4a8a4a','font-family':ff}));
+
+  // DÉCATHLON (bas droite)
+  fl.append(svgTxt('DÉCATHLON',440,768,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#003082','font-family':ff}));
+
+  // WC (bas centre — petit cercle discret)
+  fl.append(el('circle',{cx:cx,cy:'766',r:'13',fill:'#e8e4dc',stroke:'rgba(26,18,8,0.2)','stroke-width':'1'}));
+  fl.append(svgTxt('WC',cx,770,{'text-anchor':'middle','font-size':'7.5','font-weight':'700','fill':'#6b5a34','font-family':ff}));
+
+  // HASHTAG
+  fl.append(svgTxt('#ASIASIEMTL',cx+90,790,{'text-anchor':'middle','font-size':'7','fill':'rgba(26,18,8,0.35)','font-family':ff,'font-style':'italic'}));
+
+  // BOUSSOLE
+  fl.append(el('circle',{cx:'530',cy:'790',r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'}));
+  fl.append(svgTxt('N',530,795,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':ff}));
+
+  // ── SÉPARATEURS DE ZONES (lignes légères, pas de rectangles) ──
+  // Lignes horizontales très légères pour délimiter les zones de stands
+  [150,280,420,560].forEach(y=>{
+    const sep=el('line',{x1:'12',y1:y,x2:'90',y2:y,stroke:'rgba(26,18,8,0.08)','stroke-width':'0.8'});
+    fl.append(sep);
+    const sep2=el('line',{x1:W-90,y1:y,x2:W-12,y2:y,stroke:'rgba(26,18,8,0.08)','stroke-width':'0.8'});
+    fl.append(sep2);
   });
 
-  // Stand cols — left & right
-  [[ox+12,oy+90,40,65],[ox+12,oy+195,40,65],[ox+12,oy+295,40,65],
-   [ox+S-52,oy+90,40,65],[ox+S-52,oy+195,40,65],[ox+S-52,oy+295,40,65]
-  ].forEach(([x,y,w,h])=>{
-    fl.append(rr(x,y,w,h,3,'#f5f0e8','rgba(26,18,8,0.1)',1));
+  // Labels de zones (lettre discrète)
+  [['A',52,96],['B',52,216],['C',52,350],['D',52,490],['E',52,630]].forEach(([l,x,y])=>{
+    fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'rgba(26,18,8,0.22)','font-family':ff}));
+  });
+  [['▶',W-52,96],['▶',W-52,216],['▶',W-52,350],['▶',W-52,490],['▶',W-52,630]].forEach(([l,x,y])=>{
+    fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.18)','font-family':ff}));
   });
 
-  // Bar central
-  fl.append(rr(cx-42,cy-15,84,30,4,'#ede8da','rgba(26,18,8,0.15)',1));
-  fl.append(svgTxt('BAR',cx,cy+4,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
-
-  // Atelier corner
-  fl.append(rr(ox+S-44,oy+6,44,44,4,'rgba(140,110,42,0.1)','#8c6e2a',1.5));
-  fl.append(svgTxt('ATELIER',ox+S-22,oy+32,{'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#8c6e2a','font-family':'Figtree,sans-serif'}));
-
-  // Entrances
-  [[cx-25,oy+S-3,50,8],[cx-25,oy-5,50,8]].forEach(([x,y,w,h])=>{
-    fl.append(rr(x,y,w,h,2,'#f06118',null));
+  // Flèches d'entrée gauche (comme le vrai plan)
+  [152,350,560].forEach(y=>{
+    fl.append(svgTxt('→',93,y,{'font-size':'12','fill':'#f06118','font-family':ff,'font-weight':'900'}));
   });
-
-  // Labels
-  fl.append(svgTxt('TIME OUT MARKET',cx,oy-14,{'text-anchor':'middle','font-size':'13','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'1.5'}));
-  fl.append(svgTxt('Sainte-Catherine Ouest',cx,oy-2,{'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
-
-  // Zone labels
-  [['A',ox+22,oy+80],['B',ox+22,oy+185],['C',ox+22,oy+285],
-   ['D',ox+S-30,oy+80],['E',ox+S-30,oy+185],['F',ox+S-30,oy+285]
-  ].forEach(([l,x,y])=>fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif','font-weight':'700'})));
-
-  // Compass
-  const cc=el('circle',{cx:ox+S-18,cy:oy+S+16,r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'});
-  fl.append(cc);
-  fl.append(svgTxt('N',ox+S-18,oy+S+20,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'}));
 }
 
 function drawCE(){
@@ -443,58 +496,181 @@ function buildPins(){
   const pg=document.getElementById('mapPins');
   pg.innerHTML='';
   allForLoc().forEach(v=>{
-    const c=CATS[v.cat];
+    const cat=CATS[v.cat];
     const active=curFilter==='all'||v.cat===curFilter;
     const hi=highlighted===v.id;
     const g=el('g',{'class':`kpin${!active?' dim':''}${hi?' hi':''}`, 'data-id':String(v.id)});
 
     if(hi){
-      // Outer pulsing ring
-      const ring=el('circle',{cx:v.x,cy:v.y,r:'26',fill:'none',stroke:c.text,'stroke-width':'2',opacity:'0.3','class':'pin-ring'});
+      const ring=el('circle',{cx:v.x,cy:v.y,r:'20',fill:'none',stroke:cat.text,'stroke-width':'1.5',opacity:'0.3','class':'pin-ring'});
       g.append(ring);
     }
 
-    const r=hi?'21':'17';
-    const circ=el('circle',{cx:v.x,cy:v.y,r,fill:hi?c.text:c.bg,stroke:c.text,'stroke-width':hi?'0':'2','class':hi?'pulse':''});
-    const lbl=el('text',{x:v.x,y:v.y,'text-anchor':'middle','dominant-baseline':'central','font-size':hi?'12':'10','font-weight':'900','fill':hi?c.bg:c.text,'font-family':'Figtree,sans-serif','pointer-events':'none'});
+    // Small filled circle — like real plan dots
+    const r = hi ? '13' : '11';
+    const circ=el('circle',{cx:v.x,cy:v.y,r,
+      fill: active ? cat.text : cat.bg,
+      stroke:'#fff',
+      'stroke-width':'1.5',
+      'class':hi?'pulse':''
+    });
+    // Number label — white inside
+    const lbl=el('text',{x:v.x,y:v.y,
+      'text-anchor':'middle','dominant-baseline':'central',
+      'font-size': hi?'9':'8',
+      'font-weight':'900',
+      'fill':'#fff',
+      'font-family':'Figtree,sans-serif',
+      'pointer-events':'none'
+    });
     lbl.textContent=v.id;
     g.append(circ,lbl);
 
     g.addEventListener('click',e=>{e.stopPropagation();openDrawer(v.id);});
+    g.style.cursor='pointer';
     g.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();openDrawer(v.id);},{passive:false});
     pg.append(g);
   });
 }
 
 // ── ZOOM ──
+// ── GOOGLE MAPS STYLE PAN/ZOOM ──
+let panX=0, panY=0, panScale=1;
+const MIN_SCALE=0.5, MAX_SCALE=6;
+
+function applyTransform(smooth){
+  const inner=document.getElementById('mapInner');
+  if(!inner) return;
+  inner.style.transition=smooth?'transform 0.25s ease':'none';
+  inner.style.transform=`translate(${panX}px,${panY}px) scale(${panScale})`;
+}
+
+function centerMap(){
+  const wrap=document.getElementById('mapWrap');
+  if(!wrap) return;
+  const ww=wrap.clientWidth, wh=wrap.clientHeight;
+  const mw=TOM_VW, mh=TOM_VH;
+  panScale=Math.min((ww/mw)*0.9,(wh/mh)*0.9, 1);
+  panX=(ww-mw*panScale)/2;
+  panY=(wh-mh*panScale)/2;
+  applyTransform(false);
+  svgScale=panScale;
+}
+
 function zoom(f){
   const wrap=document.getElementById('mapWrap');
-  const svg=document.getElementById('themap');
-  const vw=curLoc==='tom'?TOM_VW:CE_VW;
-  const vh=curLoc==='tom'?TOM_VH:CE_VH;
-  // When zooming, switch to scroll mode
-  wrap.style.alignItems='flex-start';
-  wrap.style.justifyContent='flex-start';
-  // When zooming, switch to scroll mode (remove flex centering)
-  const curW=svg.clientWidth, curH=svg.clientHeight;
-  const scrollX=wrap.scrollLeft+wrap.clientWidth/2;
-  const scrollY=wrap.scrollTop+wrap.clientHeight/2;
-  svgScale=Math.min(5,Math.max(0.4,svgScale*f));
-  const newW=vw*svgScale, newH=vh*svgScale;
-  svg.setAttribute('width',newW);
-  svg.setAttribute('height',newH);
-  // Re-center scroll around midpoint
-  wrap.scrollLeft=scrollX*(newW/curW)-wrap.clientWidth/2;
-  wrap.scrollTop=scrollY*(newH/curH)-wrap.clientHeight/2;
+  const ww=wrap.clientWidth, wh=wrap.clientHeight;
+  const cx=ww/2, cy=wh/2;
+  const newScale=Math.min(MAX_SCALE,Math.max(MIN_SCALE,panScale*f));
+  // Zoom toward center
+  panX=cx-(cx-panX)*(newScale/panScale);
+  panY=cy-(cy-panY)*(newScale/panScale);
+  panScale=newScale;
+  svgScale=panScale;
+  applyTransform(true);
 }
+
 function resetZoom(){
-  svgScale=1;
-  const wrap=document.getElementById('mapWrap');
-  wrap.style.alignItems='center';
-  wrap.style.justifyContent='center';
-  wrap.scrollTo({top:0,left:0,behavior:'smooth'});
-  buildMap();
+  centerMap();
+  applyTransform(true);
 }
+
+// ── MOUSE PAN ──
+(function(){
+  const wrap=document.getElementById('mapWrap');
+  let dragging=false, startX, startY, startPanX, startPanY, didMove=false;
+  wrap.addEventListener('mousedown',e=>{
+    if(e.button!==0) return;
+    dragging=true; didMove=false;
+    startX=e.clientX; startY=e.clientY;
+    startPanX=panX; startPanY=panY;
+    wrap.classList.add('panning');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove',e=>{
+    if(!dragging) return;
+    const dx=e.clientX-startX, dy=e.clientY-startY;
+    if(Math.abs(dx)+Math.abs(dy)>4) didMove=true;
+    panX=startPanX+dx; panY=startPanY+dy;
+    applyTransform(false);
+  });
+  window.addEventListener('mouseup',e=>{
+    wrap.classList.remove('panning');
+    dragging=false;
+  });
+
+  // Mouse wheel zoom
+  wrap.addEventListener('wheel',e=>{
+    e.preventDefault();
+    const rect=wrap.getBoundingClientRect();
+    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    const f=e.deltaY<0?1.12:0.9;
+    const newScale=Math.min(MAX_SCALE,Math.max(MIN_SCALE,panScale*f));
+    panX=mx-(mx-panX)*(newScale/panScale);
+    panY=my-(my-panY)*(newScale/panScale);
+    panScale=newScale;
+    svgScale=panScale;
+    applyTransform(false);
+  },{passive:false});
+})();
+
+// ── TOUCH PAN + PINCH ZOOM ──
+(function(){
+  const wrap=document.getElementById('mapWrap');
+  let t1=null,t2=null, startPanX,startPanY, startDist,startScale, midX,midY;
+  let didMove=false;
+
+  wrap.addEventListener('touchstart',e=>{
+    e.preventDefault();
+    if(e.touches.length===1){
+      t1=e.touches[0]; t2=null;
+      startPanX=panX; startPanY=panY;
+      didMove=false;
+    } else if(e.touches.length===2){
+      t1=e.touches[0]; t2=e.touches[1];
+      startDist=Math.hypot(t2.clientX-t1.clientX,t2.clientY-t1.clientY);
+      startScale=panScale;
+      const rect=wrap.getBoundingClientRect();
+      midX=(t1.clientX+t2.clientX)/2-rect.left;
+      midY=(t1.clientY+t2.clientY)/2-rect.top;
+      startPanX=panX; startPanY=panY;
+      didMove=true;
+    }
+  },{passive:false});
+
+  wrap.addEventListener('touchmove',e=>{
+    e.preventDefault();
+    if(e.touches.length===1 && !t2){
+      const t=e.touches[0];
+      const dx=t.clientX-t1.clientX, dy=t.clientY-t1.clientY;
+      if(Math.abs(dx)+Math.abs(dy)>4) didMove=true;
+      panX=startPanX+dx; panY=startPanY+dy;
+      applyTransform(false);
+    } else if(e.touches.length===2){
+      const ta=e.touches[0], tb=e.touches[1];
+      const dist=Math.hypot(tb.clientX-ta.clientX,tb.clientY-ta.clientY);
+      const newScale=Math.min(MAX_SCALE,Math.max(MIN_SCALE,startScale*dist/startDist));
+      panX=midX-(midX-startPanX)*(newScale/startScale);
+      panY=midY-(midY-startPanY)*(newScale/startScale);
+      panScale=newScale;
+      svgScale=panScale;
+      applyTransform(false);
+    }
+  },{passive:false});
+
+  wrap.addEventListener('touchend',e=>{
+    if(e.touches.length===0 && !didMove && t1 && !t2){
+      // Tap — check hit
+      const rect=wrap.getBoundingClientRect();
+      const sx=(t1.clientX-rect.left-panX)/panScale;
+      const sy=(t1.clientY-rect.top-panY)/panScale;
+      const hit=V.find(v=>{const dx=sx-v.x,dy=sy-v.y;return Math.sqrt(dx*dx+dy*dy)<22;});
+      if(hit) openDrawer(hit.id);
+    }
+    if(e.touches.length<2){t2=null;}
+    if(e.touches.length===0){t1=null;}
+  },{passive:true});
+})();
 
 // Pinch-to-zoom on scroll container
 let pinch0=null, scale0=1;
@@ -511,24 +687,18 @@ mw.addEventListener('touchmove',e=>{
     const d=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
     svgScale=Math.min(5,Math.max(0.4,scale0*d/pinch0));
     const svg=document.getElementById('themap');
-    const vw=curLoc==='tom'?TOM_VW:CE_VW;
-    const vh=curLoc==='tom'?TOM_VH:CE_VH;
+    const vw=TOM_VW;
+    const vh=TOM_VH;
     svg.setAttribute('width',vw*svgScale);
-    svg.setAttribute('height',vh*svgScale);
+    svg.setAttribute('height',TOM_VH*svgScale);
     mw.style.alignItems='flex-start';
     mw.style.justifyContent='flex-start';
   }
 },{passive:false});
 mw.addEventListener('touchend',e=>{if(e.touches.length<2)pinch0=null;},{passive:true});
 
-// ── LOCATION ──
-function setLoc(loc){
-  curLoc=loc; svgScale=1; highlighted=null;
-  const wrap2=document.getElementById('mapWrap'); if(wrap2){wrap2.style.alignItems='center';wrap2.style.justifyContent='center';wrap2.scrollTo({top:0,left:0});}
-  document.getElementById('ltTOM').classList.toggle('on',loc==='tom');
-  document.getElementById('ltCE').classList.toggle('on',loc==='eaton');
-  buildMap(); renderList();
-}
+// ── LOCATION (single venue) ──
+function setLoc(loc){ curLoc='tom'; buildMap(); }
 
 // ── FILTER ──
 function setFilter(cat){
@@ -538,7 +708,8 @@ function setFilter(cat){
     b.className='fbtn';
     if(bc===cat) b.classList.add('act-'+cat);
   });
-  buildPins(); renderList();
+  buildPins(); renderList(); renderLegend();
+  requestAnimationFrame(centerMap);
 }
 
 // ── VIEW ──
@@ -563,7 +734,7 @@ function renderList(){
     items.forEach(v=>{
       html+=`<div class="vcard" onclick="openDrawer(${v.id})">
         <div class="vnum">${v.id}</div>
-        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${v.loc==='tom'?'Time Out Market':'Centre Eaton'}</div></div>
+        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${'Time Out Market'}</div></div>
         <button class="vlocate" onclick="event.stopPropagation();locatePin(${v.id})" title="Voir sur la carte">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
           Carte
@@ -576,6 +747,33 @@ function renderList(){
   panel.innerHTML=html;
 }
 
+// ── LEGEND (desktop sidebar) ──
+function renderLegend(){
+  const panel=document.getElementById('legendContent');
+  if(!panel) return;
+  const cats=curFilter==='all'?Object.keys(CATS):[curFilter];
+  let html='';
+  cats.forEach(cat=>{
+    const items=V.filter(v=>v.cat===cat);
+    if(!items.length) return;
+    const cd=CATS[cat];
+    html+=`<div class="legend-grp-title" style="color:${cd.text}">${cd.label}</div>`;
+    items.forEach(v=>{
+      html+=`<div class="legend-row" onclick="legendClick(${v.id})">
+        <div class="legend-num">${v.id}</div>
+        <div class="legend-dot-sm" style="background:${cd.text}"></div>
+        <div class="legend-name">${v.name}</div>
+      </div>`;
+    });
+  });
+  panel.innerHTML=html;
+}
+
+function legendClick(id){
+  locatePin(id);
+  setTimeout(()=>openDrawer(id),450);
+}
+
 // ── DRAWER ──
 function openDrawer(id){
   const v=V.find(x=>x.id===id); if(!v) return;
@@ -583,7 +781,7 @@ function openDrawer(id){
   document.getElementById('dhead').innerHTML=`
     <div class="dbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</div>
     <div class="dtop"><span class="dnum">${v.id}</span><span class="dname">${v.name}</span></div>
-    <div class="dlieu">📍 ${v.loc==='tom'?'Time Out Market':'Centre Eaton'}</div>`;
+    <div class="dlieu">📍 ${'Time Out Market'}</div>`;
   const tags=(v.tags||[]).map(t=>`<span class="dtag">${t}</span>`).join('');
   document.getElementById('dbody').innerHTML=`
     <p class="ddesc">${v.desc}</p>
@@ -609,14 +807,7 @@ function locatePin(id){
   closeDrawer();
   const v=V.find(x=>x.id===id); if(!v) return;
   // Switch location tab if needed
-  if(v.loc!==curLoc){
-    curLoc=v.loc; svgScale=1;
-    const ww=document.getElementById('mapWrap');
-    if(ww){ww.style.alignItems='center';ww.style.justifyContent='center';ww.scrollTo({top:0,left:0});}
-    document.getElementById('ltTOM').classList.toggle('on',curLoc==='tom');
-    document.getElementById('ltCE').classList.toggle('on',curLoc==='eaton');
-    buildMap();
-  }
+  // Only TOM — no location switching needed
   // Switch to map view
   showView('map');
   // Highlight — inverted colors + pulsing animation
@@ -624,16 +815,13 @@ function locatePin(id){
   buildPins();
   // Scroll to center the pin
   setTimeout(()=>{
+    // Pan map so vendor is centered using transform
     const wrap=document.getElementById('mapWrap');
-    const pinX=v.x*svgScale;
-    const pinY=v.y*svgScale;
-    wrap.style.alignItems='flex-start';
-    wrap.style.justifyContent='flex-start';
-    wrap.scrollTo({
-      left:Math.max(0,pinX-wrap.clientWidth/2),
-      top:Math.max(0,pinY-wrap.clientHeight/2),
-      behavior:'smooth'
-    });
+    const ww=wrap.clientWidth, wh=wrap.clientHeight;
+    // Keep current scale, just re-center on the pin
+    panX=ww/2 - v.x*panScale;
+    panY=wh/2 - v.y*panScale;
+    applyTransform(true);
     // Stop pulsing after 3s
     setTimeout(()=>{ highlighted=null; buildPins(); },3000);
   },400);
@@ -643,10 +831,10 @@ document.getElementById('drawer').addEventListener('touchstart',e=>{dtouchY=e.to
 document.getElementById('drawer').addEventListener('touchmove',e=>{if(e.touches[0].clientY-dtouchY>70&&document.getElementById('drawer').scrollTop<=0)closeDrawer();},{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 
-window.addEventListener('resize',()=>{ svgScale=1; buildMap(); renderList(); });
-window.addEventListener('orientationchange',()=>setTimeout(()=>{ svgScale=1; buildMap(); renderList(); },200));
+window.addEventListener('resize',()=>{ buildMap(); });
+window.addEventListener('orientationchange',()=>setTimeout(buildMap,200));
 
-buildMap(); renderList();
+buildMap();
 </script>
 </body>
 </html>
