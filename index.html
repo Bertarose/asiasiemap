@@ -446,6 +446,8 @@
 .kpin.dim{opacity:.12}
 .kpin.hi circle.pulse{animation:pinpulse 0.6s ease-in-out infinite alternate}
 @keyframes pinpulse{0%{r:13;stroke-width:2.5}100%{r:17;stroke-width:1.5}}
+.eaton-pulse{animation:eatonpulse 1s ease-in-out infinite alternate}
+@keyframes eatonpulse{0%{opacity:0.5;stroke-width:2}100%{opacity:1;stroke-width:3}}
 .kpin.hi .pin-ring{animation:ringpulse 0.6s ease-in-out infinite alternate}
 @keyframes ringpulse{0%{r:20;opacity:0.45}100%{r:26;opacity:0.08}}
 
@@ -548,7 +550,7 @@
 
 <div class="page-title">
   <h1>Festival Asiasie — Programmation officielle</h1>
-  <div class="sub">7 – 10 mai 2026 · Time Out Market &amp; Centre Eaton · Montréal</div>
+  <div class="sub">7 – 10 mai 2026 · Time Out Market &amp; Centre Eaton · Montréal · <a href="https://www.asiasie.com" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:none;font-weight:700;">asiasie.com ↗</a></div>
 </div>
 
 <div id="countdown-wrap"></div>
@@ -1134,10 +1136,54 @@ const MAP_V=[
 
 
 
+// ── EATON EVENTS (programmation Centre Eaton) ──
+const EATON_EVENTS = [
+  {id:"e01", day:"Sam 9", date:"2026-05-09", start:"14:00", end:"15:00",
+   name:"Balterz & friends / RPD",
+   note:"Balterz (15 min) + RPD (45 min)",
+   desc:"Hip-hop, spoken word et danse contemporaine aux influences asiatiques. Une performance éclectique qui mêle les genres et les cultures dans l'espace unique du Centre Eaton.",
+   tags:["Gratuit","Tout public","Hip-hop","Danse"]},
+  {id:"e02", day:"Sam 9", date:"2026-05-09", start:"14:30", end:"15:30",
+   name:"Atelier Nerikiri",
+   note:"KOTOAN",
+   desc:"Créez vos propres wagashi en pâte de haricots blancs colorée. Chaque participant repart avec ses créations. Technique japonaise traditionnelle transmise par des artisans passionnés.",
+   tags:["Places limitées","Japon","Artisanat"]},
+  {id:"e03", day:"Sam 9", date:"2026-05-09", start:"15:00", end:"16:00",
+   name:"Asia Pop Performance",
+   note:"Groupes montréalais",
+   desc:"Chorégraphies K-pop, J-pop et C-pop par des groupes montréalais passionnés. Une célébration colorée et énergique de la culture pop asiatique.",
+   tags:["Gratuit","Tout public","K-pop","J-pop"]},
+  {id:"e04", day:"Dim 10", date:"2026-05-10", start:"14:00", end:"14:45",
+   name:"Veils of Bollywood",
+   note:"Atelier danse interactive · 30 min",
+   desc:"Aucune expérience requise — apprenez quelques mouvements emblématiques du cinéma indien dans une ambiance festive et bienveillante. Venez comme vous êtes !",
+   tags:["Gratuit","Tout public","Bollywood","Inde","Participatif"]},
+];
+
 // ── STATE ──
 let curLoc='tom', mapCurFilter='all', curView='map';
 let svgScale=1, mapHighlighted=null;
 let dtouchY=0;
+let eatonHighlighted=false;
+
+function highlightEaton(){
+  eatonHighlighted=true;
+  // Switch to map view
+  mapShowView('map');
+  // Re-draw with highlight
+  setTimeout(()=>{
+    buildMap();
+    // Pan to Centre Eaton zone (bottom-centre of TOM map: oval at cx=280, cy=470)
+    const svg=document.getElementById('viewport');
+    if(!svg) return;
+    const ww=svg.clientWidth, wh=svg.clientHeight;
+    panX=ww/2 - 280*svgScale;
+    panY=wh/2 - 470*svgScale;
+    applyTransform();
+    // Remove highlight after 3s
+    setTimeout(()=>{ eatonHighlighted=false; buildMap(); },3000);
+  },80);
+}
 
 // SVG virtual sizes
 const TOM_VW=560, TOM_VH=820;
@@ -1245,14 +1291,29 @@ function drawTOM(){
   fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY,rx:ovalRX,ry:ovalRY,
     fill:'#e8e4dc',stroke:'rgba(26,18,8,0.12)','stroke-width':'1.5'}));
 
-  // Sous-ovale RDC Centre Eaton (ovale blanc à l'intérieur en bas)
-  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY+80,rx:'85',ry:'55',
-    fill:'#fff',stroke:'rgba(26,18,8,0.12)','stroke-width':'1'}));
-  fl.append(svgTxt('RDC DU',ovalCX,ovalCY+68,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
-  fl.append(svgTxt('CENTRE EATON',ovalCX,ovalCY+80,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
-
-  // Icônes escalier/ascenseur (↑↑ comme le vrai plan)
-  fl.append(svgTxt('↑↑',ovalCX,ovalCY+102,{'text-anchor':'middle','font-size':'11','fill':'#9fb3d4','font-family':ff}));
+  // Sous-ovale RDC Centre Eaton — zone cliquable + highlight
+  const eatonRX=85, eatonRY=55, eatonCY=ovalCY+80;
+  // Highlight glow (visible si eatonHighlighted)
+  const eatonGlow=el('ellipse',{cx:ovalCX,cy:eatonCY,rx:eatonRX+10,ry:eatonRY+10,
+    fill:'rgba(159,179,212,0.0)',stroke:'rgba(159,179,212,0.0)','stroke-width':'2',id:'eatonGlow'});
+  if(eatonHighlighted){
+    eatonGlow.setAttribute('fill','rgba(159,179,212,0.25)');
+    eatonGlow.setAttribute('stroke','#4a6090');
+    eatonGlow.setAttribute('stroke-width','2.5');
+    eatonGlow.setAttribute('class','eaton-pulse');
+  }
+  fl.append(eatonGlow);
+  // Main oval
+  const eatonOval=el('ellipse',{cx:ovalCX,cy:eatonCY,rx:eatonRX,ry:eatonRY,
+    fill:'#fff',stroke: eatonHighlighted?'#4a6090':'rgba(26,18,8,0.12)',
+    'stroke-width': eatonHighlighted?'2.5':'1'});
+  fl.append(eatonOval);
+  fl.append(svgTxt('RDC DU',ovalCX,eatonCY-14,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
+  fl.append(svgTxt('CENTRE EATON',ovalCX,eatonCY-2,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
+  fl.append(svgTxt('↑↑',ovalCX,eatonCY+14,{'text-anchor':'middle','font-size':'10','fill':'#9fb3d4','font-family':ff}));
+  // 4 événements indicator
+  const evCount=EATON_EVENTS.length;
+  fl.append(svgTxt(evCount+' événements',ovalCX,eatonCY+28,{'text-anchor':'middle','font-size':'7','font-weight':'700','fill':'rgba(74,96,144,0.65)','font-family':ff}));
 
   // ── ZONES DE TEXTE (sans rectangles) ──
   // ESPACE ATELIER (haut droite — texte + flèche)
@@ -1474,6 +1535,8 @@ function mapRenderList(){
   if(!panel) return;
   const cats=mapCurFilter==='all'?Object.keys(MAP_CATS):[mapCurFilter];
   let html='';
+
+  // ── MARCHANDS TIME OUT MARKET ──
   cats.forEach(cat=>{
     const items=MAP_V.filter(v=>v.loc===curLoc&&v.cat===cat);
     if(!items.length)return;
@@ -1491,6 +1554,36 @@ function mapRenderList(){
       </div>`;
     });
   });
+
+  // ── PROGRAMMATION CENTRE EATON ──
+  if(mapCurFilter==='all'){
+    html+=`<div style="margin-top:14px;padding:12px 0 8px;border-top:2px solid rgba(159,179,212,0.6);border-bottom:1.5px solid #1a1208;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#4a6090;flex-shrink:0;"></div>
+        <div style="font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4a6090;">Centre Eaton — Programmation (${EATON_EVENTS.length})</div>
+      </div>
+      <div style="font-size:10px;color:#6b5a34;margin-top:4px;padding-left:18px;">Scène & Ateliers · Sam 9 et Dim 10 mai</div>
+    </div>`;
+    EATON_EVENTS.forEach(ev=>{
+      html+=`<div class="vcard" onclick="mapOpenEatonDrawer('${ev.id}')">
+        <div style="display:flex;flex-direction:column;align-items:center;min-width:36px;gap:2px;">
+          <div style="font-size:10px;font-weight:900;color:#4a6090;line-height:1;">${ev.start}</div>
+          <div style="font-size:9px;color:#9fb3d4;font-weight:600;">${ev.day}</div>
+        </div>
+        <div class="vinfo">
+          <div class="vname">${ev.name}</div>
+          ${ev.note?`<div class="vsub">${ev.note}</div>`:''}
+          <div class="vsub">📍 Centre Eaton</div>
+        </div>
+        <button class="vlocate" onclick="event.stopPropagation();highlightEaton()" title="Voir sur la carte">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+          Carte
+        </button>
+        <div class="varr">›</div>
+      </div>`;
+    });
+  }
+
   if(!html) html='<div class="empty">Aucun marchand pour cette sélection</div>';
   panel.innerHTML=html;
 }
@@ -1546,6 +1639,34 @@ function mapOpenDrawer(id){
     document.body.style.overflow='hidden';
   });
 }
+function mapOpenEatonDrawer(id){
+  const ev=EATON_EVENTS.find(x=>x.id===id); if(!ev) return;
+  document.getElementById('mapDhead').innerHTML=`
+    <div class="dbadge" style="background:rgba(159,179,212,0.25);color:#4a6090;border-color:#9fb3d4;">Centre Eaton</div>
+    <div class="dtop" style="margin-top:8px;">
+      <span style="font-size:13px;font-weight:700;color:#6b5a34;font-variant-numeric:tabular-nums;">${ev.start} – ${ev.end}</span>
+      <span style="font-size:10px;font-weight:800;color:#9fb3d4;padding:2px 8px;background:rgba(159,179,212,0.15);border-radius:6px;white-space:nowrap;">${ev.day}</span>
+    </div>
+    <div style="font-size:clamp(17px,5vw,22px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-top:6px;">${ev.name}</div>
+    ${ev.note?`<div class="dlieu" style="margin-top:6px;font-style:italic;">${ev.note}</div>`:''}
+    <div class="dlieu" style="margin-top:8px;">📍 Centre Eaton · Sainte-Catherine Ouest</div>`;
+  const tags=(ev.tags||[]).map(t=>`<span class="dtag" style="background:rgba(159,179,212,0.15);color:#4a6090;border-color:#9fb3d4;">${t}</span>`).join('');
+  document.getElementById('mapDbody').innerHTML=`
+    <p class="ddesc">${ev.desc}</p>
+    ${tags?`<div class="dtags">${tags}</div>`:''}
+    <div class="dlocate" onclick="highlightEaton();mapCloseDrawer()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
+      Voir sur la carte
+    </div>
+    <button class="dclose" onclick="mapCloseDrawer()">Fermer</button>`;
+  document.getElementById('mapDrawer').scrollTop=0;
+  requestAnimationFrame(()=>{
+    document.getElementById('mapOverlay').classList.add('on');
+    document.getElementById('mapDrawer').classList.add('on');
+    document.body.style.overflow='hidden';
+  });
+}
+
 function mapCloseDrawer(){
   document.getElementById('mapOverlay').classList.remove('on');
   document.getElementById('mapDrawer').classList.remove('on');
