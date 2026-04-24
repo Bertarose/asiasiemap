@@ -34,7 +34,7 @@
   body { background: var(--cream); color: var(--text); font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; -webkit-text-size-adjust: 100%; overscroll-behavior: none; }
 
   /* TICKER */
-  .ticker { background: var(--orange); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 0; white-space: nowrap; overflow: hidden; }
+  .ticker { background: var(--brown); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 0; white-space: nowrap; overflow: hidden; }
   .ticker-inner { display: inline-block; animation: scroll 24s linear infinite; }
   .ticker-inner span { margin: 0 24px; }
   @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -376,7 +376,7 @@
 
 
 /* TICKER */
-.ticker{background:#f06118;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
+.ticker{background:#8c6e2a;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
 .ticker-inner{display:inline-block;animation:tick 26s linear infinite}
 .ticker-inner span{margin:0 22px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -446,8 +446,6 @@
 .kpin.dim{opacity:.12}
 .kpin.hi circle.pulse{animation:pinpulse 0.6s ease-in-out infinite alternate}
 @keyframes pinpulse{0%{r:13;stroke-width:2.5}100%{r:17;stroke-width:1.5}}
-.eaton-pulse{animation:eatonpulse 1s ease-in-out infinite alternate}
-@keyframes eatonpulse{0%{opacity:0.5;stroke-width:2}100%{opacity:1;stroke-width:3}}
 .kpin.hi .pin-ring{animation:ringpulse 0.6s ease-in-out infinite alternate}
 @keyframes ringpulse{0%{r:20;opacity:0.45}100%{r:26;opacity:0.08}}
 
@@ -550,7 +548,7 @@
 
 <div class="page-title">
   <h1>Festival Asiasie — Programmation officielle</h1>
-  <div class="sub">7 – 10 mai 2026 · Time Out Market &amp; Centre Eaton · Montréal · <a href="https://www.asiasie.com" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:none;font-weight:700;">asiasie.com ↗</a></div>
+  <div class="sub">7 – 10 mai 2026 · Time Out Market &amp; Centre Eaton · Montréal</div>
 </div>
 
 <div id="countdown-wrap"></div>
@@ -585,7 +583,7 @@
 </nav>
 
 <!-- CARTE INTERACTIVE -->
-<div id="cartePanel" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;padding-bottom:65px;z-index:55;flex-direction:column;background:#f8f6f1;box-sizing:border-box;">
+<div id="cartePanel" style="display:none;position:fixed;top:0;left:0;right:0;bottom:65px;z-index:55;flex-direction:column;background:#f8f6f1;">
 
   <!-- Hdr -->
   <div style="padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0;">
@@ -605,37 +603,44 @@
 
   <!-- Filtres -->
   <div class="filters" style="flex-shrink:0;">
-    <button class="map-fbtn act-all" data-cat="all"    onclick="mapSetFilter('all')">Tous (28)</button>
-    <button class="map-fbtn" data-cat="bouffe"          onclick="mapSetFilter('bouffe')"><span style="width:8px;height:8px;border-radius:50%;background:#7a3d10;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bouffe</button>
-    <button class="map-fbtn" data-cat="art"             onclick="mapSetFilter('art')"><span style="width:8px;height:8px;border-radius:50%;background:#2d5e25;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Art</button>
-    <button class="map-fbtn" data-cat="mode"            onclick="mapSetFilter('mode')"><span style="width:8px;height:8px;border-radius:50%;background:#7a2535;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Mode</button>
-    <button class="map-fbtn" data-cat="bien"            onclick="mapSetFilter('bien')"><span style="width:8px;height:8px;border-radius:50%;background:#1e3d6b;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bien-être</button>
-    <button class="map-fbtn" data-cat="activ"           onclick="mapSetFilter('activ')"><span style="width:8px;height:8px;border-radius:50%;background:#4a2080;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Activités</button>
+    <button class="map-fbtn fbtn act-all" data-cat="all"    onclick="mapSetFilter('all')">Tous (28)</button>
+    <button class="map-fbtn fbtn" data-cat="bouffe"          onclick="mapSetFilter('bouffe')"><span style="width:8px;height:8px;border-radius:50%;background:#7a3d10;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bouffe</button>
+    <button class="map-fbtn fbtn" data-cat="art"             onclick="mapSetFilter('art')"><span style="width:8px;height:8px;border-radius:50%;background:#2d5e25;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Art</button>
+    <button class="map-fbtn fbtn" data-cat="mode"            onclick="mapSetFilter('mode')"><span style="width:8px;height:8px;border-radius:50%;background:#7a2535;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Mode</button>
+    <button class="map-fbtn fbtn" data-cat="bien"            onclick="mapSetFilter('bien')"><span style="width:8px;height:8px;border-radius:50%;background:#1e3d6b;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bien-être</button>
+    <button class="map-fbtn fbtn" data-cat="activ"           onclick="mapSetFilter('activ')"><span style="width:8px;height:8px;border-radius:50%;background:#4a2080;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Activités</button>
   </div>
 
   <!-- Contenu carte/liste -->
-  <div style="flex:1;position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;">
+  <div style="flex:1;position:relative;overflow:hidden;min-height:0;">
 
     <!-- Carte SVG -->
-    <div id="mapView" style="position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;">
-      <svg id="viewport" xmlns="http://www.w3.org/2000/svg"
-           style="flex:1;width:100%;height:100%;min-height:0;display:block;touch-action:none;user-select:none;-webkit-user-select:none;background:#f8f6f1;cursor:grab;overflow:hidden;">
-        <g id="world">
-          <g id="mapBg"></g>
-          <g id="mapFloor"></g>
-          <g id="mapPins"></g>
-        </g>
-      </svg>
+    <div id="mapPanel" style="position:absolute;inset:0;display:flex;flex-direction:column;">
+      <div id="mapWrap" style="flex:1;overflow:auto;position:relative;min-height:0;cursor:grab;background:#f8f6f1;">
+        <svg id="themap" xmlns="http://www.w3.org/2000/svg"
+             style="display:block;touch-action:none;user-select:none;-webkit-user-select:none;background:#f8f6f1;">
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(26,18,8,0.04)" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <g id="world">
+            <g id="mapBg"></g>
+            <g id="mapFloor"></g>
+            <g id="mapPins"></g>
+          </g>
+        </svg>
+      </div>
       <!-- Zoom -->
       <div class="zctrls">
-        <button class="zcbtn" onclick="mapZoomAt(1.3)">+</button>
-        <button class="zcbtn" onclick="mapZoomAt(0.77)">−</button>
-        <button class="zcbtn" style="font-size:15px" onclick="mapFitMap()">⌂</button>
+        <button class="zcbtn" onclick="zoom(1.3)">+</button>
+        <button class="zcbtn" onclick="zoom(0.77)">−</button>
+        <button class="zcbtn" style="font-size:15px" onclick="buildMap()">⌂</button>
       </div>
     </div>
 
     <!-- Liste -->
-    <div id="listView" style="position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:12px 16px 20px;background:#f8f6f1;"></div>
+    <div id="listPanel" style="position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:12px 16px 20px;background:#f8f6f1;"></div>
 
   </div>
 
@@ -691,10 +696,12 @@
 <div id="ios-overlay" onclick="closeIosGuide()"></div>
 <div id="ios-guide">
   <div class="ios-handle"></div>
-  <div class="ios-guide-title">Ajouter à l'écran d'accueil</div>
-  <div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Appuie sur le bouton <strong>Partager</strong> en bas de Safari</div></div>
-  <div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Appuie sur <strong>« Sur l'écran d'accueil »</strong></div></div>
-  <div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Appuie sur <strong>« Ajouter »</strong> — c'est fait !</div></div>
+  <div class="ios-guide-title" id="ios-guide-title-text">Ajouter à l'écran d'accueil</div>
+  <div id="ios-guide-steps">
+    <div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Appuie sur le bouton <strong>Partager</strong> en bas de Safari</div></div>
+    <div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Appuie sur <strong>« Sur l'écran d'accueil »</strong></div></div>
+    <div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Appuie sur <strong>« Ajouter »</strong> — c'est fait !</div></div>
+  </div>
   <button class="ios-close" onclick="closeIosGuide()">Compris !</button>
 </div>
 
@@ -733,10 +740,39 @@ function toggleFavsMode() {
 }
 
 
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!sessionStorage.getItem('install-dismissed')) {
+    document.getElementById('install-bar').classList.add('visible');
+  }
+});
+window.addEventListener('appinstalled', () => {
+  deferredPrompt = null;
+  document.getElementById('install-bar').classList.remove('visible');
+});
+
 function triggerInstall(){ if(!deferredPrompt)return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('install-bar').classList.remove('visible'); }); }
 function dismissInstall(){ sessionStorage.setItem('install-dismissed','1'); document.getElementById('install-bar').classList.remove('visible'); }
 function showIosGuide(){ document.getElementById('ios-overlay').classList.add('open'); document.getElementById('ios-guide').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeIosGuide(){ document.getElementById('ios-overlay').classList.remove('open'); document.getElementById('ios-guide').classList.remove('open'); document.body.style.overflow=''; dismissInstall(); }
+
+function showDesktopGuide(){
+  const isSafariMac = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
+  let guide = '';
+  if(isSafariMac){
+    guide = '<div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Dans Safari, clique sur <strong>Fichier</strong> dans la barre de menu</div></div><div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Choisis <strong>« Ajouter à l\'ancrage »</strong></div></div><div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Clique <strong>« Ajouter »</strong> — l\'app apparaît dans ton Dock !</div></div>';
+  } else {
+    guide = '<div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Clique sur l\'icône <strong>⊕ Installer</strong> dans la barre d\'adresse (en haut à droite)</div></div><div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Clique sur <strong>« Installer »</strong> dans la fenêtre qui apparaît</div></div><div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">L\'app s\'ouvre et apparaît dans ta barre des tâches !</div></div>';
+  }
+  document.getElementById('ios-guide-title-text').textContent = 'Installer sur l\'ordinateur';
+  document.getElementById('ios-guide-steps').innerHTML = guide;
+  document.getElementById('ios-overlay').classList.add('open');
+  document.getElementById('ios-guide').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
 if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 // ── DATA ──
@@ -996,8 +1032,8 @@ function navTo(section) {
   const _cp = document.getElementById('cartePanel');
   if(section === 'carte'){
     _cp.style.display = 'flex';
-    if(!window._carteInit){ initCarteMap(); }
-    else { requestAnimationFrame(()=>mapFitMap()); }
+    if(!window._carteInit){ window._carteInit=true; requestAnimationFrame(()=>{ buildMap(); mapRenderList(); renderLegend(); }); }
+    else { requestAnimationFrame(()=>buildMap()); }
   } else {
     _cp.style.display = 'none';
   }
@@ -1056,8 +1092,14 @@ async function doShare(type) {
     }
   } else if (type === 'install') {
     closeShare();
-    if (deferredPrompt) { triggerInstall(); }
-    else { showIosGuide(); }
+    if (deferredPrompt) {
+      triggerInstall();
+    } else {
+      const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isMobile = /android|mobile/i.test(navigator.userAgent) || isIos;
+      if (isMobile) { showIosGuide(); }
+      else { showDesktopGuide(); }
+    }
   }
 }
 
@@ -1136,54 +1178,10 @@ const MAP_V=[
 
 
 
-// ── EATON EVENTS (programmation Centre Eaton) ──
-const EATON_EVENTS = [
-  {id:"e01", day:"Sam 9", date:"2026-05-09", start:"14:00", end:"15:00",
-   name:"Balterz & friends / RPD",
-   note:"Balterz (15 min) + RPD (45 min)",
-   desc:"Hip-hop, spoken word et danse contemporaine aux influences asiatiques. Une performance éclectique qui mêle les genres et les cultures dans l'espace unique du Centre Eaton.",
-   tags:["Gratuit","Tout public","Hip-hop","Danse"]},
-  {id:"e02", day:"Sam 9", date:"2026-05-09", start:"14:30", end:"15:30",
-   name:"Atelier Nerikiri",
-   note:"KOTOAN",
-   desc:"Créez vos propres wagashi en pâte de haricots blancs colorée. Chaque participant repart avec ses créations. Technique japonaise traditionnelle transmise par des artisans passionnés.",
-   tags:["Places limitées","Japon","Artisanat"]},
-  {id:"e03", day:"Sam 9", date:"2026-05-09", start:"15:00", end:"16:00",
-   name:"Asia Pop Performance",
-   note:"Groupes montréalais",
-   desc:"Chorégraphies K-pop, J-pop et C-pop par des groupes montréalais passionnés. Une célébration colorée et énergique de la culture pop asiatique.",
-   tags:["Gratuit","Tout public","K-pop","J-pop"]},
-  {id:"e04", day:"Dim 10", date:"2026-05-10", start:"14:00", end:"14:45",
-   name:"Veils of Bollywood",
-   note:"Atelier danse interactive · 30 min",
-   desc:"Aucune expérience requise — apprenez quelques mouvements emblématiques du cinéma indien dans une ambiance festive et bienveillante. Venez comme vous êtes !",
-   tags:["Gratuit","Tout public","Bollywood","Inde","Participatif"]},
-];
-
 // ── STATE ──
 let curLoc='tom', mapCurFilter='all', curView='map';
 let svgScale=1, mapHighlighted=null;
 let dtouchY=0;
-let eatonHighlighted=false;
-
-function highlightEaton(){
-  eatonHighlighted=true;
-  // Switch to map view
-  mapShowView('map');
-  // Re-draw with highlight
-  setTimeout(()=>{
-    buildMap();
-    // Pan to Centre Eaton zone (bottom-centre of TOM map: oval at cx=280, cy=470)
-    const svg=document.getElementById('viewport');
-    if(!svg) return;
-    const ww=svg.clientWidth, wh=svg.clientHeight;
-    panX=ww/2 - 280*svgScale;
-    panY=wh/2 - 470*svgScale;
-    applyTransform();
-    // Remove highlight after 3s
-    setTimeout(()=>{ eatonHighlighted=false; buildMap(); },3000);
-  },80);
-}
 
 // SVG virtual sizes
 const TOM_VW=560, TOM_VH=820;
@@ -1217,21 +1215,32 @@ function svgTxt(content,x,y,attrs){
 
 // ── BUILD MAP ──
 function buildMap(){
-  const svg=document.getElementById('viewport');
-  if(!svg) return;
+  const wrap=document.getElementById('mapWrap');
+  const svg=document.getElementById('themap');
   const vw=TOM_VW, vh=TOM_VH;
-  const ww=svg.clientWidth||svg.offsetWidth||360;
-  const wh=svg.clientHeight||svg.offsetHeight||500;
+  // Always fit on (re)load
+  const ww=wrap.offsetWidth||wrap.clientWidth||360;
+  const wh=wrap.offsetHeight||wrap.clientHeight||500;
   svgScale=Math.min((ww/vw)*0.96,(wh/vh)*0.96);
-  svgScale=Math.max(0.3,Math.min(svgScale,2));
-  panX=(ww-vw*svgScale)/2;
-  panY=(wh-vh*svgScale)/2;
-  applyTransform();
+  svgScale=Math.max(0.3,Math.min(svgScale,1.5));
+  svg.setAttribute('viewBox',`0 0 ${vw} ${vh}`);
+  svg.setAttribute('width', Math.round(vw*svgScale));
+  svg.setAttribute('height', Math.round(vh*svgScale));
+  // Center in container
+  const mTop=Math.max(0,(wh-vh*svgScale)/2);
+  const mLeft=Math.max(0,(ww-vw*svgScale)/2);
+  svg.style.margin=`${mTop}px ${mLeft}px`;
+  // Reset scroll so centering is via margin, not scroll offset
+  const wrap2=document.getElementById('mapWrap');
+  if(wrap2){ wrap2.scrollTop=0; wrap2.scrollLeft=0; }
 
   // Background
   const bg=document.getElementById('mapBg');
   bg.innerHTML='';
-  bg.append(rr(0,0,vw,vh,0,'#f0ede5',null));
+  bg.append(
+    rr(0,0,vw,vh,0,'#f0ede5',null),
+    rr(0,0,vw,vh,0,'url(#grid)',null)
+  );
 
   // Floor
   document.getElementById('mapFloor').innerHTML='';
@@ -1239,35 +1248,6 @@ function buildMap(){
 
   // Pins
   mapBuildPins();
-}
-
-let panX=0, panY=0;
-
-function applyTransform(){
-  const world=document.getElementById('world');
-  if(world) world.setAttribute('transform','translate('+panX+','+panY+') scale('+svgScale+')');
-}
-
-function mapFitMap(){
-  svgScale=1; // Map is built lazily via initCarteMap() when the carte panel is first opened
-}
-
-function mapZoomAt(f){
-  const svg=document.getElementById('viewport');
-  if(!svg) return;
-  const cx=svg.clientWidth/2, cy=svg.clientHeight/2;
-  const newScale=Math.min(4,Math.max(0.3,svgScale*f));
-  panX=cx-(cx-panX)*(newScale/svgScale);
-  panY=cy-(cy-panY)*(newScale/svgScale);
-  svgScale=newScale;
-  applyTransform();
-}
-
-function initCarteMap(){
-  window._carteInit=true;
-  requestAnimationFrame(function(){
-    setTimeout(function(){ buildMap(); mapRenderList(); renderLegend(); }, 60);
-  });
 }
 
 function drawTOM(){
@@ -1291,29 +1271,14 @@ function drawTOM(){
   fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY,rx:ovalRX,ry:ovalRY,
     fill:'#e8e4dc',stroke:'rgba(26,18,8,0.12)','stroke-width':'1.5'}));
 
-  // Sous-ovale RDC Centre Eaton — zone cliquable + highlight
-  const eatonRX=85, eatonRY=55, eatonCY=ovalCY+80;
-  // Highlight glow (visible si eatonHighlighted)
-  const eatonGlow=el('ellipse',{cx:ovalCX,cy:eatonCY,rx:eatonRX+10,ry:eatonRY+10,
-    fill:'rgba(159,179,212,0.0)',stroke:'rgba(159,179,212,0.0)','stroke-width':'2',id:'eatonGlow'});
-  if(eatonHighlighted){
-    eatonGlow.setAttribute('fill','rgba(159,179,212,0.25)');
-    eatonGlow.setAttribute('stroke','#4a6090');
-    eatonGlow.setAttribute('stroke-width','2.5');
-    eatonGlow.setAttribute('class','eaton-pulse');
-  }
-  fl.append(eatonGlow);
-  // Main oval
-  const eatonOval=el('ellipse',{cx:ovalCX,cy:eatonCY,rx:eatonRX,ry:eatonRY,
-    fill:'#fff',stroke: eatonHighlighted?'#4a6090':'rgba(26,18,8,0.12)',
-    'stroke-width': eatonHighlighted?'2.5':'1'});
-  fl.append(eatonOval);
-  fl.append(svgTxt('RDC DU',ovalCX,eatonCY-14,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
-  fl.append(svgTxt('CENTRE EATON',ovalCX,eatonCY-2,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
-  fl.append(svgTxt('↑↑',ovalCX,eatonCY+14,{'text-anchor':'middle','font-size':'10','fill':'#9fb3d4','font-family':ff}));
-  // 4 événements indicator
-  const evCount=EATON_EVENTS.length;
-  fl.append(svgTxt(evCount+' événements',ovalCX,eatonCY+28,{'text-anchor':'middle','font-size':'7','font-weight':'700','fill':'rgba(74,96,144,0.65)','font-family':ff}));
+  // Sous-ovale RDC Centre Eaton (ovale blanc à l'intérieur en bas)
+  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY+80,rx:'85',ry:'55',
+    fill:'#fff',stroke:'rgba(26,18,8,0.12)','stroke-width':'1'}));
+  fl.append(svgTxt('RDC DU',ovalCX,ovalCY+68,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
+  fl.append(svgTxt('CENTRE EATON',ovalCX,ovalCY+80,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
+
+  // Icônes escalier/ascenseur (↑↑ comme le vrai plan)
+  fl.append(svgTxt('↑↑',ovalCX,ovalCY+102,{'text-anchor':'middle','font-size':'11','fill':'#9fb3d4','font-family':ff}));
 
   // ── ZONES DE TEXTE (sans rectangles) ──
   // ESPACE ATELIER (haut droite — texte + flèche)
@@ -1455,55 +1420,73 @@ function mapBuildPins(){
   });
 }
 
-// ── ZOOM / PAN (viewport SVG with world transform) ──
+// ── ZOOM ──
+function zoom(f){
+  const wrap=document.getElementById('mapWrap');
+  const svg=document.getElementById('themap');
+  const cx=wrap.scrollLeft+wrap.clientWidth/2;
+  const cy=wrap.scrollTop+wrap.clientHeight/2;
+  const oldW=svg.clientWidth, oldH=svg.clientHeight;
+  svgScale=Math.min(5,Math.max(0.3,svgScale*f));
+  const newW=Math.round(TOM_VW*svgScale), newH=Math.round(TOM_VH*svgScale);
+  svg.style.margin='0';
+  svg.setAttribute('width',newW);
+  svg.setAttribute('height',newH);
+  wrap.scrollLeft=cx*(newW/oldW)-wrap.clientWidth/2;
+  wrap.scrollTop=cy*(newH/oldH)-wrap.clientHeight/2;
+}
+function resetZoom(){
+  svgScale=1;
+  buildMap();
+}
 
-// Mouse/touch pan
+// Pinch-to-zoom on scroll container
+// ── MOUSE PAN (desktop drag) ──
 (function(){
-  const svg=document.getElementById('viewport');
-  if(!svg) return;
-  let down=false,sx,sy,px0,py0;
-  svg.addEventListener('mousedown',function(e){
+  const wrap=document.getElementById('mapWrap');
+  let down=false,sx,sy,sl,st;
+  wrap.addEventListener('mousedown',e=>{
     if(e.target.closest('.zctrls')) return;
-    down=true; sx=e.clientX; sy=e.clientY; px0=panX; py0=panY;
-    svg.style.cursor='grabbing'; e.preventDefault();
+    down=true; sx=e.clientX; sy=e.clientY;
+    sl=wrap.scrollLeft; st=wrap.scrollTop;
+    wrap.style.cursor='grabbing'; e.preventDefault();
   });
-  window.addEventListener('mouseup',function(){ down=false; if(svg) svg.style.cursor='grab'; });
-  window.addEventListener('mousemove',function(e){
+  window.addEventListener('mouseup',()=>{ down=false; document.getElementById('mapWrap').style.cursor='grab'; });
+  window.addEventListener('mousemove',e=>{
     if(!down) return;
-    panX=px0+(e.clientX-sx); panY=py0+(e.clientY-sy); applyTransform();
+    wrap.scrollLeft=sl-(e.clientX-sx);
+    wrap.scrollTop=st-(e.clientY-sy);
   });
-  svg.addEventListener('wheel',function(e){
+  // Mouse wheel zoom
+  wrap.addEventListener('wheel',e=>{
     e.preventDefault();
-    mapZoomAt(e.deltaY<0?1.12:0.9);
+    zoom(e.deltaY<0?1.12:0.9);
   },{passive:false});
 })();
 
-// Pinch-to-zoom
-let pinch0=null, scale0=1, pinchPanX0=0, pinchPanY0=0;
-const mw=document.getElementById('viewport');
-if(mw){
-  mw.addEventListener('touchstart',function(e){
-    if(e.touches.length===2){
-      pinch0=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
-      scale0=svgScale; pinchPanX0=panX; pinchPanY0=panY;
-    }
-  },{passive:true});
-  mw.addEventListener('touchmove',function(e){
-    if(e.touches.length===2&&pinch0){
-      e.preventDefault();
-      const d=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
-      const f=d/pinch0;
-      const newScale=Math.min(5,Math.max(0.3,scale0*f));
-      const midX=(e.touches[0].clientX+e.touches[1].clientX)/2;
-      const midY=(e.touches[0].clientY+e.touches[1].clientY)/2;
-      panX=midX-(midX-pinchPanX0)*(newScale/scale0);
-      panY=midY-(midY-pinchPanY0)*(newScale/scale0);
-      svgScale=newScale;
-      applyTransform();
-    }
-  },{passive:false});
-  mw.addEventListener('touchend',function(e){ if(e.touches.length<2) pinch0=null; },{passive:true});
-}
+let pinch0=null, scale0=1;
+const mw=document.getElementById('mapWrap');
+mw.addEventListener('touchstart',e=>{
+  if(e.touches.length===2){
+    pinch0=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
+    scale0=svgScale;
+  }
+},{passive:true});
+mw.addEventListener('touchmove',e=>{
+  if(e.touches.length===2&&pinch0){
+    e.preventDefault();
+    const d=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
+    svgScale=Math.min(5,Math.max(0.4,scale0*d/pinch0));
+    const svg=document.getElementById('themap');
+    const vw=TOM_VW;
+    const vh=TOM_VH;
+    svg.setAttribute('width',vw*svgScale);
+    svg.setAttribute('height',TOM_VH*svgScale);
+    mw.style.alignItems='flex-start';
+    mw.style.justifyContent='flex-start';
+  }
+},{passive:false});
+mw.addEventListener('touchend',e=>{if(e.touches.length<2)pinch0=null;},{passive:true});
 
 // ── LOCATION (single venue) ──
 function setLoc(loc){ curLoc='tom'; }
@@ -1511,9 +1494,9 @@ function setLoc(loc){ curLoc='tom'; }
 // ── FILTER ──
 function mapSetFilter(cat){
   mapCurFilter=cat;
-  document.querySelectorAll('.map-fbtn').forEach(b=>{
+  document.querySelectorAll('.fbtn').forEach(b=>{
     const bc=b.dataset.cat||'all';
-    b.className='map-fbtn';
+    b.className='fbtn';
     if(bc===cat) b.classList.add('act-'+cat);
   });
   mapBuildPins(); mapRenderList(); renderLegend();
@@ -1522,21 +1505,17 @@ function mapSetFilter(cat){
 // ── VIEW ──
 function mapShowView(v){
   curView=v;
-  document.getElementById('mapView').style.display = v==='map' ? 'flex' : 'none';
-  document.getElementById('listView').style.display = v==='list' ? 'block' : 'none';
+  document.getElementById('mapPanel').style.display = v==='map' ? 'flex' : 'none';
+  document.getElementById('listPanel').style.display = v==='list' ? 'block' : 'none';
   document.getElementById('btnMap').classList.toggle('on', v==='map');
   document.getElementById('btnList').classList.toggle('on', v==='list');
-  if(v==='map'){ requestAnimationFrame(()=>{ buildMap(); }); }
 }
 
 // ── LIST ──
 function mapRenderList(){
-  const panel=document.getElementById('listView');
-  if(!panel) return;
+  const panel=document.getElementById('listPanel');
   const cats=mapCurFilter==='all'?Object.keys(MAP_CATS):[mapCurFilter];
   let html='';
-
-  // ── MARCHANDS TIME OUT MARKET ──
   cats.forEach(cat=>{
     const items=MAP_V.filter(v=>v.loc===curLoc&&v.cat===cat);
     if(!items.length)return;
@@ -1545,7 +1524,7 @@ function mapRenderList(){
     items.forEach(v=>{
       html+=`<div class="vcard" onclick="mapOpenDrawer(${v.id})">
         <div class="vnum">${v.id}</div>
-        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 Time Out Market</div></div>
+        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${'Time Out Market'}</div></div>
         <button class="vlocate" onclick="event.stopPropagation();mapLocatePin(${v.id})" title="Voir sur la carte">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
           Carte
@@ -1554,37 +1533,7 @@ function mapRenderList(){
       </div>`;
     });
   });
-
-  // ── PROGRAMMATION CENTRE EATON ──
-  if(mapCurFilter==='all'){
-    html+=`<div style="margin-top:14px;padding:12px 0 8px;border-top:2px solid rgba(159,179,212,0.6);border-bottom:1.5px solid #1a1208;margin-bottom:10px;">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div style="width:10px;height:10px;border-radius:50%;background:#4a6090;flex-shrink:0;"></div>
-        <div style="font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4a6090;">Centre Eaton — Programmation (${EATON_EVENTS.length})</div>
-      </div>
-      <div style="font-size:10px;color:#6b5a34;margin-top:4px;padding-left:18px;">Scène & Ateliers · Sam 9 et Dim 10 mai</div>
-    </div>`;
-    EATON_EVENTS.forEach(ev=>{
-      html+=`<div class="vcard" onclick="mapOpenEatonDrawer('${ev.id}')">
-        <div style="display:flex;flex-direction:column;align-items:center;min-width:36px;gap:2px;">
-          <div style="font-size:10px;font-weight:900;color:#4a6090;line-height:1;">${ev.start}</div>
-          <div style="font-size:9px;color:#9fb3d4;font-weight:600;">${ev.day}</div>
-        </div>
-        <div class="vinfo">
-          <div class="vname">${ev.name}</div>
-          ${ev.note?`<div class="vsub">${ev.note}</div>`:''}
-          <div class="vsub">📍 Centre Eaton</div>
-        </div>
-        <button class="vlocate" onclick="event.stopPropagation();highlightEaton()" title="Voir sur la carte">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-          Carte
-        </button>
-        <div class="varr">›</div>
-      </div>`;
-    });
-  }
-
-  if(!html) html='<div class="empty">Aucun marchand pour cette sélection</div>';
+  if(!html) html=`<div class="empty">Aucun marchand pour cette sélection</div>`;
   panel.innerHTML=html;
 }
 
@@ -1639,34 +1588,6 @@ function mapOpenDrawer(id){
     document.body.style.overflow='hidden';
   });
 }
-function mapOpenEatonDrawer(id){
-  const ev=EATON_EVENTS.find(x=>x.id===id); if(!ev) return;
-  document.getElementById('mapDhead').innerHTML=`
-    <div class="dbadge" style="background:rgba(159,179,212,0.25);color:#4a6090;border-color:#9fb3d4;">Centre Eaton</div>
-    <div class="dtop" style="margin-top:8px;">
-      <span style="font-size:13px;font-weight:700;color:#6b5a34;font-variant-numeric:tabular-nums;">${ev.start} – ${ev.end}</span>
-      <span style="font-size:10px;font-weight:800;color:#9fb3d4;padding:2px 8px;background:rgba(159,179,212,0.15);border-radius:6px;white-space:nowrap;">${ev.day}</span>
-    </div>
-    <div style="font-size:clamp(17px,5vw,22px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.15;margin-top:6px;">${ev.name}</div>
-    ${ev.note?`<div class="dlieu" style="margin-top:6px;font-style:italic;">${ev.note}</div>`:''}
-    <div class="dlieu" style="margin-top:8px;">📍 Centre Eaton · Sainte-Catherine Ouest</div>`;
-  const tags=(ev.tags||[]).map(t=>`<span class="dtag" style="background:rgba(159,179,212,0.15);color:#4a6090;border-color:#9fb3d4;">${t}</span>`).join('');
-  document.getElementById('mapDbody').innerHTML=`
-    <p class="ddesc">${ev.desc}</p>
-    ${tags?`<div class="dtags">${tags}</div>`:''}
-    <div class="dlocate" onclick="highlightEaton();mapCloseDrawer()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-      Voir sur la carte
-    </div>
-    <button class="dclose" onclick="mapCloseDrawer()">Fermer</button>`;
-  document.getElementById('mapDrawer').scrollTop=0;
-  requestAnimationFrame(()=>{
-    document.getElementById('mapOverlay').classList.add('on');
-    document.getElementById('mapDrawer').classList.add('on');
-    document.body.style.overflow='hidden';
-  });
-}
-
 function mapCloseDrawer(){
   document.getElementById('mapOverlay').classList.remove('on');
   document.getElementById('mapDrawer').classList.remove('on');
@@ -1680,14 +1601,34 @@ function mapLocatePin(id){
   mapBuildPins();
   // Centre la carte sur le pin — rebuild sans reset du scale
   setTimeout(()=>{
-    // Pan the viewport to center on the pin
-    const svg=document.getElementById('viewport');
-    if(!svg) return;
-    const ww=svg.clientWidth, wh=svg.clientHeight;
-    // Target: center of viewport = pin position in world coords transformed
-    panX = ww/2 - v.x*svgScale;
-    panY = wh/2 - v.y*svgScale;
-    applyTransform();
+    const wrap=document.getElementById('mapWrap');
+    const svg=document.getElementById('themap');
+    const ww=wrap.offsetWidth, wh=wrap.offsetHeight;
+    // Pin position dans le SVG scalé
+    const pinX=v.x*svgScale;
+    const pinY=v.y*svgScale;
+    // Calcule le margin pour centrer le SVG, puis ajuste le scroll
+    const svgW=parseFloat(svg.getAttribute('width'))||TOM_VW*svgScale;
+    const svgH=parseFloat(svg.getAttribute('height'))||TOM_VH*svgScale;
+    // Remove margin (set by buildMap centering)
+    svg.style.margin='0';
+    // Si SVG plus petit que le wrap, on doit d'abord zoomer un peu
+    if(svgW<ww && svgH<wh){
+      // SVG fits — just scroll to pin within padded area
+      const marginLeft=Math.max(0,(ww-svgW)/2);
+      const marginTop=Math.max(0,(wh-svgH)/2);
+      wrap.scrollTo({
+        left:Math.max(0,marginLeft+pinX-ww/2),
+        top:Math.max(0,marginTop+pinY-wh/2),
+        behavior:'smooth'
+      });
+    } else {
+      wrap.scrollTo({
+        left:Math.max(0,pinX-ww/2),
+        top:Math.max(0,pinY-wh/2),
+        behavior:'smooth'
+      });
+    }
     setTimeout(()=>{ mapHighlighted=null; mapBuildPins(); },3000);
   },400);
 }
@@ -1696,29 +1637,8 @@ document.getElementById('mapDrawer').addEventListener('touchstart',e=>{dtouchY=e
 document.getElementById('mapDrawer').addEventListener('touchmove',e=>{if(e.touches[0].clientY-dtouchY>70&&document.getElementById('mapDrawer').scrollTop<=0)mapCloseDrawer();},{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')mapCloseDrawer();});
 
-// Single-finger pan on touch
-(function(){
-  const svg=document.getElementById('viewport');
-  if(!svg) return;
-  let t1=null, px0=0, py0=0;
-  svg.addEventListener('touchstart',function(e){
-    if(e.touches.length===1){ t1=e.touches[0]; px0=panX; py0=panY; }
-  },{passive:true});
-  svg.addEventListener('touchmove',function(e){
-    if(e.touches.length===1&&t1&&!pinch0){
-      e.preventDefault();
-      panX=px0+(e.touches[0].clientX-t1.clientX);
-      panY=py0+(e.touches[0].clientY-t1.clientY);
-      applyTransform();
-    }
-  },{passive:false});
-  svg.addEventListener('touchend',function(){ t1=null; },{passive:true});
-})();
-
 window.addEventListener('resize',()=>{ if(window._carteInit){ svgScale=1; buildMap(); mapRenderList(); renderLegend(); } });
-window.addEventListener('orientationchange',()=>setTimeout(()=>{ svgScale=1; buildMap(); },200));
-
-buildMap(); mapRenderList(); renderLegend();
+window.addEventListener('orientationchange',()=>setTimeout(()=>{ if(window._carteInit){ svgScale=1; buildMap(); } },200));
 
 </script>
 </body>
