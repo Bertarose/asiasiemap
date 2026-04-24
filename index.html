@@ -20,54 +20,56 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .hdr{padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0}
 .logo{height:26px;width:auto;flex-shrink:0}
 .logo path,.logo rect,.logo polygon{fill:#1a1208}
-.hdr-title{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;flex:1}
+.hdr-title{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vtoggle{display:flex;border:1.5px solid #1a1208;border-radius:8px;overflow:hidden;flex-shrink:0}
-.vbtn{padding:7px 12px;background:transparent;border:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation}
+.vbtn{padding:6px 10px;background:transparent;border:none;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation;white-space:nowrap}
 .vbtn+.vbtn{border-left:1px solid #1a1208}
 .vbtn.on{background:#1a1208;color:#fff}
 
+/* LOCATION TABS */
+.loc-tabs{display:flex;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0}
+.loc-tab{flex:1;padding:12px 8px;text-align:center;cursor:pointer;border:none;background:transparent;font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;position:relative}
+.loc-tab+.loc-tab{border-left:1px solid rgba(26,18,8,0.15)}
+.loc-tab.on{color:#1a1208;background:#f8f6f1}
+.loc-tab.on::after{content:'';position:absolute;bottom:-1.5px;left:0;right:0;height:3px;background:#f06118}
+.loc-tab .loc-count{font-size:9px;font-weight:700;opacity:.6;margin-left:4px}
+.loc-tab.ce.on::after{background:#9fb3d4}
+
 /* FILTERS */
-.filters{display:flex;gap:6px;padding:9px 14px;overflow-x:auto;border-bottom:1px solid rgba(26,18,8,.1);background:#fff;flex-shrink:0;scrollbar-width:none}
+.filters{display:flex;gap:6px;padding:9px 14px;overflow-x:auto;border-bottom:1px solid rgba(26,18,8,.08);background:#fff;flex-shrink:0;scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
 .fbtn{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;border:1.5px solid rgba(26,18,8,.15);background:transparent;color:#6b5a34;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;flex-shrink:0}
 .fdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.fbtn.fa{background:#1a1208;border-color:#1a1208;color:#fff}
-.fbtn.fb{background:#f5d9c0;border-color:#e8a87a;color:#7a3d10;font-weight:800}
-.fbtn.far{background:#d6e8d0;border-color:#a8cc9e;color:#2d5e25;font-weight:800}
-.fbtn.fm{background:#f5cdd4;border-color:#e8939f;color:#7a2535;font-weight:800}
-.fbtn.fbi{background:#c8d8ed;border-color:#8aacd4;color:#1e3d6b;font-weight:800}
-.fbtn.fac{background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800}
+.fbtn.act-all   {background:#1a1208;border-color:#1a1208;color:#fff}
+.fbtn.act-bouffe{background:#f5d9c0;border-color:#e8a87a;color:#7a3d10;font-weight:800}
+.fbtn.act-art   {background:#d6e8d0;border-color:#a8cc9e;color:#2d5e25;font-weight:800}
+.fbtn.act-mode  {background:#f5cdd4;border-color:#e8939f;color:#7a2535;font-weight:800}
+.fbtn.act-bien  {background:#c8d8ed;border-color:#8aacd4;color:#1e3d6b;font-weight:800}
+.fbtn.act-activ {background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800}
 
 /* CONTENT */
 .content{flex:1;position:relative;overflow:hidden;min-height:0}
 
 /* MAP PANEL */
 #mapPanel{position:absolute;inset:0;display:flex;flex-direction:column}
-.map-scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f0ede5;cursor:grab}
-.map-scroll:active{cursor:grabbing}
-.map-scroll.panning{cursor:grabbing}
+.map-wrap{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f0ede5}
+#themap{display:block;touch-action:pan-x pan-y pinch-zoom}
 
-/* THE SVG MAP */
-#themap{display:block;touch-action:none;user-select:none;-webkit-user-select:none}
-
-/* Kiosque pins — use SVG group + circle + text so they scale naturally */
+/* Pins */
 .kpin{cursor:pointer;-webkit-tap-highlight-color:transparent}
-.kpin circle{transition:r .15s,stroke-width .15s}
-.kpin:hover circle,.kpin.hi circle{r:18;stroke-width:2.5}
-.kpin.dim{opacity:.15;pointer-events:none}
-.kpin text{pointer-events:none;font-family:'Figtree',sans-serif;font-weight:900;text-anchor:middle;dominant-baseline:central}
+.kpin.dim{opacity:.12}
 
-/* Zoom controls */
-.zoom-ctrls{position:absolute;bottom:52px;right:12px;display:flex;flex-direction:column;gap:6px}
-.zcbtn{width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid #1a1208;font-size:18px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:1;color:#1a1208;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+/* Zoom buttons */
+.zctrls{position:absolute;bottom:56px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:10}
+.zcbtn{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid #1a1208;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 10px rgba(0,0,0,.14);line-height:1;font-family:inherit}
 
-/* Map legend */
-.map-leg{display:flex;gap:10px;padding:8px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0;align-items:center}
+/* Legend */
+.map-leg{display:flex;gap:10px;padding:8px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
 .map-leg::-webkit-scrollbar{display:none}
 .legitem{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:10px;font-weight:700;color:#6b5a34;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}
 .legdot{width:10px;height:10px;border-radius:50%}
 
-/* LIST PANEL */
+/* LIST */
 #listPanel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:10px 14px 100px;background:#f8f6f1}
 .grptitle{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:14px 0 8px;border-bottom:1.5px solid #1a1208;margin-bottom:8px}
 .vcard{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1.5px solid #1a1208;border-radius:10px;background:#fff;margin-bottom:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s}
@@ -80,10 +82,13 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .vbadge{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:8px;border:1.5px solid;white-space:nowrap;flex-shrink:0}
 .varr{font-size:18px;color:#6b5a34;flex-shrink:0}
 
+/* EMPTY STATE */
+.empty{padding:48px 20px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b5a34;opacity:.6}
+
 /* DRAWER */
 .overlay{position:fixed;inset:0;background:rgba(26,18,8,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay.on{opacity:1;pointer-events:all}
-.drawer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;border-top:1.5px solid #1a1208;z-index:201;max-height:82vh;overflow-y:auto;overscroll-behavior:contain;transform:translateY(110%);transition:transform .3s cubic-bezier(.32,.72,0,1);padding-bottom:env(safe-area-inset-bottom,16px);-webkit-overflow-scrolling:touch}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;border-top:1.5px solid #1a1208;z-index:201;max-height:84vh;overflow-y:auto;overscroll-behavior:contain;transform:translateY(110%);transition:transform .3s cubic-bezier(.32,.72,0,1);padding-bottom:env(safe-area-inset-bottom,16px);-webkit-overflow-scrolling:touch}
 .drawer.on{transform:translateY(0)}
 .dpull{display:flex;justify-content:center;padding:12px 0 6px;cursor:pointer;position:sticky;top:0;background:#fff;z-index:1;border-bottom:.5px solid rgba(26,18,8,.1)}
 .dpill{width:36px;height:4px;border-radius:2px;background:rgba(26,18,8,.18)}
@@ -92,7 +97,7 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 .dtop{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
 .dnum{font-size:30px;font-weight:900;color:#f06118;line-height:1}
 .dname{font-size:clamp(17px,5vw,23px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
-.dlieu{font-size:12px;color:#6b5a34;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.dlieu{font-size:12px;color:#6b5a34;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
 .dbody{padding:16px 18px 8px}
 .ddesc{font-size:15px;line-height:1.7;color:#1a1208}
 .dtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
@@ -104,6 +109,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
   .drawer{max-width:520px;left:50%;right:auto;transform:translateX(-50%) translateY(110%)}
   .drawer.on{transform:translateX(-50%) translateY(0)}
   #listPanel{padding:12px 24px 100px}
+  .vbtn{padding:7px 13px;font-size:11px}
+  .loc-tab{font-size:12px;padding:13px 16px}
 }
 </style>
 </head>
@@ -112,8 +119,8 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 
 <div class="ticker">
   <div class="ticker-inner">
-    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>TIME OUT MARKET · CENTRE EATON</span><span>30 MARCHANDS</span>
-    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>TIME OUT MARKET · CENTRE EATON</span><span>30 MARCHANDS</span>
+    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>30 MARCHANDS</span><span>TIME OUT MARKET · CENTRE EATON</span>
+    <span>FESTIVAL ASIASIE 2026</span><span>7–10 MAI · MONTRÉAL</span><span>30 MARCHANDS</span><span>TIME OUT MARKET · CENTRE EATON</span>
   </div>
 </div>
 
@@ -129,67 +136,62 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
   </svg>
   <span class="hdr-title">Plan des marchands</span>
   <div class="vtoggle">
-    <button class="vbtn on" id="btnMap" onclick="showView('map')">🗺 Carte</button>
-    <button class="vbtn" id="btnList" onclick="showView('list')">☰ Liste</button>
+    <button class="vbtn on" id="btnMap"  onclick="showView('map')">🗺 Carte</button>
+    <button class="vbtn"    id="btnList" onclick="showView('list')">☰ Liste</button>
   </div>
 </div>
 
-<div class="filters">
-  <button class="fbtn fa" onclick="setFilter('all')">Tous (30)</button>
-  <button class="fbtn" data-cat="bouffe" onclick="setFilter('bouffe')"><div class="fdot" style="background:#7a3d10"></div>Bouffe</button>
-  <button class="fbtn" data-cat="art"    onclick="setFilter('art')"><div class="fdot" style="background:#2d5e25"></div>Art</button>
-  <button class="fbtn" data-cat="mode"   onclick="setFilter('mode')"><div class="fdot" style="background:#7a2535"></div>Mode</button>
-  <button class="fbtn" data-cat="bien"   onclick="setFilter('bien')"><div class="fdot" style="background:#1e3d6b"></div>Bien-être</button>
-  <button class="fbtn" data-cat="activ"  onclick="setFilter('activ')"><div class="fdot" style="background:#4a2080"></div>Activités</button>
+<!-- LOCATION TABS -->
+<div class="loc-tabs">
+  <button class="loc-tab on" id="ltTOM" onclick="setLoc('tom')">
+    Time Out Market <span class="loc-count">(18)</span>
+  </button>
+  <button class="loc-tab ce" id="ltCE"  onclick="setLoc('eaton')">
+    Centre Eaton <span class="loc-count">(12)</span>
+  </button>
+</div>
+
+<!-- FILTERS -->
+<div class="filters" id="filterBar">
+  <button class="fbtn act-all" data-cat="all"    onclick="setFilter('all')">Tous</button>
+  <button class="fbtn" data-cat="bouffe"          onclick="setFilter('bouffe')"><div class="fdot" style="background:#7a3d10"></div>Bouffe</button>
+  <button class="fbtn" data-cat="art"             onclick="setFilter('art')"><div class="fdot" style="background:#2d5e25"></div>Art</button>
+  <button class="fbtn" data-cat="mode"            onclick="setFilter('mode')"><div class="fdot" style="background:#7a2535"></div>Mode</button>
+  <button class="fbtn" data-cat="bien"            onclick="setFilter('bien')"><div class="fdot" style="background:#1e3d6b"></div>Bien-être</button>
+  <button class="fbtn" data-cat="activ"           onclick="setFilter('activ')"><div class="fdot" style="background:#4a2080"></div>Activités</button>
 </div>
 
 <div class="content">
+  <!-- MAP -->
   <div id="mapPanel">
-    <div class="map-scroll" id="mapScroll">
-
-      <!-- THE MAP — single SVG, scrollable container handles pan -->
-      <!-- Mobile: stacked (TOM top, CE bottom), Desktop: side by side -->
+    <div class="map-wrap" id="mapWrap">
       <svg id="themap" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-            <path d="M30 0L0 0 0 30" fill="none" stroke="rgba(26,18,8,0.04)" stroke-width="0.5"/>
+          <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+            <path d="M25 0L0 0 0 25" fill="none" stroke="rgba(26,18,8,0.04)" stroke-width=".5"/>
           </pattern>
-          <!-- Wood floor texture simulation -->
-          <linearGradient id="woodTOM" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#c8a882" stop-opacity=".25"/>
-            <stop offset="50%" stop-color="#d4b48e" stop-opacity=".2"/>
-            <stop offset="100%" stop-color="#c8a882" stop-opacity=".25"/>
-          </linearGradient>
-          <linearGradient id="woodCE" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#b8c8d8" stop-opacity=".18"/>
-            <stop offset="50%" stop-color="#c4d2e0" stop-opacity=".15"/>
-            <stop offset="100%" stop-color="#b8c8d8" stop-opacity=".18"/>
-          </linearGradient>
         </defs>
-
-        <!-- drawn by JS -->
         <g id="mapBg"></g>
         <g id="mapFloor"></g>
         <g id="mapPins"></g>
       </svg>
-
       <!-- Zoom controls -->
-      <div class="zoom-ctrls">
-        <button class="zcbtn" onclick="zoom(1.25)" aria-label="Zoom in">+</button>
-        <button class="zcbtn" onclick="zoom(0.8)"  aria-label="Zoom out">−</button>
-        <button class="zcbtn" style="font-size:13px" onclick="resetZoom()" aria-label="Reset">⌂</button>
+      <div class="zctrls">
+        <button class="zcbtn" onclick="zoom(1.3)"  aria-label="Zoom +">+</button>
+        <button class="zcbtn" onclick="zoom(0.77)" aria-label="Zoom −">−</button>
+        <button class="zcbtn" style="font-size:14px" onclick="resetZoom()" aria-label="Reset">⌂</button>
       </div>
     </div>
-
     <div class="map-leg">
-      <div class="legitem"><div class="legdot" style="background:#7a3d10"></div>Bouffe & Resto</div>
-      <div class="legitem"><div class="legdot" style="background:#2d5e25"></div>Art & Artisanat</div>
-      <div class="legitem"><div class="legdot" style="background:#7a2535"></div>Mode & Beauté</div>
+      <div class="legitem"><div class="legdot" style="background:#7a3d10"></div>Bouffe</div>
+      <div class="legitem"><div class="legdot" style="background:#2d5e25"></div>Art</div>
+      <div class="legitem"><div class="legdot" style="background:#7a2535"></div>Mode</div>
       <div class="legitem"><div class="legdot" style="background:#1e3d6b"></div>Bien-être</div>
       <div class="legitem"><div class="legdot" style="background:#4a2080"></div>Activités</div>
     </div>
   </div>
 
+  <!-- LIST -->
   <div id="listPanel"></div>
 </div>
 
@@ -201,437 +203,351 @@ html,body{height:100%;overflow:hidden;font-family:'Figtree',-apple-system,sans-s
 </div>
 
 <script>
-// ── CATEGORIES ──
-const CATS = {
-  bouffe:{ label:'Bouffe & Resto',  bg:'#f5d9c0', text:'#7a3d10', bd:'#e8a87a' },
-  art:   { label:'Art & Artisanat', bg:'#d6e8d0', text:'#2d5e25', bd:'#a8cc9e' },
-  mode:  { label:'Mode & Beauté',   bg:'#f5cdd4', text:'#7a2535', bd:'#e8939f' },
-  bien:  { label:'Bien-être',       bg:'#c8d8ed', text:'#1e3d6b', bd:'#8aacd4' },
-  activ: { label:'Activités & Exp.',bg:'#e8e0f0', text:'#4a2080', bd:'#b89cd4' },
+// ── CATS ──
+const CATS={
+  bouffe:{label:'Bouffe & Resto',  bg:'#f5d9c0',text:'#7a3d10',bd:'#e8a87a'},
+  art:   {label:'Art & Artisanat', bg:'#d6e8d0',text:'#2d5e25',bd:'#a8cc9e'},
+  mode:  {label:'Mode & Beauté',   bg:'#f5cdd4',text:'#7a2535',bd:'#e8939f'},
+  bien:  {label:'Bien-être',       bg:'#c8d8ed',text:'#1e3d6b',bd:'#8aacd4'},
+  activ: {label:'Activités & Exp.',bg:'#e8e0f0',text:'#4a2080',bd:'#b89cd4'},
 };
 
-// ── MAP LAYOUT CONSTANTS ──
-// TOM: cross/diamond shape, inspired by real plan
-// CE: rectangular grid
-// Positions in SVG units (scaled by zoom)
-const TOM = { ox:30, oy:30, w:460, h:460 };  // bounding box of TOM
-const CE  = { ox:30, oy:30, w:380, h:340 };  // bounding box of CE
+// ── VENDORS ──
+// TOM positions: virtual canvas 480×490 (with padding)
+// CE positions:  virtual canvas 420×400 (with padding)
+const V=[
+  // TIME OUT MARKET
+  {id:1, name:'Ramen Ichiban',     cat:'bouffe',loc:'tom', x:55,  y:75,  desc:'Ramens artisanaux au bouillon mijoté 18h, nouilles fraîches maison. Spécialité : tonkotsu épicé et miso végétarien.',tags:['Japon','Végé dispo','Sans gluten']},
+  {id:2, name:'Bánh Mì Saigon',   cat:'bouffe',loc:'tom', x:55,  y:165, desc:'Bánh mì croustillants garnis de légumes marinés, coriandre et sauces maison. Recette familiale 3 générations.',tags:['Vietnam','Végétarien dispo','Halal']},
+  {id:3, name:'Dumpling House',    cat:'bouffe',loc:'tom', x:55,  y:255, desc:'Dumplings vapeur et frits, gyoza, bao farcis. Pâte faite main chaque matin. Plus de 12 garnitures.',tags:['Chine','Végétarien','Fruits de mer']},
+  {id:4, name:'Seoul BBQ',         cat:'bouffe',loc:'tom', x:55,  y:345, desc:'Galbi, bulgogi, poulet dakgalbi. Marinades maison 24h. Banchan faits maison chaque jour.',tags:['Corée','BBQ','Halal dispo']},
+  {id:5, name:'Matcha & Co',       cat:'bouffe',loc:'tom', x:165, y:55,  desc:'Lattes matcha, glaces mochi, affogato, parfaits japonais. Matcha importé d\'Uji, Kyoto.',tags:['Japon','Végétarien','Desserts']},
+  {id:6, name:'Pad Thai Express',  cat:'bouffe',loc:'tom', x:295, y:55,  desc:'Pad thaï wok haute flamme, crevettes ou tofu, cacahuètes grillées. Aussi : khao pad, larb.',tags:['Thaïlande','Végé dispo','Épicé']},
+  {id:7, name:'Bao Brothers',      cat:'bouffe',loc:'tom', x:420, y:75,  desc:'Gua baos farcis de porc braisé, poulet frit ou jackfruit épicé. Pains vapeur du matin.',tags:['Taïwan','Street food','Végé dispo']},
+  {id:8, name:'Mochi & Mango',     cat:'bouffe',loc:'tom', x:420, y:210, desc:'Mochis glacés, mangue sticky rice, taiyaki. Glaces artisanales aux fruits asiatiques.',tags:['Japon/Thaïlande','Desserts','Végétarien']},
+  {id:9, name:'Galerie Hanami',    cat:'art',   loc:'tom', x:420, y:340, desc:'Estampes japonaises contemporaines, illustrations encre de Chine. Éditions limitées signées.',tags:['Japon','Estampes','Éditions limitées']},
+  {id:10,name:'Céramiques Zen',    cat:'art',   loc:'tom', x:295, y:430, desc:'Bols à thé, vases, assiettes inspirés de la céramique coréenne céladon et du wabi-sabi.',tags:['Corée/Japon','Fait main','Artisanat']},
+  {id:11,name:'Studio Origami',    cat:'art',   loc:'tom', x:165, y:430, desc:'Origami d\'art encadrés, kits thématiques, ateliers. Œuvres de la diaspora asiatique montréalaise.',tags:['Japon','Atelier dispo','Cadeaux']},
+  {id:12,name:'Kimono Moderne',    cat:'mode',  loc:'tom', x:55,  y:430, desc:'Kimonos contemporains pour le quotidien, yukata d\'été, obi colorés. Du casual au cérémonial.',tags:['Japon','Prêt-à-porter','Accessoires']},
+  {id:13,name:'K-Beauty Studio',   cat:'mode',  loc:'tom', x:420, y:430, desc:'Soins coréens : sérum 10 étapes, masques, cushions, produits glow. Conseils personnalisés.',tags:['Corée','Beauté','Soins']},
+  {id:14,name:'Calligraphie MTL',  cat:'mode',  loc:'tom', x:175, y:210, desc:'Portraits calligraphiés en chinois, coréen et japonais. Kakemonos, estampes. Démos en direct.',tags:['Chine/Corée','Sur commande','Démo']},
+  {id:15,name:'Thés Guru',         cat:'bien',  loc:'tom', x:305, y:210, desc:'40 thés premium : sencha, gyokuro, oolong, pu-erh. Dégustation guidée et conseils d\'infusion.',tags:['Asie','Thé','Bien-être']},
+  {id:16,name:'Aromathérapie Zen', cat:'bien',  loc:'tom', x:240, y:305, desc:'Huiles essentielles, encens japonais, diffuseurs bambou, sels de bain cerisier. 100% naturel.',tags:['Japon','Naturel','Artisanat']},
+  {id:17,name:'Atelier Nerikiri',  cat:'activ', loc:'tom', x:165, y:305, desc:'KOTOAN initie à la confiserie japonaise sculptée. Créez vos wagashi. Vous repartez avec vos créations.',tags:['Japon','Atelier payant','Places limitées']},
+  {id:18,name:'Photobooth CBC',    cat:'activ', loc:'tom', x:315, y:305, desc:'Photobooth officiel CBC/Radio-Canada. Décors festifs exclusifs, impressions instantanées. Gratuit.',tags:['Gratuit','Photo','Tout public']},
 
-// 30 vendors with positions relative to their building's coordinate system
-// TOM coords: 0..460, 0..460 | CE coords: 0..380, 0..340
-const V = [
-  // TIME OUT MARKET — bouffe (around perimeter)
-  {id:1,  name:'Ramen Ichiban',      cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:80,  desc:'Ramens artisanaux au bouillon mijoté 18h, nouilles fraîches maison. Spécialité : tonkotsu épicé et miso végétarien.',          tags:['Japon','Végé dispo','Sans gluten']},
-  {id:2,  name:'Bánh Mì Saigon',    cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:160, desc:'Bánh mì croustillants garnis de légumes marinés, coriandre et sauces maison. Recette familiale 3 générations.',               tags:['Vietnam','Végétarien dispo','Halal']},
-  {id:3,  name:'Dumpling House',     cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:240, desc:'Dumplings vapeur et frits, gyoza, bao farcis. Pâte faite main chaque matin. Plus de 12 garnitures.',                          tags:['Chine','Végétarien','Fruits de mer']},
-  {id:4,  name:'Seoul BBQ',          cat:'bouffe',lieu:'Time Out Market',tx:60,  ty:320, desc:'Galbi, bulgogi, poulet dakgalbi. Marinades maison 24h. Banchan faits maison chaque jour.',                                     tags:['Corée','BBQ','Halal dispo']},
-  {id:5,  name:'Matcha & Co',        cat:'bouffe',lieu:'Time Out Market',tx:170, ty:60,  desc:'Lattes matcha, glaces mochi, affogato, parfaits japonais. Matcha importé d\'Uji, Kyoto — grade cérémonie.',                   tags:['Japon','Végétarien','Desserts']},
-  {id:6,  name:'Pad Thai Express',   cat:'bouffe',lieu:'Time Out Market',tx:290, ty:60,  desc:'Pad thaï wok haute flamme avec crevettes ou tofu, cacahuètes grillées. Aussi : khao pad, larb.',                              tags:['Thaïlande','Végé dispo','Épicé']},
-  {id:7,  name:'Bao Brothers',       cat:'bouffe',lieu:'Time Out Market',tx:400, ty:80,  desc:'Gua baos farcis de porc braisé, poulet frit ou jackfruit épicé. Pains vapeur le matin. Sauces exclusives.',                   tags:['Taïwan','Street food','Végé dispo']},
-  {id:8,  name:'Mochi & Mango',      cat:'bouffe',lieu:'Time Out Market',tx:400, ty:200, desc:'Mochis glacés, mangue sticky rice, taiyaki sucrés-salés. Glaces artisanales aux fruits asiatiques.',                          tags:['Japon/Thaïlande','Desserts','Végétarien']},
-  // TOM — Art
-  {id:9,  name:'Galerie Hanami',     cat:'art',   lieu:'Time Out Market',tx:400, ty:320, desc:'Estampes japonaises contemporaines, illustrations encre de Chine. Éditions limitées signées par artistes montréalais.',        tags:['Japon','Estampes','Éditions limitées']},
-  {id:10, name:'Céramiques Zen',     cat:'art',   lieu:'Time Out Market',tx:290, ty:400, desc:'Bols à thé, vases, assiettes inspirés de la céramique coréenne céladon et du wabi-sabi japonais.',                            tags:['Corée/Japon','Fait main','Artisanat']},
-  {id:11, name:'Studio Origami',     cat:'art',   lieu:'Time Out Market',tx:170, ty:400, desc:'Origami d\'art encadrés, kits thématiques, ateliers de pliage. Œuvres signées par artistes de la diaspora.',                  tags:['Japon','Atelier dispo','Cadeaux']},
-  // TOM — Mode
-  {id:12, name:'Kimono Moderne',     cat:'mode',  lieu:'Time Out Market',tx:60,  ty:400, desc:'Kimonos contemporains adaptés au quotidien, yukata d\'été, obi colorés. Du casual au cérémonial.',                            tags:['Japon','Prêt-à-porter','Accessoires']},
-  {id:13, name:'K-Beauty Studio',    cat:'mode',  lieu:'Time Out Market',tx:400, ty:400, desc:'Soins coréens : sérum 10 étapes, masques, cushions, produits glow. Conseils par esthéticiennes coréennes.',                   tags:['Corée','Beauté','Soins']},
-  {id:14, name:'Calligraphie MTL',   cat:'mode',  lieu:'Time Out Market',tx:170, ty:200, desc:'Portraits calligraphiés en chinois, coréen et japonais. Kakemonos, estampes de prénoms. Démonstrations en direct.',           tags:['Chine/Corée','Sur commande','Démo']},
-  // TOM — Bien-être
-  {id:15, name:'Thés Guru',          cat:'bien',  lieu:'Time Out Market',tx:290, ty:200, desc:'40 thés premium : sencha, gyokuro, oolong, pu-erh, darjeeling. Dégustation guidée et conseils d\'infusion.',                  tags:['Asie','Thé','Bien-être']},
-  {id:16, name:'Aromathérapie Zen',  cat:'bien',  lieu:'Time Out Market',tx:230, ty:290, desc:'Huiles essentielles, encens japonais, diffuseurs bambou, sels de bain cerisier. Produits naturels inspirés rituels asiatiques.',tags:['Japon','Naturel','Artisanat']},
-  // TOM — Activités
-  {id:17, name:'Atelier Nerikiri',   cat:'activ', lieu:'Time Out Market',tx:170, ty:290, desc:'KOTOAN vous initie à la confiserie japonaise sculptée. Créez vos wagashi. Chaque participant repart avec ses créations.',       tags:['Japon','Atelier payant','Places limitées']},
-  {id:18, name:'Photobooth CBC',     cat:'activ', lieu:'Time Out Market',tx:290, ty:290, desc:'Photobooth officiel CBC/Radio-Canada. Décors exclusifs, impressions instantanées. Accès gratuit toute la soirée.',             tags:['Gratuit','Photo','Tout public']},
-
-  // CENTRE EATON — bouffe
-  {id:19, name:'Takoyaki Osaka',     cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:50,  desc:'Boulettes de poulpe croustillantes garnies de bonite séchée, mayo Kewpie. Cuisson en direct sur plaques traditionnelles.',    tags:['Japon','Street food','Fruits de mer']},
-  {id:20, name:'Bubble Tea House',   cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:130, desc:'Thé aux perles de tapioca en 20+ saveurs. Brown sugar boba, taro, matcha, fruit teas. Perles cuites toutes les heures.',       tags:['Taïwan','Boissons','Végétarien']},
-  {id:21, name:'Phở Hà Nội',        cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:210, desc:'Phở boeuf et poulet mijotés toute la nuit. Fines herbes fraîches, germes de soja, citron vert. Recette familiale.',           tags:['Vietnam','Soupe','Halal dispo']},
-  {id:22, name:'Mango Sticky Rice',  cat:'bouffe',lieu:'Centre Eaton',   ex:40,  ey:290, desc:'Riz gluant au lait de coco avec mangue fraîche. Aussi banane frite, pandan cake, khanom chan.',                               tags:['Thaïlande','Desserts','Végétarien']},
-  {id:23, name:'Gyoza Bar',          cat:'bouffe',lieu:'Centre Eaton',   ex:200, ey:50,  desc:'Gyoza poêlés croustillants et vapeur. Garnitures : porc-ciboulette, crevette, légumes-tofu. Sauce ponzu maison.',             tags:['Japon','Végétarien dispo','Apéro']},
-  {id:24, name:'Onigiri Shop',       cat:'bouffe',lieu:'Centre Eaton',   ex:200, ey:130, desc:'Onigiris farcis aux saveurs japonaises classiques et créatives. Nori croustillant, garnitures surprises du jour.',             tags:['Japon','Végétarien dispo','À emporter']},
-  // CE — Art
-  {id:25, name:'Ink & Washi',        cat:'art',   lieu:'Centre Eaton',   ex:340, ey:50,  desc:'Papiers washi, livres d\'artiste, carnets reliés main. Atelier de reliure japonaise le samedi après-midi.',                   tags:['Japon','Papeterie','Atelier']},
-  {id:26, name:'Batik Nusantara',    cat:'art',   lieu:'Centre Eaton',   ex:340, ey:130, desc:'Tissus batik peints à la cire, sarongs, tentures. Démonstration du procédé traditionnel en direct.',                          tags:['Indonésie','Textile','Fait main']},
-  // CE — Mode
-  {id:27, name:'Hanbok Moderne',     cat:'mode',  lieu:'Centre Eaton',   ex:200, ey:210, desc:'Hanbok coréen contemporain revisité. Robes, vestes jeogori, saekdong colorés. Location pour photos.',                         tags:['Corée','Prêt-à-porter','Location']},
-  {id:28, name:'Bijoux Lotus',       cat:'mode',  lieu:'Centre Eaton',   ex:340, ey:210, desc:'Bijoux inspirés de motifs floraux asiatiques : lotus, cerisier, chrysanthème. Or, argent, jade. Pièces uniques.',             tags:['Artisanat','Bijoux','Fait main']},
-  // CE — Bien-être
-  {id:29, name:'Shiatsu Express',    cat:'bien',  lieu:'Centre Eaton',   ex:200, ey:290, desc:'Séances shiatsu de 15 à 30 min. Massage assis habillé aux points d\'acupression japonais. Réservation sur place.',           tags:['Japon','15-30 min','Réservation']},
-  // CE — Activités
-  {id:30, name:'Veils of Bollywood', cat:'activ', lieu:'Centre Eaton',   ex:340, ey:290, desc:'Cours de danse bollywoodienne interactifs de 30 min. Aucune expérience requise. Ambiance festive et inclusive.',              tags:['Inde','Danse','Participatif']},
+  // CENTRE EATON
+  {id:19,name:'Takoyaki Osaka',    cat:'bouffe',loc:'eaton',x:55, y:65,  desc:'Boulettes de poulpe croustillantes, bonite séchée, mayo Kewpie. Cuisson en direct sur plaques.',tags:['Japon','Street food','Fruits de mer']},
+  {id:20,name:'Bubble Tea House',  cat:'bouffe',loc:'eaton',x:55, y:155, desc:'Thé aux perles de tapioca en 20+ saveurs. Brown sugar boba, taro, matcha, fruit teas artisanaux.',tags:['Taïwan','Boissons','Végétarien']},
+  {id:21,name:'Phở Hà Nội',       cat:'bouffe',loc:'eaton',x:55, y:245, desc:'Phở mijoté toute la nuit. Herbes fraîches, germes de soja, citron vert. Recette familiale.',tags:['Vietnam','Soupe','Halal dispo']},
+  {id:22,name:'Mango Sticky Rice', cat:'bouffe',loc:'eaton',x:55, y:325, desc:'Riz gluant au lait de coco, mangue fraîche. Aussi banane frite, pandan cake, khanom chan.',tags:['Thaïlande','Desserts','Végétarien']},
+  {id:23,name:'Gyoza Bar',         cat:'bouffe',loc:'eaton',x:205,y:65,  desc:'Gyoza poêlés croustillants et vapeur. Garnitures : porc-ciboulette, crevette, légumes-tofu.',tags:['Japon','Végétarien dispo','Apéro']},
+  {id:24,name:'Onigiri Shop',      cat:'bouffe',loc:'eaton',x:205,y:155, desc:'Onigiris farcis aux saveurs japonaises classiques et créatives. Nori croustillant, garnitures du jour.',tags:['Japon','Végétarien dispo','À emporter']},
+  {id:25,name:'Ink & Washi',       cat:'art',   loc:'eaton',x:360,y:65,  desc:'Papiers washi, livres d\'artiste, carnets reliés main. Atelier de reliure japonaise le samedi.',tags:['Japon','Papeterie','Atelier']},
+  {id:26,name:'Batik Nusantara',   cat:'art',   loc:'eaton',x:360,y:155, desc:'Tissus batik peints à la cire, sarongs, tentures. Démonstration du procédé traditionnel.',tags:['Indonésie','Textile','Fait main']},
+  {id:27,name:'Hanbok Moderne',    cat:'mode',  loc:'eaton',x:205,y:245, desc:'Hanbok coréen contemporain revisité. Robes jeogori, saekdong colorés. Location pour photos.',tags:['Corée','Prêt-à-porter','Location']},
+  {id:28,name:'Bijoux Lotus',      cat:'mode',  loc:'eaton',x:360,y:245, desc:'Bijoux inspirés de motifs floraux asiatiques. Or, argent, jade. Pièces uniques faites à Montréal.',tags:['Artisanat','Bijoux','Fait main']},
+  {id:29,name:'Shiatsu Express',   cat:'bien',  loc:'eaton',x:205,y:325, desc:'Séances shiatsu 15–30 min. Massage assis aux points d\'acupression japonais. Réservation sur place.',tags:['Japon','15-30 min','Réservation']},
+  {id:30,name:'Veils of Bollywood',cat:'activ', loc:'eaton',x:360,y:325, desc:'Cours de danse bollywoodienne de 30 min. Aucune expérience requise. Ambiance festive et inclusive.',tags:['Inde','Danse','Participatif']},
 ];
 
 // ── STATE ──
-let filter = 'all';
-let curView = 'map';
-let scale = 1;
-let highlighted = null;
+let curLoc='tom', curFilter='all', curView='map';
+let svgScale=1, highlighted=null;
+let dtouchY=0;
 
-// ── LAYOUT ──
-// SVG total size depends on mobile vs desktop
-const MOBILE_W = 460;  // single column width
-const DESK_W   = 980;  // TOM(460) + gap(60) + CE(460)
-const TOM_SIZE = 480;  // square bounding box
-const CE_W     = 420, CE_H = 380;
-const GAP      = 50;   // gap between buildings
+// SVG virtual sizes
+const TOM_VW=490, TOM_VH=510;
+const CE_VW=440,  CE_VH=420;
 
-function isMob(){ return window.innerWidth < 640; }
-
-// Build absolute SVG positions for each vendor
-function vendorPos(v){
-  const mob = isMob();
-  if(v.tx !== undefined){
-    // Time Out Market
-    const ox = mob ? 10 : 10;
-    const oy = mob ? 10 : (TOM_SIZE/2 - 200);
-    return { x: ox + v.tx, y: oy + v.ty };
-  } else {
-    // Centre Eaton
-    const ox = mob ? 10 : (TOM_SIZE + GAP + 10);
-    const oy = mob ? (TOM_SIZE + 80 + 10) : 60;
-    return { x: ox + v.ex, y: oy + v.ey };
-  }
+function curVendors(){
+  return V.filter(v=>v.loc===curLoc && (curFilter==='all'||v.cat===curFilter));
+}
+function allForLoc(){
+  return V.filter(v=>v.loc===curLoc);
 }
 
-function svgTotalSize(){
-  const mob = isMob();
-  if(mob){
-    return { w: MOBILE_W, h: TOM_SIZE + 80 + CE_H + 60 };
-  } else {
-    return { w: DESK_W, h: Math.max(TOM_SIZE, CE_H) + 80 };
-  }
-}
-
-// ── BUILD SVG MAP ──
-const NS = 'http://www.w3.org/2000/svg';
-function el(tag, attrs){
-  const e = document.createElementNS(NS, tag);
-  for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+// ── SVG HELPERS ──
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs){
+  const e=document.createElementNS(NS,tag);
+  for(const[k,v2] of Object.entries(attrs)) e.setAttribute(k,v2);
   return e;
 }
-function txt(content, x, y, attrs={}){
-  const t = el('text', {x, y, ...attrs});
-  t.textContent = content;
-  return t;
-}
 function rr(x,y,w,h,r,fill,stroke,sw=2){
-  const p = el('rect', {x,y,width:w,height:h,rx:r});
-  if(fill) p.setAttribute('fill', fill);
-  if(stroke){ p.setAttribute('stroke', stroke); p.setAttribute('stroke-width', sw); }
+  const p=el('rect',{x,y,width:w,height:h,rx:r});
+  if(fill) p.setAttribute('fill',fill);
+  if(stroke){p.setAttribute('stroke',stroke);p.setAttribute('stroke-width',sw);}
   return p;
 }
+function svgTxt(content,x,y,attrs){
+  const t=el('text',{x,y,...attrs});
+  t.textContent=content;
+  return t;
+}
 
+// ── BUILD MAP ──
 function buildMap(){
-  const mob = isMob();
-  const {w,h} = svgTotalSize();
-  const svg = document.getElementById('themap');
-  svg.setAttribute('width', w * scale);
-  svg.setAttribute('height', h * scale);
-  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  const wrap=document.getElementById('mapWrap');
+  const svg=document.getElementById('themap');
+  const vw=curLoc==='tom'?TOM_VW:CE_VW;
+  const vh=curLoc==='tom'?TOM_VH:CE_VH;
 
-  // Background + grid
-  const bg = document.getElementById('mapBg');
-  bg.innerHTML = '';
-  const bgRect = rr(0,0,w,h,0,'#f0ede5',null);
-  const gridRect = rr(0,0,w,h,0,'url(#grid)',null);
-  bg.append(bgRect, gridRect);
+  // Fit to wrap on first render
+  const ww=wrap.clientWidth||360;
+  const wh=wrap.clientHeight||400;
+  const fitScale=Math.min(ww/vw, wh/vh)*0.95;
+  if(svgScale===1 || svgScale<0.1) svgScale=Math.max(0.5,fitScale);
 
-  // Floor plan
-  const fl = document.getElementById('mapFloor');
-  fl.innerHTML = '';
+  svg.setAttribute('viewBox',`0 0 ${vw} ${vh}`);
+  svg.setAttribute('width', vw*svgScale);
+  svg.setAttribute('height', vh*svgScale);
 
-  if(mob){
-    buildTOM(fl, 10, 10);
-    // separator
-    const sep = el('g',{});
-    sep.append(rr(10, TOM_SIZE+10+20, MOBILE_W-20, 40, 6, '#ede8da', 'rgba(26,18,8,0.08)', 1));
-    const st = txt('── RUE SAINTE-CATHERINE OUEST ──', MOBILE_W/2, TOM_SIZE+10+20+25, {'text-anchor':'middle','font-size':'9','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif','letter-spacing':'1'});
-    sep.append(st);
-    fl.append(sep);
-    buildCE(fl, 10, TOM_SIZE + 10 + 80);
-  } else {
-    const tomY = (Math.max(TOM_SIZE, CE_H+60) - TOM_SIZE) / 2 + 30;
-    const ceY  = (Math.max(TOM_SIZE, CE_H+60) - CE_H) / 2 + 30;
-    buildTOM(fl, 10, tomY);
-    // vertical separator
-    const sepX = TOM_SIZE + 10 + GAP/2;
-    const sepLine = el('line', {x1:sepX, y1:20, x2:sepX, y2:h-20, stroke:'rgba(26,18,8,0.15)', 'stroke-width':'1', 'stroke-dasharray':'6,4'});
-    const sepTxt = el('text', {x:sepX, y:h/2, 'text-anchor':'middle', transform:`rotate(-90,${sepX},${h/2})`, 'font-size':'8', 'font-weight':'700', fill:'rgba(26,18,8,0.3)', 'font-family':'Figtree,sans-serif'});
-    sepTxt.textContent = 'RUE SAINTE-CATHERINE OUEST';
-    fl.append(sepLine, sepTxt);
-    buildCE(fl, TOM_SIZE + 10 + GAP, ceY);
-  }
+  // Background
+  const bg=document.getElementById('mapBg');
+  bg.innerHTML='';
+  bg.append(
+    rr(0,0,vw,vh,0,'#f0ede5',null),
+    rr(0,0,vw,vh,0,'url(#grid)',null)
+  );
 
+  // Floor
+  document.getElementById('mapFloor').innerHTML='';
+  if(curLoc==='tom') drawTOM();
+  else drawCE();
+
+  // Pins
   buildPins();
 }
 
-function buildTOM(parent, ox, oy){
-  // TOM cross/diamond shape inspired by real plan
-  // Outer walls — octagonal shape approximating the cross
-  const S = TOM_SIZE - 20;
+function drawTOM(){
+  const fl=document.getElementById('mapFloor');
+  const S=TOM_VW-30, ox=15, oy=30;
 
-  // Main outer shape — octagon (cut corners)
-  const cut = 60;
-  const pts = [
-    [ox+cut, oy], [ox+S-cut, oy],
-    [ox+S, oy+cut], [ox+S, oy+S-cut],
-    [ox+S-cut, oy+S], [ox+cut, oy+S],
-    [ox, oy+S-cut], [ox, oy+cut]
-  ].map(p=>p.join(',')).join(' ');
+  // Octagonal outer shape
+  const cut=60;
+  const pts=[[ox+cut,oy],[ox+S-cut,oy],[ox+S,oy+cut],[ox+S,oy+S-cut],[ox+S-cut,oy+S],[ox+cut,oy+S],[ox,oy+S-cut],[ox,oy+cut]].map(p=>p.join(',')).join(' ');
+  fl.append(el('polygon',{points:pts,fill:'#fff',stroke:'#1a1208','stroke-width':'2'}));
+  fl.append(el('polygon',{points:pts,fill:'rgba(200,168,130,0.12)'}));
 
-  const outer = el('polygon', {points:pts, fill:'#fff', stroke:'#1a1208', 'stroke-width':'2'});
-  parent.append(outer);
+  // Cross allées
+  const cx=ox+S/2, cy=oy+S/2;
+  fl.append(rr(ox+12,cy-13,S-24,26,2,'rgba(26,18,8,0.04)',null));
+  fl.append(rr(cx-13,oy+12,26,S-24,2,'rgba(26,18,8,0.04)',null));
 
-  // Wood floor (central area)
-  const wf = el('polygon', {points:pts, fill:'url(#woodTOM)'});
-  parent.append(wf);
+  // Central scène (ellipse)
+  const scene=el('ellipse',{cx,cy,rx:'58',ry:'42',fill:'#ede8da',stroke:'#f06118','stroke-width':'1.5','stroke-dasharray':'4,3'});
+  fl.append(scene);
+  fl.append(svgTxt('SCÈNE',cx,cy-6,{'text-anchor':'middle','font-size':'10','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'}));
+  fl.append(svgTxt('PRINCIPALE',cx,cy+8,{'text-anchor':'middle','font-size':'7','fill':'rgba(240,97,24,0.7)','font-family':'Figtree,sans-serif'}));
 
-  // Central open courtyard (ellipse, like real TOM)
-  const cx = ox + S/2, cy = oy + S/2 + 10;
-  const court = el('ellipse', {cx, cy, rx:55, ry:40, fill:'#e8e2d4', stroke:'rgba(26,18,8,0.12)', 'stroke-width':'1'});
-  const courtTxt = txt('SCÈNE', cx, cy-4, {'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'});
-  const courtTxt2 = txt('PRINCIPALE', cx, cy+8, {'text-anchor':'middle','font-size':'7','fill':'rgba(240,97,24,0.7)','font-family':'Figtree,sans-serif'});
-  parent.append(court, courtTxt, courtTxt2);
+  // Stand rows — top & bottom
+  [[ox+90,oy+12,65,40],[ox+175,oy+12,65,40],[ox+270,oy+12,65,40],
+   [ox+90,oy+S-52,65,40],[ox+175,oy+S-52,65,40],[ox+270,oy+S-52,65,40]
+  ].forEach(([x,y,w,h])=>{
+    fl.append(rr(x,y,w,h,3,'#f5f0e8','rgba(26,18,8,0.1)',1));
+  });
 
-  // Inner allées (cross pattern)
-  const m = ox + S/2, my = oy + S/2;
-  // horizontal allée
-  const ha = rr(ox+20, my-12, S-40, 24, 2, 'rgba(26,18,8,0.04)', null);
-  // vertical allée
-  const va = rr(m-12, oy+20, 24, S-40, 2, 'rgba(26,18,8,0.04)', null);
-  parent.append(ha, va);
-
-  // Stand zones — small rectangles around perimeter
-  const zones = [
-    // top row
-    {x:ox+80, y:oy+10, w:70, h:38, label:'Zone A'},
-    {x:ox+170,y:oy+10, w:70, h:38, label:'Zone B'},
-    {x:ox+260,y:oy+10, w:70, h:38, label:'Zone C'},
-    // bottom row
-    {x:ox+80, y:oy+S-48,w:70, h:38, label:'Zone D'},
-    {x:ox+170,y:oy+S-48,w:70, h:38, label:'Zone E'},
-    {x:ox+260,y:oy+S-48,w:70, h:38, label:'Zone F'},
-    // left col
-    {x:ox+10, y:oy+90, w:38, h:60, label:''},
-    {x:ox+10, y:oy+190,w:38, h:60, label:''},
-    {x:ox+10, y:oy+290,w:38, h:60, label:''},
-    // right col
-    {x:ox+S-48,y:oy+90, w:38, h:60, label:''},
-    {x:ox+S-48,y:oy+190,w:38, h:60, label:''},
-    {x:ox+S-48,y:oy+290,w:38, h:60, label:''},
-  ];
-  zones.forEach(z=>{
-    const r = rr(z.x, z.y, z.w, z.h, 3, '#f5f0e8', 'rgba(26,18,8,0.12)', 1);
-    parent.append(r);
-    if(z.label){
-      const t = txt(z.label, z.x+z.w/2, z.y+z.h/2+3, {'text-anchor':'middle','font-size':'7','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif'});
-      parent.append(t);
-    }
+  // Stand cols — left & right
+  [[ox+12,oy+90,40,65],[ox+12,oy+195,40,65],[ox+12,oy+295,40,65],
+   [ox+S-52,oy+90,40,65],[ox+S-52,oy+195,40,65],[ox+S-52,oy+295,40,65]
+  ].forEach(([x,y,w,h])=>{
+    fl.append(rr(x,y,w,h,3,'#f5f0e8','rgba(26,18,8,0.1)',1));
   });
 
   // Bar central
-  const bar = rr(ox+S/2-45, oy+S/2-18, 90, 36, 4, '#ede8da', 'rgba(26,18,8,0.15)', 1);
-  const barT = txt('BAR', ox+S/2, oy+S/2+4, {'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif'});
-  parent.append(bar, barT);
+  fl.append(rr(cx-42,cy-15,84,30,4,'#ede8da','rgba(26,18,8,0.15)',1));
+  fl.append(svgTxt('BAR',cx,cy+4,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
 
-  // Atelier zone (top-right corner)
-  const at = rr(ox+S-50, oy+5, 50, 50, 4, 'rgba(140,110,42,0.12)', '#8c6e2a', 1.5);
-  const atT = txt('ATELIER', ox+S-25, oy+34, {'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#8c6e2a','font-family':'Figtree,sans-serif'});
-  parent.append(at, atT);
+  // Atelier corner
+  fl.append(rr(ox+S-44,oy+6,44,44,4,'rgba(140,110,42,0.1)','#8c6e2a',1.5));
+  fl.append(svgTxt('ATELIER',ox+S-22,oy+32,{'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#8c6e2a','font-family':'Figtree,sans-serif'}));
 
-  // Entrances (4 sides of octagon)
-  const entrees = [
-    {x:ox+S/2-25, y:oy+S-3, w:50, h:8, label:'SUD'},
-    {x:ox+S/2-25, y:oy-5,   w:50, h:8, label:'NORD'},
-    {x:ox-5,      y:oy+S/2-15, w:8, h:30, label:''},
-    {x:ox+S-3,    y:oy+S/2-15, w:8, h:30, label:''},
-  ];
-  entrees.forEach(e=>{
-    const er = rr(e.x,e.y,e.w,e.h,2,'#f06118',null);
-    parent.append(er);
+  // Entrances
+  [[cx-25,oy+S-3,50,8],[cx-25,oy-5,50,8]].forEach(([x,y,w,h])=>{
+    fl.append(rr(x,y,w,h,2,'#f06118',null));
   });
 
-  // Title
-  parent.append(txt('TIME OUT MARKET', ox+S/2, oy-12, {'text-anchor':'middle','font-size':'12','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'2'}));
-  parent.append(txt('Sainte-Catherine Ouest', ox+S/2, oy-1, {'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
+  // Labels
+  fl.append(svgTxt('TIME OUT MARKET',cx,oy-14,{'text-anchor':'middle','font-size':'13','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'1.5'}));
+  fl.append(svgTxt('Sainte-Catherine Ouest',cx,oy-2,{'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
 
-  // Academy / shop labels (inspired by real plan)
-  parent.append(txt('TOM Academy', ox+14, oy+S/2+70, {'font-size':'6','fill':'rgba(26,18,8,0.35)','font-family':'Figtree,sans-serif','font-style':'italic'}));
-  parent.append(txt('Shop', ox+14, oy+S/2-60, {'font-size':'6','fill':'rgba(26,18,8,0.35)','font-family':'Figtree,sans-serif','font-style':'italic'}));
+  // Zone labels
+  [['A',ox+22,oy+80],['B',ox+22,oy+185],['C',ox+22,oy+285],
+   ['D',ox+S-30,oy+80],['E',ox+S-30,oy+185],['F',ox+S-30,oy+285]
+  ].forEach(([l,x,y])=>fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif','font-weight':'700'})));
 
   // Compass
-  const cx2 = ox+S-18, cy2 = oy+S+16;
-  const comp = el('circle',{cx:cx2,cy:cy2,r:12,fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'});
-  const compT = txt('N',cx2,cy2+3,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'});
-  parent.append(comp, compT);
+  const cc=el('circle',{cx:ox+S-18,cy:oy+S+16,r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'});
+  fl.append(cc);
+  fl.append(svgTxt('N',ox+S-18,oy+S+20,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':'Figtree,sans-serif'}));
 }
 
-function buildCE(parent, ox, oy){
-  // Centre Eaton — modern rectangular layout with atrium
-  const W = CE_W - 20, H = CE_H - 20;
+function drawCE(){
+  const fl=document.getElementById('mapFloor');
+  const W=CE_VW-30, H=CE_VH-40, ox=15, oy=35;
 
-  // Outer walls
-  const outer = rr(ox, oy, W, H, 8, '#fff', '#1a1208', 2);
-  parent.append(outer);
-  const fill = rr(ox, oy, W, H, 8, 'url(#woodCE)', null);
-  parent.append(fill);
-
-  // Central atrium
-  const atrX = ox + W/2 - 50, atrY = oy + H/2 - 35;
-  const atr = rr(atrX, atrY, 100, 70, 6, '#dce8f0', 'rgba(159,179,212,0.5)', 1.5);
-  const atrT = txt('SCÈNE', ox+W/2, atrY+30, {'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#4a6090','font-family':'Figtree,sans-serif'});
-  const atrT2 = txt('EATON', ox+W/2, atrY+43, {'text-anchor':'middle','font-size':'7','fill':'rgba(74,96,144,0.7)','font-family':'Figtree,sans-serif'});
-  parent.append(atr, atrT, atrT2);
+  // Outer
+  fl.append(rr(ox,oy,W,H,8,'#fff','#1a1208',2));
+  fl.append(rr(ox,oy,W,H,8,'rgba(159,179,212,0.1)',null));
 
   // Allées
-  const alleeH = rr(ox+10, oy+H/2-8, W-20, 16, 2, 'rgba(26,18,8,0.04)', null);
-  const alleeV = rr(ox+W/2-8, oy+10, 16, H-20, 2, 'rgba(26,18,8,0.04)', null);
-  parent.append(alleeH, alleeV);
+  const cx=ox+W/2, cy=oy+H/2;
+  fl.append(rr(ox+10,cy-10,W-20,20,2,'rgba(26,18,8,0.04)',null));
+  fl.append(rr(cx-10,oy+10,20,H-20,2,'rgba(26,18,8,0.04)',null));
+
+  // Central atrium / scène
+  fl.append(rr(cx-50,cy-32,100,64,6,'#dce8f4','rgba(159,179,212,0.6)',1.5));
+  fl.append(svgTxt('SCÈNE',cx,cy-8,{'text-anchor':'middle','font-size':'10','font-weight':'900','fill':'#4a6090','font-family':'Figtree,sans-serif'}));
+  fl.append(svgTxt('EATON',cx,cy+7,{'text-anchor':'middle','font-size':'8','fill':'rgba(74,96,144,0.7)','font-family':'Figtree,sans-serif'}));
 
   // Stand zones
-  [[ox+15,oy+15,75,55],[ox+W-90,oy+15,75,55],
-   [ox+15,oy+H-70,75,55],[ox+W-90,oy+H-70,75,55],
-   [ox+W/2-45,oy+15,90,38],[ox+W/2-45,oy+H-53,90,38]
-  ].forEach(([x,y,w,h])=>{
-    parent.append(rr(x,y,w,h,3,'#f0f4f8','rgba(159,179,212,0.4)',1));
-  });
+  [[ox+12,oy+12,75,60],[ox+W-87,oy+12,75,60],
+   [ox+12,oy+H-72,75,60],[ox+W-87,oy+H-72,75,60],
+   [cx-42,oy+12,84,38],[cx-42,oy+H-50,84,38]
+  ].forEach(([x,y,w,h])=>fl.append(rr(x,y,w,h,3,'#f0f4f8','rgba(159,179,212,0.4)',1)));
 
   // Entrance
-  const entCE = rr(ox+W/2-30, oy+H-3, 60, 8, 2, '#9fb3d4', null);
-  const entCET = txt('ENTRÉE', ox+W/2, oy+H+7, {'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#4a6090','font-family':'Figtree,sans-serif'});
-  parent.append(entCE, entCET);
+  fl.append(rr(cx-30,oy+H-3,60,8,2,'#9fb3d4',null));
+  fl.append(svgTxt('ENTRÉE',cx,oy+H+8,{'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#4a6090','font-family':'Figtree,sans-serif'}));
 
-  // Title
-  parent.append(txt('CENTRE EATON', ox+W/2, oy-12, {'text-anchor':'middle','font-size':'12','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'2'}));
-  parent.append(txt('Sainte-Catherine Ouest', ox+W/2, oy-1, {'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
+  // Labels
+  fl.append(svgTxt('CENTRE EATON',cx,oy-13,{'text-anchor':'middle','font-size':'13','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'1.5'}));
+  fl.append(svgTxt('Sainte-Catherine Ouest',cx,oy-1,{'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
+
+  // Zone labels
+  [['G',ox+50,oy+42],['H',ox+W-50,oy+42],
+   ['I',ox+50,oy+H-42],['J',ox+W-50,oy+H-42]
+  ].forEach(([l,x,y])=>fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif','font-weight':'700'})));
+
+  // Compass
+  fl.append(el('circle',{cx:ox+W-16,cy:oy+H+16,r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'}));
+  fl.append(svgTxt('N',ox+W-16,oy+H+20,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#9fb3d4','font-family':'Figtree,sans-serif'}));
 }
 
 function buildPins(){
-  const pinGroup = document.getElementById('mapPins');
-  pinGroup.innerHTML = '';
+  const pg=document.getElementById('mapPins');
+  pg.innerHTML='';
+  allForLoc().forEach(v=>{
+    const c=CATS[v.cat];
+    const active=curFilter==='all'||v.cat===curFilter;
+    const hi=highlighted===v.id;
+    const g=el('g',{'class':`kpin${!active?' dim':''}${hi?' hi':''}`, 'data-id':String(v.id)});
 
-  V.forEach(v=>{
-    const c = CATS[v.cat];
-    const pos = vendorPos(v);
-    const active = filter==='all' || filter===v.cat;
-    const hi = highlighted===v.id;
-
-    const g = el('g', {'class':`kpin${!active?' dim':''}${hi?' hi':''}`, 'data-id':v.id});
-
-    // Outer glow for highlighted
     if(hi){
-      const glow = el('circle',{cx:pos.x,cy:pos.y,r:'24',fill:c.bg,opacity:'0.4'});
+      const glow=el('circle',{cx:v.x,cy:v.y,r:'26',fill:c.bg,opacity:'0.35'});
       g.append(glow);
     }
+    const r=hi?'20':'17';
+    const circ=el('circle',{cx:v.x,cy:v.y,r,fill:c.bg,stroke:c.text,'stroke-width':hi?'2.5':'2'});
+    const lbl=el('text',{x:v.x,y:v.y,'text-anchor':'middle','dominant-baseline':'central','font-size':hi?'11':'10','font-weight':'900','fill':c.text,'font-family':'Figtree,sans-serif','pointer-events':'none'});
+    lbl.textContent=v.id;
+    g.append(circ,lbl);
 
-    const circle = el('circle',{cx:pos.x, cy:pos.y, r:hi?'19':'16', fill:c.bg, stroke:c.text, 'stroke-width':hi?'2.5':'2'});
-    const label = el('text',{x:pos.x, y:pos.y, 'font-size':hi?'11':'10', fill:c.text, 'font-family':'Figtree,sans-serif', 'font-weight':'900', 'text-anchor':'middle', 'dominant-baseline':'central'});
-    label.textContent = v.id;
-
-    g.append(circle, label);
-
-    g.addEventListener('click', (e)=>{ e.stopPropagation(); openDrawer(v.id); });
-    g.addEventListener('touchend', (e)=>{ e.preventDefault(); e.stopPropagation(); openDrawer(v.id); }, {passive:false});
-
-    pinGroup.append(g);
+    g.addEventListener('click',e=>{e.stopPropagation();openDrawer(v.id);});
+    g.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();openDrawer(v.id);},{passive:false});
+    pg.append(g);
   });
 }
 
 // ── ZOOM ──
-function zoom(factor){
-  scale = Math.min(4, Math.max(0.5, scale * factor));
-  applyZoom();
+function zoom(f){
+  svgScale=Math.min(5,Math.max(0.4,svgScale*f));
+  const svg=document.getElementById('themap');
+  const vw=curLoc==='tom'?TOM_VW:CE_VW;
+  const vh=curLoc==='tom'?TOM_VH:CE_VH;
+  svg.setAttribute('width',vw*svgScale);
+  svg.setAttribute('height',vh*svgScale);
 }
 function resetZoom(){
-  scale = 1;
-  applyZoom();
-  const sc = document.getElementById('mapScroll');
-  sc.scrollTo({top:0, left:0, behavior:'smooth'});
-}
-function applyZoom(){
-  const {w,h} = svgTotalSize();
-  const svg = document.getElementById('themap');
-  svg.setAttribute('width', w * scale);
-  svg.setAttribute('height', h * scale);
+  svgScale=1; // will be recalculated on buildMap
+  const wrap=document.getElementById('mapWrap');
+  wrap.scrollTo({top:0,left:0,behavior:'smooth'});
+  buildMap();
 }
 
-// ── PINCH TO ZOOM ──
-let pinchDist0 = null, scale0 = 1;
-const sc = document.getElementById('mapScroll');
-sc.addEventListener('touchstart', e=>{
+// Pinch-to-zoom on scroll container
+let pinch0=null, scale0=1;
+const mw=document.getElementById('mapWrap');
+mw.addEventListener('touchstart',e=>{
   if(e.touches.length===2){
-    pinchDist0 = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
-    scale0 = scale;
+    pinch0=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
+    scale0=svgScale;
   }
 },{passive:true});
-sc.addEventListener('touchmove', e=>{
-  if(e.touches.length===2 && pinchDist0){
+mw.addEventListener('touchmove',e=>{
+  if(e.touches.length===2&&pinch0){
     e.preventDefault();
-    const d = Math.hypot(e.touches[1].clientX-e.touches[0].clientX, e.touches[1].clientY-e.touches[0].clientY);
-    scale = Math.min(4, Math.max(0.5, scale0 * d/pinchDist0));
-    applyZoom();
+    const d=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
+    svgScale=Math.min(5,Math.max(0.4,scale0*d/pinch0));
+    const svg=document.getElementById('themap');
+    const vw=curLoc==='tom'?TOM_VW:CE_VW;
+    const vh=curLoc==='tom'?TOM_VH:CE_VH;
+    svg.setAttribute('width',vw*svgScale);
+    svg.setAttribute('height',vh*svgScale);
   }
 },{passive:false});
-sc.addEventListener('touchend', e=>{ if(e.touches.length<2) pinchDist0=null; },{passive:true});
+mw.addEventListener('touchend',e=>{if(e.touches.length<2)pinch0=null;},{passive:true});
+
+// ── LOCATION ──
+function setLoc(loc){
+  curLoc=loc; svgScale=1; highlighted=null;
+  document.getElementById('ltTOM').classList.toggle('on',loc==='tom');
+  document.getElementById('ltCE').classList.toggle('on',loc==='eaton');
+  buildMap(); renderList();
+}
 
 // ── FILTER ──
 function setFilter(cat){
-  filter = cat;
-  // update buttons
+  curFilter=cat;
   document.querySelectorAll('.fbtn').forEach(b=>{
-    const bc = b.dataset.cat || 'all';
-    b.className = 'fbtn';
-    if(bc===cat){
-      if(cat==='all') b.className='fbtn fa';
-      else b.className='fbtn f'+cat.substring(0,1)+(cat==='bouffe'?'b':cat==='art'?'ar':cat==='mode'?'m':cat==='bien'?'bi':'ac');
-    }
+    const bc=b.dataset.cat||'all';
+    b.className='fbtn';
+    if(bc===cat) b.classList.add('act-'+cat);
   });
-  buildPins();
-  renderList();
+  buildPins(); renderList();
 }
 
 // ── VIEW ──
 function showView(v){
   curView=v;
-  document.getElementById('mapPanel').style.display = v==='map'?'flex':'none';
-  document.getElementById('listPanel').style.display = v==='list'?'block':'none';
-  document.getElementById('btnMap').classList.toggle('on', v==='map');
-  document.getElementById('btnList').classList.toggle('on', v==='list');
+  document.getElementById('mapPanel').style.display=v==='map'?'flex':'none';
+  document.getElementById('listPanel').style.display=v==='list'?'block':'none';
+  document.getElementById('btnMap').classList.toggle('on',v==='map');
+  document.getElementById('btnList').classList.toggle('on',v==='list');
 }
 
 // ── LIST ──
 function renderList(){
-  const panel = document.getElementById('listPanel');
-  const cats = filter==='all' ? Object.keys(CATS) : [filter];
+  const panel=document.getElementById('listPanel');
+  const cats=curFilter==='all'?Object.keys(CATS):[curFilter];
   let html='';
   cats.forEach(cat=>{
-    const items = V.filter(v=>v.cat===cat);
-    if(!items.length) return;
-    const c = CATS[cat];
+    const items=V.filter(v=>v.loc===curLoc&&v.cat===cat);
+    if(!items.length)return;
+    const c=CATS[cat];
     html+=`<div class="grptitle" style="color:${c.text}">${c.label} (${items.length})</div>`;
     items.forEach(v=>{
       html+=`<div class="vcard" onclick="openDrawer(${v.id})">
         <div class="vnum">${v.id}</div>
-        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${v.lieu}</div></div>
+        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${v.loc==='tom'?'Time Out Market':'Centre Eaton'}</div></div>
         <span class="vbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</span>
         <div class="varr">›</div>
       </div>`;
     });
   });
+  if(!html) html=`<div class="empty">Aucun marchand pour cette sélection</div>`;
   panel.innerHTML=html;
 }
 
 // ── DRAWER ──
-let dtouchY=0;
 function openDrawer(id){
   const v=V.find(x=>x.id===id); if(!v) return;
   const c=CATS[v.cat];
   document.getElementById('dhead').innerHTML=`
     <div class="dbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</div>
     <div class="dtop"><span class="dnum">${v.id}</span><span class="dname">${v.name}</span></div>
-    <div class="dlieu">📍 ${v.lieu}</div>`;
+    <div class="dlieu">📍 ${v.loc==='tom'?'Time Out Market':'Centre Eaton'}</div>`;
   const tags=(v.tags||[]).map(t=>`<span class="dtag">${t}</span>`).join('');
   document.getElementById('dbody').innerHTML=`
     <p class="ddesc">${v.desc}</p>
@@ -655,43 +571,26 @@ function closeDrawer(){
 }
 function locatePin(id){
   closeDrawer();
+  const v=V.find(x=>x.id===id); if(!v) return;
+  if(v.loc!==curLoc){ curLoc=v.loc; svgScale=1; document.getElementById('ltTOM').classList.toggle('on',curLoc==='tom'); document.getElementById('ltCE').classList.toggle('on',curLoc==='eaton'); buildMap(); }
   showView('map');
   highlighted=id;
   buildPins();
-  // Scroll to pin
   setTimeout(()=>{
-    const pos = vendorPos(V.find(v=>v.id===id));
-    const sc2 = document.getElementById('mapScroll');
-    const {w,h}=svgTotalSize();
-    sc2.scrollTo({
-      left: Math.max(0, pos.x*scale - sc2.clientWidth/2),
-      top:  Math.max(0, pos.y*scale - sc2.clientHeight/2),
-      behavior:'smooth'
-    });
-    setTimeout(()=>{ highlighted=null; buildPins(); }, 2500);
+    const wrap=document.getElementById('mapWrap');
+    wrap.scrollTo({left:Math.max(0,v.x*svgScale-wrap.clientWidth/2),top:Math.max(0,v.y*svgScale-wrap.clientHeight/2),behavior:'smooth'});
+    setTimeout(()=>{highlighted=null;buildPins();},2500);
   },350);
 }
 
-// Swipe to close
 document.getElementById('drawer').addEventListener('touchstart',e=>{dtouchY=e.touches[0].clientY;},{passive:true});
-document.getElementById('drawer').addEventListener('touchmove',e=>{
-  if(e.touches[0].clientY-dtouchY>70 && document.getElementById('drawer').scrollTop<=0) closeDrawer();
-},{passive:true});
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+document.getElementById('drawer').addEventListener('touchmove',e=>{if(e.touches[0].clientY-dtouchY>70&&document.getElementById('drawer').scrollTop<=0)closeDrawer();},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 
-// ── INIT & RESIZE ──
-function init(){
-  buildMap();
-  renderList();
-  // setFilter resets button classes properly
-  document.querySelectorAll('.fbtn').forEach(b=>{
-    if(!b.dataset.cat) b.dataset.cat='all';
-  });
-}
+window.addEventListener('resize',()=>{ svgScale=1; buildMap(); renderList(); });
+window.addEventListener('orientationchange',()=>setTimeout(()=>{ svgScale=1; buildMap(); renderList(); },200));
 
-window.addEventListener('resize', ()=>{ buildMap(); renderList(); });
-window.addEventListener('orientationchange', ()=>setTimeout(()=>{ buildMap(); renderList(); }, 200));
-init();
+buildMap(); renderList();
 </script>
 </body>
 </html>
