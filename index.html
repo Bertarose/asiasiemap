@@ -18,7 +18,7 @@
     --cream:  #ffffff;
     --beige:  #f5f3ee;
     --orange: #f06118;
-    --brown:  #aa804a;
+    --brown:  #8c6e2a;
     --blue:   #9fb3d4;
     --text:   #1a1208;
     --muted:  #6b5a34;
@@ -33,18 +33,8 @@
   html { scroll-behavior: smooth; }
   body { background: var(--cream); color: var(--text); font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; -webkit-text-size-adjust: 100%; overscroll-behavior: none; }
 
-  .visit-link {
-    font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; border: 1.5px solid var(--border);
-    border-radius: 20px; padding: 5px 10px; white-space: nowrap; flex-shrink: 0;
-    display: flex; align-items: center; gap: 4px; transition: all 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .visit-link:hover { border-color: var(--brown); color: var(--brown); }
-  .visit-link svg { width: 9px; height: 9px; flex-shrink: 0; }
-
   /* TICKER */
-  .ticker { background: var(--brown); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 0; white-space: nowrap; overflow: hidden; }
+  .ticker { background: var(--orange); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 0; white-space: nowrap; overflow: hidden; }
   .ticker-inner { display: inline-block; animation: scroll 24s linear infinite; }
   .ticker-inner span { margin: 0 24px; }
   @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -220,7 +210,7 @@
 
   .lieu-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 8px; border: 1.5px solid; white-space: nowrap; }
   .b-scene { background: rgba(240,97,24,0.1); color: var(--orange); border-color: var(--orange); }
-  .b-atelier { background: rgba(170,128,74,0.1); color: var(--brown); border-color: var(--brown); }
+  .b-atelier { background: rgba(140,110,42,0.1); color: var(--brown); border-color: var(--brown); }
   .b-eaton { background: rgba(159,179,212,0.25); color: #4a6090; border-color: #7898c8; }
   .live-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; background: #fff; color: var(--orange); padding: 3px 8px; border-radius: 6px; }
   .event-arrow { font-size: 18px; color: var(--muted); line-height: 1; }
@@ -327,31 +317,10 @@
   }
   .nav-fav-badge.show { display: flex; }
 
-  /* ── CARTE PLACEHOLDER ── */
-  #cartePanel {
-    display: none; position: fixed; inset: 0; z-index: 55;
-    background: var(--cream); flex-direction: column;
-    padding-bottom: 65px;
-  }
-  #cartePanel.show { display: flex; }
-  .carte-header {
-    padding: 14px 16px; display: flex; align-items: center; gap: 12px;
-    border-bottom: 1.5px solid var(--text); background: var(--cream); flex-shrink: 0;
-  }
-  .carte-back { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text); padding: 0; -webkit-tap-highlight-color: transparent; line-height: 1; }
-  .carte-header-title { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em; flex: 1; }
-  .carte-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px; gap: 20px; text-align: center; }
-  .carte-icon-big { width: 80px; height: 80px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; }
-  .carte-icon-big svg { width: 40px; height: 40px; }
-  .carte-coming-title { font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
-  .carte-coming-sub { font-size: 14px; color: var(--muted); font-weight: 500; line-height: 1.65; max-width: 280px; }
-  .carte-lieux { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-  .carte-lieu-pill { padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--border); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-  .carte-lieu-pill.tom { background: rgba(240,97,24,0.08); color: var(--orange); border-color: var(--orange); }
-  .carte-lieu-pill.ce  { background: rgba(159,179,212,0.2); color: #4a6090; border-color: #9fb3d4; }
+
 
   /* ── SHARE PANEL ── */
-  #shareOverlay { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-end; justify-content: center; background: rgba(26,18,8,0.5); }
+  #shareOverlay { position: fixed; top:0;left:0;right:0;bottom:65px; z-index: 210; display: none; align-items: flex-end; justify-content: center; background: rgba(26,18,8,0.5); }
   #shareOverlay.show { display: flex; }
   .share-sheet { background: var(--cream); border-radius: 16px 16px 0 0; border-top: 1.5px solid var(--text); width: 100%; max-width: 520px; padding: 0 0 calc(20px + env(safe-area-inset-bottom,0px)); animation: slideup 0.3s cubic-bezier(0.32,0.72,0,1); }
   @keyframes slideup { from{transform:translateY(100%)} to{transform:translateY(0)} }
@@ -368,158 +337,6 @@
   .share-cancel { display: block; width: calc(100% - 32px); margin: 4px 16px 0; padding: 15px; background: var(--text); color: var(--cream); font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 10px; cursor: pointer; font-family: inherit; }
   .share-copied { display: none; text-align: center; font-size: 11px; font-weight: 800; color: #16a34a; padding: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
   .share-copied.show { display: block; }
-
-/* ── CARTE MAP ── */
-
-  /* Carte filter buttons */
-  .map-fbtn{display:inline-flex;align-items:center;gap:4px;padding:7px 11px;border-radius:20px;border:1.5px solid rgba(26,18,8,.15);background:transparent;color:#6b5a34;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;flex-shrink:0;}
-  .map-fbtn.act-all{background:#1a1208;border-color:#1a1208;color:#fff;}
-  .map-fbtn.act-bouffe{background:#f5d9c0;border-color:#e8a87a;color:#7a3d10;font-weight:800;}
-  .map-fbtn.act-art{background:#d6e8d0;border-color:#a8cc9e;color:#2d5e25;font-weight:800;}
-  .map-fbtn.act-mode{background:#f5cdd4;border-color:#e8939f;color:#7a2535;font-weight:800;}
-  .map-fbtn.act-bien{background:#c8d8ed;border-color:#8aacd4;color:#1e3d6b;font-weight:800;}
-  .map-fbtn.act-activ{background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800;}
-
-
-
-
-
-
-/* TICKER */
-.ticker{background:#aa804a;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;white-space:nowrap;overflow:hidden;flex-shrink:0}
-.ticker-inner{display:inline-block;animation:tick 26s linear infinite}
-.ticker-inner span{margin:0 22px}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* HEADER */
-.hdr{padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0}
-.logo{height:24px;width:auto;flex-shrink:0}
-.logo path,.logo rect,.logo polygon{fill:#1a1208}
-.hdr-title{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.vtoggle{display:flex;border:1.5px solid #1a1208;border-radius:8px;overflow:hidden;flex-shrink:0}
-.vbtn{padding:8px 14px;background:transparent;border:none;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b5a34;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:all .12s;touch-action:manipulation;white-space:nowrap}
-.vbtn+.vbtn{border-left:1px solid #1a1208}
-.vbtn.on{background:#1a1208;color:#fff}
-
-.venue-label{padding:8px 14px;background:#f8f6f1;border-bottom:1px solid rgba(26,18,8,0.1);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f06118;display:flex;align-items:center;gap:6px;flex-shrink:0}
-.venue-dot{width:7px;height:7px;border-radius:50%;background:#f06118;flex-shrink:0}
-
-/* FILTERS */
-.filters{display:flex;gap:5px;padding:8px 12px;overflow-x:auto;border-bottom:1px solid rgba(26,18,8,.08);background:#fff;flex-shrink:0;scrollbar-width:none}
-.filters::-webkit-scrollbar{display:none}
-.fbtn{display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:20px;border:1.5px solid rgba(26,18,8,.15);background:transparent;color:#6b5a34;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;flex-shrink:0}
-.fdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.fbtn.act-all   {background:#1a1208;border-color:#1a1208;color:#fff}
-.fbtn.act-bouffe{background:#f5d9c0;border-color:#e8a87a;color:#7a3d10;font-weight:800}
-.fbtn.act-art   {background:#d6e8d0;border-color:#a8cc9e;color:#2d5e25;font-weight:800}
-.fbtn.act-mode  {background:#f5cdd4;border-color:#e8939f;color:#7a2535;font-weight:800}
-.fbtn.act-bien  {background:#c8d8ed;border-color:#8aacd4;color:#1e3d6b;font-weight:800}
-.fbtn.act-activ {background:#e8e0f0;border-color:#b89cd4;color:#4a2080;font-weight:800}
-
-/* CONTENT */
-.content{flex:1;position:relative;overflow:hidden;min-height:0;display:flex}
-
-/* SPLIT LAYOUT */
-#mapPanel{display:flex;flex-direction:column;flex:1;min-width:0}
-#legendPanel{display:none}
-
-.legend-header{
-  padding:10px 14px 8px;border-bottom:1.5px solid #1a1208;
-  font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#6b5a34;
-  flex-shrink:0;
-}
-.legend-grp-title{
-  font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
-  padding:10px 14px 5px;color:#6b5a34;border-bottom:.5px solid rgba(26,18,8,.08);
-}
-.legend-row{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 14px;border-bottom:.5px solid rgba(26,18,8,.06);
-  cursor:pointer;transition:background .1s;-webkit-tap-highlight-color:transparent;
-}
-.legend-row:hover,.legend-row:active{background:#ede8da}
-.legend-row.dim{opacity:.22;pointer-events:none}
-.legend-num{
-  font-size:10px;font-weight:900;color:#f06118;
-  min-width:20px;line-height:1;flex-shrink:0;
-}
-.legend-dot-sm{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.legend-name{font-size:11px;font-weight:700;color:#1a1208;line-height:1.3;flex:1;min-width:0}
-
-/* MAP PANEL */
-#mapPanel{position:absolute;inset:0;display:flex;flex-direction:column}
-.map-wrap{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:0;background:#f8f6f1;cursor:grab;display:flex;align-items:flex-start;justify-content:flex-start}
-#themap{display:block;touch-action:pan-x pan-y pinch-zoom;user-select:none}
-
-/* Pins */
-.kpin{cursor:pointer;-webkit-tap-highlight-color:transparent}
-.kpin.dim{opacity:.12}
-.kpin.hi circle.pulse{animation:pinpulse 0.6s ease-in-out infinite alternate}
-@keyframes pinpulse{0%{r:13;stroke-width:2.5}100%{r:17;stroke-width:1.5}}
-.kpin.hi .pin-ring{animation:ringpulse 0.6s ease-in-out infinite alternate}
-@keyframes ringpulse{0%{r:20;opacity:0.45}100%{r:26;opacity:0.08}}
-
-/* Zoom buttons */
-.zctrls{position:absolute;bottom:16px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:10}
-.zcbtn{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid rgba(26,18,8,0.25);font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;color:#1a1208;box-shadow:0 2px 14px rgba(0,0,0,.15);line-height:1;font-family:inherit}
-
-/* Legend */
-.map-leg{display:flex;gap:8px;padding:6px 14px;background:#fff;border-top:1px solid rgba(26,18,8,.1);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
-.map-leg::-webkit-scrollbar{display:none}
-.legitem{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:9px;font-weight:700;color:#6b5a34;letter-spacing:.04em;text-transform:uppercase;flex-shrink:0}
-.legdot{width:8px;height:8px;border-radius:50%}
-
-/* LIST */
-#listPanel{
-  position:absolute;inset:0;
-  overflow-y:auto;-webkit-overflow-scrolling:touch;
-  display:none;
-  padding:10px 16px 100px;
-  background:#f8f6f1;
-}
-.grptitle{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:14px 0 10px;border-bottom:1.5px solid #1a1208;margin-bottom:10px}
-.vcard{display:flex;align-items:center;gap:12px;padding:15px 16px;border:1.5px solid #1a1208;border-radius:12px;background:#fff;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s}
-.vcard:active{background:#ede8da}
-.vcard.dim{opacity:.18;pointer-events:none}
-.vnum{font-size:18px;font-weight:900;color:#f06118;min-width:32px;line-height:1}
-.vinfo{flex:1;min-width:0}
-.vname{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.25}
-.vsub{font-size:12px;color:#6b5a34;margin-top:3px;font-weight:500}
-.vbadge{font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:8px;border:1.5px solid;white-space:nowrap;flex-shrink:0}
-.varr{font-size:18px;color:#6b5a34;flex-shrink:0}
-.vlocate{display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:10px;border:1.5px solid #1a1208;background:transparent;color:#1a1208;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap;flex-shrink:0;transition:all .15s}
-.vlocate:active,.vlocate:hover{background:#1a1208;color:#fff}
-
-/* EMPTY STATE */
-.empty{padding:48px 20px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b5a34;opacity:.6}
-
-/* DRAWER */
-.overlay{position:fixed;inset:0;background:rgba(26,18,8,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
-.overlay.on{opacity:1;pointer-events:all}
-.drawer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:16px 16px 0 0;border-top:1.5px solid #1a1208;z-index:201;max-height:84vh;overflow-y:auto;overscroll-behavior:contain;transform:translateY(110%);transition:transform .3s cubic-bezier(.32,.72,0,1);padding-bottom:env(safe-area-inset-bottom,16px);-webkit-overflow-scrolling:touch}
-.drawer.on{transform:translateY(0)}
-.dpull{display:flex;justify-content:center;padding:12px 0 6px;cursor:pointer;position:sticky;top:0;background:#fff;z-index:1;border-bottom:.5px solid rgba(26,18,8,.1)}
-.dpill{width:36px;height:4px;border-radius:2px;background:rgba(26,18,8,.18)}
-.dhead{padding:16px 18px 12px;border-bottom:1px solid rgba(26,18,8,.1)}
-.dbadge{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:10px;border:1.5px solid;margin-bottom:10px}
-.dtop{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
-.dnum{font-size:30px;font-weight:900;color:#f06118;line-height:1}
-.dname{font-size:clamp(17px,5vw,23px);font-weight:900;text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
-.dlieu{font-size:12px;color:#6b5a34;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
-.dbody{padding:16px 18px 8px}
-.ddesc{font-size:15px;line-height:1.7;color:#1a1208}
-.dtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.dtag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 11px;border-radius:12px;border:1.5px solid rgba(26,18,8,.12);color:#6b5a34}
-.dlocate{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding:13px 14px;border:1.5px solid #1a1208;border-radius:10px;background:#f8f6f1;font-size:12px;font-weight:700;color:#1a1208;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.dclose{display:block;width:100%;margin:12px 0 0;padding:17px;background:#1a1208;color:#fff;font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;font-family:inherit;touch-action:manipulation}
-
-@media(min-width:600px){
-  .drawer{max-width:520px;left:50%;right:auto;transform:translateX(-50%) translateY(110%)}
-  .drawer.on{transform:translateX(-50%) translateY(0)}
-  #listPanel{padding:12px 24px 100px}
-  .vbtn{padding:7px 13px;font-size:11px}
-
-}
 
 </style>
 </head>
@@ -550,10 +367,6 @@
     <path d="M890.19,183.76c-.11-.94-.24-1.84-.37-2.74-2.88-20.38-11.37-33.61-22.79-42.93-25.55-20.85-65.75-22.22-90.51-40.56-23.63-17.5-17.83-56.07,9.99-59.42,28.48-3.43,43.27,22.47,42.28,54.68h60.75c-.28-83.99-80.85-104.05-135-85.38-35.92,12.38-60.31,50.85-47.6,97.21,4.14,15.11,12.09,25.62,22.1,33.47,24.85,19.48,62.4,22.51,86,38.56,6.75,4.59,11.31,10.69,13.9,17.25,6.49,18.67-2.26,40.77-23.29,43.3-29.26,3.52-44.46-23.09-43.44-56.18h-62.42c0,.42.02.84.02,1.26.6,47.24,26.13,74.54,58.2,86.24,25.79,9.41,55.81,8.74,80.49.23,6.43-2.22,12.5-5.26,18.08-9,20.38-12.88,34.42-34.08,34.29-64.51-.02-3.69-.22-7.5-.66-11.47Z"/>
     <path d="M393.71,183.68c-.11-.94-.24-1.84-.37-2.74-2.88-20.38-11.37-33.61-22.79-42.93-25.55-20.85-65.75-22.22-90.51-40.56-23.63-17.5-17.83-56.07,9.99-59.42,28.48-3.43,43.27,22.47,42.28,54.68h60.75c-.28-83.99-80.85-104.05-135-85.38-35.92,12.38-60.31,50.85-47.6,97.21,4.14,15.11,12.09,25.62,22.1,33.47,24.85,19.48,62.4,22.51,86,38.56,6.75,4.59,11.31,10.69,13.9,17.25,6.49,18.67-2.26,40.77-23.29,43.3-29.26,3.52-44.46-23.09-43.44-56.18h-62.42c0,.42.02.84.02,1.26.6,47.24,26.13,74.54,58.2,86.24,25.79,9.41,55.81,8.74,80.49.23,6.43-2.22,12.5-5.26,18.08-9,20.38-12.88,34.42-34.08,34.29-64.51-.02-3.69-.22-7.5-.66-11.47Z"/>
   </svg>
-  <a href="https://www.asiasie.com" target="_blank" rel="noopener" class="visit-link">
-    Visiter le site
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-  </a>
   <div class="header-right">
     <div class="clock" id="clock">--:--</div>
     <div class="live-pill"><div class="live-dot"></div><span class="live-pill-text">Live</span></div>
@@ -581,10 +394,7 @@
     <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     <span class="nav-label">Horaire</span>
   </button>
-  <button class="nav-item" id="navCarte" onclick="navTo('carte')">
-    <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-    <span class="nav-label">Carte</span>
-  </button>
+
   <button class="nav-item" id="navFavoris" onclick="navTo('favoris')">
     <div class="nav-fav-badge" id="navFavBadge"></div>
     <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -596,77 +406,6 @@
   </button>
 </nav>
 
-<!-- CARTE INTERACTIVE -->
-<div id="cartePanel" style="display:none;position:fixed;top:0;left:0;right:0;bottom:65px;z-index:55;flex-direction:column;background:#f8f6f1;">
-
-  <!-- Hdr -->
-  <div style="padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1.5px solid #1a1208;background:#fff;flex-shrink:0;">
-    <button onclick="navTo('horaire')" style="background:none;border:none;font-size:20px;cursor:pointer;color:#1a1208;padding:0;line-height:1;font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">←</button>
-    <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;flex:1;">Plan des marchands</div>
-    <div style="display:flex;border:1.5px solid #1a1208;border-radius:8px;overflow:hidden;">
-      <button id="btnMap"  onclick="mapShowView('map')"  style="padding:7px 12px;background:#1a1208;color:#fff;border:none;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:inherit;touch-action:manipulation;">🗺 Carte</button>
-      <button id="btnList" onclick="mapShowView('list')" style="padding:7px 12px;background:transparent;color:#6b5a34;border:none;border-left:1px solid #1a1208;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:inherit;touch-action:manipulation;">☰ Liste</button>
-    </div>
-  </div>
-
-  <!-- Venue label -->
-  <div style="padding:8px 14px;background:#f8f6f1;border-bottom:1px solid rgba(26,18,8,.1);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f06118;display:flex;align-items:center;gap:6px;flex-shrink:0;">
-    <div style="width:7px;height:7px;border-radius:50%;background:#f06118;flex-shrink:0;"></div>
-    Time Out Market · 28 marchands
-  </div>
-
-  <!-- Filtres -->
-  <div class="filters" style="flex-shrink:0;">
-    <button class="map-fbtn fbtn act-all" data-cat="all"    onclick="mapSetFilter('all')">Tous (28)</button>
-    <button class="map-fbtn fbtn" data-cat="bouffe"          onclick="mapSetFilter('bouffe')"><span style="width:8px;height:8px;border-radius:50%;background:#7a3d10;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bouffe</button>
-    <button class="map-fbtn fbtn" data-cat="art"             onclick="mapSetFilter('art')"><span style="width:8px;height:8px;border-radius:50%;background:#2d5e25;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Art</button>
-    <button class="map-fbtn fbtn" data-cat="mode"            onclick="mapSetFilter('mode')"><span style="width:8px;height:8px;border-radius:50%;background:#7a2535;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Mode</button>
-    <button class="map-fbtn fbtn" data-cat="bien"            onclick="mapSetFilter('bien')"><span style="width:8px;height:8px;border-radius:50%;background:#1e3d6b;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Bien-être</button>
-    <button class="map-fbtn fbtn" data-cat="activ"           onclick="mapSetFilter('activ')"><span style="width:8px;height:8px;border-radius:50%;background:#4a2080;flex-shrink:0;display:inline-block;margin-right:3px;"></span>Activités</button>
-  </div>
-
-  <!-- Contenu carte/liste -->
-  <div style="flex:1;position:relative;overflow:hidden;min-height:0;">
-
-    <!-- Carte SVG -->
-    <div id="mapPanel" style="position:absolute;inset:0;display:flex;flex-direction:column;">
-      <div id="mapWrap" style="flex:1;overflow:hidden;position:relative;min-height:0;cursor:grab;background:#f8f6f1;">
-        <svg id="themap" xmlns="http://www.w3.org/2000/svg"
-             style="display:block;touch-action:none;user-select:none;-webkit-user-select:none;background:#f8f6f1;">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(26,18,8,0.04)" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <g id="world">
-            <g id="mapBg"></g>
-            <g id="mapFloor"></g>
-            <g id="mapPins"></g>
-          </g>
-        </svg>
-      </div>
-      <!-- Zoom -->
-      <div class="zctrls">
-        <button class="zcbtn" onclick="zoom(1.3)">+</button>
-        <button class="zcbtn" onclick="zoom(0.77)">−</button>
-        <button class="zcbtn" style="font-size:15px" onclick="buildMap()">⌂</button>
-      </div>
-    </div>
-
-    <!-- Liste -->
-    <div id="listPanel" style="position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;padding:12px 16px 20px;background:#f8f6f1;"></div>
-
-  </div>
-
-  <!-- Drawer carte -->
-  <div class="overlay" id="mapOverlay" onclick="mapCloseDrawer()" style="bottom:0;"></div>
-  <div class="drawer" id="mapDrawer" style="bottom:0;">
-    <div class="dpull" onclick="mapCloseDrawer()"><div class="dpill"></div></div>
-    <div class="dhead" id="mapDhead"></div>
-    <div class="dbody" id="mapDbody"></div>
-  </div>
-
-</div>
 
 <!-- SHARE PANEL -->
 <div id="shareOverlay" onclick="closeShare()">
@@ -710,12 +449,10 @@
 <div id="ios-overlay" onclick="closeIosGuide()"></div>
 <div id="ios-guide">
   <div class="ios-handle"></div>
-  <div class="ios-guide-title" id="ios-guide-title-text">Ajouter à l'écran d'accueil</div>
-  <div id="ios-guide-steps">
-    <div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Appuie sur le bouton <strong>Partager</strong> en bas de Safari</div></div>
-    <div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Appuie sur <strong>« Sur l'écran d'accueil »</strong></div></div>
-    <div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Appuie sur <strong>« Ajouter »</strong> — c'est fait !</div></div>
-  </div>
+  <div class="ios-guide-title">Ajouter à l'écran d'accueil</div>
+  <div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Appuie sur le bouton <strong>Partager</strong> en bas de Safari</div></div>
+  <div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Appuie sur <strong>« Sur l'écran d'accueil »</strong></div></div>
+  <div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Appuie sur <strong>« Ajouter »</strong> — c'est fait !</div></div>
   <button class="ios-close" onclick="closeIosGuide()">Compris !</button>
 </div>
 
@@ -754,39 +491,10 @@ function toggleFavsMode() {
 }
 
 
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (!sessionStorage.getItem('install-dismissed')) {
-    document.getElementById('install-bar').classList.add('visible');
-  }
-});
-window.addEventListener('appinstalled', () => {
-  deferredPrompt = null;
-  document.getElementById('install-bar').classList.remove('visible');
-});
-
 function triggerInstall(){ if(!deferredPrompt)return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; document.getElementById('install-bar').classList.remove('visible'); }); }
 function dismissInstall(){ sessionStorage.setItem('install-dismissed','1'); document.getElementById('install-bar').classList.remove('visible'); }
 function showIosGuide(){ document.getElementById('ios-overlay').classList.add('open'); document.getElementById('ios-guide').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeIosGuide(){ document.getElementById('ios-overlay').classList.remove('open'); document.getElementById('ios-guide').classList.remove('open'); document.body.style.overflow=''; dismissInstall(); }
-
-function showDesktopGuide(){
-  const isSafariMac = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
-  let guide = '';
-  if(isSafariMac){
-    guide = '<div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Dans Safari, clique sur <strong>Fichier</strong> dans la barre de menu</div></div><div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Choisis <strong>« Ajouter à l\'ancrage »</strong></div></div><div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">Clique <strong>« Ajouter »</strong> — l\'app apparaît dans ton Dock !</div></div>';
-  } else {
-    guide = '<div class="ios-step"><div class="ios-step-num">1</div><div class="ios-step-text">Clique sur l\'icône <strong>⊕ Installer</strong> dans la barre d\'adresse (en haut à droite)</div></div><div class="ios-step"><div class="ios-step-num">2</div><div class="ios-step-text">Clique sur <strong>« Installer »</strong> dans la fenêtre qui apparaît</div></div><div class="ios-step"><div class="ios-step-num">3</div><div class="ios-step-text">L\'app s\'ouvre et apparaît dans ta barre des tâches !</div></div>';
-  }
-  document.getElementById('ios-guide-title-text').textContent = 'Installer sur l\'ordinateur';
-  document.getElementById('ios-guide-steps').innerHTML = guide;
-  document.getElementById('ios-overlay').classList.add('open');
-  document.getElementById('ios-guide').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
 if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 // ── DATA ──
@@ -1027,7 +735,7 @@ setInterval(()=>{renderCountdown();renderClock();},1000);
 setInterval(()=>{renderNowBanner();renderTimeline();},60000);
 
 // ── BOTTOM NAV ──
-const NAV_IDS = ['navHoraire','navCarte','navFavoris','navPartager'];
+const NAV_IDS = ['navHoraire','navFavoris','navPartager'];
 let currentNav = 'horaire';
 
 function navTo(section) {
@@ -1042,15 +750,7 @@ function navTo(section) {
     if (dot) dot.style.display = match ? 'block' : 'none';
   });
   // Show/hide panels
-  // ── Carte panel ──
-  const _cp = document.getElementById('cartePanel');
-  if(section === 'carte'){
-    _cp.style.display = 'flex';
-    if(!window._carteInit){ window._carteInit=true; requestAnimationFrame(()=>{ buildMap(); mapRenderList(); renderLegend(); }); }
-    else { requestAnimationFrame(()=>buildMap()); }
-  } else {
-    _cp.style.display = 'none';
-  }
+
   // Favoris: toggle favs mode and switch to horaire view
   if (section === 'favoris') {
     if (!favsMode) { favsMode = true; }
@@ -1106,14 +806,8 @@ async function doShare(type) {
     }
   } else if (type === 'install') {
     closeShare();
-    if (deferredPrompt) {
-      triggerInstall();
-    } else {
-      const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isMobile = /android|mobile/i.test(navigator.userAgent) || isIos;
-      if (isMobile) { showIosGuide(); }
-      else { showDesktopGuide(); }
-    }
+    if (deferredPrompt) { triggerInstall(); }
+    else { showIosGuide(); }
   }
 }
 
@@ -1134,540 +828,6 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeShare(); }
 // Init nav badge
 updateNavFavBadge();
 
-// ══ CARTE MAP ENGINE ══
-
-// ── CATS ──
-const MAP_CATS={
-  bouffe:{label:'Bouffe & Resto',  bg:'#f5d9c0',text:'#7a3d10',bd:'#e8a87a'},
-  art:   {label:'Art & Artisanat', bg:'#d6e8d0',text:'#2d5e25',bd:'#a8cc9e'},
-  mode:  {label:'Mode & Beauté',   bg:'#f5cdd4',text:'#7a2535',bd:'#e8939f'},
-  bien:  {label:'Bien-être',       bg:'#c8d8ed',text:'#1e3d6b',bd:'#8aacd4'},
-  activ: {label:'Activités & Exp.',bg:'#e8e0f0',text:'#4a2080',bd:'#b89cd4'},
-};
-
-// ── VENDORS ──
-// TOM positions: virtual canvas 480×490 (with padding)
-// CE positions:  virtual canvas 420×400 (with padding)
-const MAP_V=[
-  // ── MUR GAUCHE — 8 marchands (x=46, espacés de 68px à partir de y=130) ──
-  {id:1,  name:"KayTran Eyewear",      cat:"mode",  loc:"tom", x:46, y:130, desc:"Lunettes et accessoires de mode asiatiques contemporains. Montures tendance, personnalisation sur place.", tags:["Mode","Accessoires","Sur commande"]},
-  {id:2,  name:"Alice & Theo",          cat:"art",   loc:"tom", x:46, y:198, desc:"Illustrations originales inspirées des cultures asiatiques. Affiches, tirages limités, carnets artistiques.", tags:["Art","Illustrations","Éditions limitées"]},
-  {id:3,  name:"Nijikai Saké",          cat:"bouffe",loc:"tom", x:46, y:266, desc:"Sakés artisanaux japonais premium. Dégustation guidée, accords mets-saké, bouteilles à emporter.", tags:["Japon","Saké","Dégustation"]},
-  {id:4,  name:"Calligraphie Maïka",    cat:"art",   loc:"tom", x:46, y:334, desc:"Calligraphie japonaise et coréenne en direct. Œuvres personnalisées, kakemonos, cartes sur commande.", tags:["Art","Calligraphie","Sur commande"]},
-  {id:5,  name:"kotoAn Wagashi",        cat:"bouffe",loc:"tom", x:46, y:402, desc:"Wagashi traditionnels japonais aux haricots rouges, matcha et yuzu. Fait main chaque matin.", tags:["Japon","Wagashi","Végétarien"]},
-  {id:6,  name:"Boutique Kodama",       cat:"mode",  loc:"tom", x:46, y:470, desc:"Vêtements et accessoires japonais. Pièces uniques, tissus importés, mode durable.", tags:["Mode","Japon","Artisanat"]},
-  {id:7,  name:"Thés Guru",             cat:"bien",  loc:"tom", x:46, y:538, desc:"40 thés premium asiatiques : sencha, gyokuro, oolong, pu-erh. Dégustation guidée.", tags:["Thé","Bien-être","Asie"]},
-  {id:8,  name:"Brasserie San-O",       cat:"bouffe",loc:"tom", x:46, y:606, desc:"Bières artisanales aux saveurs asiatiques. Gingembre, yuzu et matcha.", tags:["Bières","Local","Artisanat"]},
-
-  // ── MUR DROIT — 7 marchands (x=514, espacés de 68px à partir de y=198) ──
-  {id:9,  name:"Kimono Yuki",           cat:"mode",  loc:"tom", x:514, y:198, desc:"Kimonos contemporains, yukata d'été, obi colorés. Du casual au cérémonial.", tags:["Japon","Kimono","Prêt-à-porter"]},
-  {id:10, name:"Boutique Meico",        cat:"mode",  loc:"tom", x:514, y:266, desc:"K-fashion contemporain, bijoux, sacs et chaussures importés de Séoul.", tags:["Corée","Mode","K-Fashion"]},
-  {id:11, name:"Atelier Tsubaki",       cat:"bien",  loc:"tom", x:514, y:334, desc:"Soins beauté rituels japonais. Huiles de camélia, masques, sérum artisanal.", tags:["Japon","Beauté","Naturel"]},
-  {id:12, name:"Thé Sakao",             cat:"bien",  loc:"tom", x:514, y:402, desc:"Thés rares d'Asie de l'Est. Cérémonie du thé simplifiée à la théière.", tags:["Thé","Cérémonie","Bien-être"]},
-  {id:13, name:"Miya Candles",          cat:"bien",  loc:"tom", x:514, y:470, desc:"Bougies artisanales — cerisier, thé vert, encens japonais. Cires naturelles.", tags:["Bougies","Naturel","Artisanat"]},
-  {id:14, name:"Paper & Rice Co.",      cat:"art",   loc:"tom", x:514, y:538, desc:"Papeterie japonaise : papiers washi, carnets, tampons. Atelier de reliure le samedi.", tags:["Papeterie","Washi","Atelier"]},
-  {id:15, name:"Xie Dan Belle Studio",  cat:"mode",  loc:"tom", x:514, y:606, desc:"Maquillage et soins inspirés des tendances asiatiques. Séances express.", tags:["Beauté","Maquillage","Studio"]},
-
-  // ── RANGÉE DU HAUT — 2 stands ──
-  {id:16, name:"Chibi Chic",            cat:"mode",  loc:"tom", x:188, y:52,  desc:"Mode kawaii et streetwear japonais. Vêtements, accessoires, pins et patches.", tags:["Japon","Kawaii","Streetwear"]},
-  {id:17, name:"Cartes BaoBao",         cat:"art",   loc:"tom", x:330, y:52,  desc:"Cartes à jouer artistiques inspirées des cultures asiatiques. Éditions collector.", tags:["Art","Jeux","Collector"]},
-
-  // ── KIOSQUES BORD GAUCHE DE L'OVALE ──
-  {id:18, name:"Em Bakehouse",          cat:"bouffe",loc:"tom", x:148, y:300, desc:"Boulangerie fusion — shokupan japonais, brioche pandan, croissants au sésame noir.", tags:["Bouffe","Boulangerie","Fusion"]},
-  {id:19, name:"Café Triangle d'Or",    cat:"bouffe",loc:"tom", x:148, y:390, desc:"Cafés filtrés d'Asie du Sud-Est. Vietnam, Thaïlande, Indonésie.", tags:["Café","Vietnam","Thaïlande"]},
-
-  // ── KIOSQUES BORD DROIT DE L'OVALE ──
-  {id:27, name:"Good Vibes Shop",       cat:"activ", loc:"tom", x:412, y:300, desc:"Ateliers bien-être — méditation guidée, initiation au yoga, calligraphie zen.", tags:["Activités","Méditation","Yoga"]},
-  {id:28, name:"Bangkok Street",        cat:"bouffe",loc:"tom", x:412, y:390, desc:"Street food thaïlandaise — pad thaï, som tam, brochettes satay.", tags:["Thaïlande","Street food","Épicé"]},
-
-  // ── ARC DE KIOSQUES EN BAS DE L'OVALE (7 marchands en ligne courbe) ──
-  {id:20, name:"Bask Hour",             cat:"bouffe",loc:"tom", x:162, y:564, desc:"Bingsu (glace pilée coréenne), tteok (gâteaux de riz), mochi glacés.", tags:["Desserts","Corée","Végétarien"]},
-  {id:21, name:"ArtsByYamile",          cat:"art",   loc:"tom", x:210, y:594, desc:"Illustrations et peintures inspirées des mythologies asiatiques.", tags:["Art","Illustration","Peinture"]},
-  {id:22, name:"Bodhi Gourmet",         cat:"bouffe",loc:"tom", x:262, y:608, desc:"Cuisine végétarienne et végane bouddhiste. Rouleaux de printemps, tofu mariné.", tags:["Végétarien","Vegan","Asie"]},
-  {id:23, name:"Jus de Noix & Cie",     cat:"bouffe",loc:"tom", x:314, y:612, desc:"Jus santé aux superaliments asiatiques — lait de coco, yuzu, kombucha.", tags:["Boissons","Santé","Vegan"]},
-  {id:24, name:"Seoul Daisies",         cat:"mode",  loc:"tom", x:366, y:608, desc:"Bijoux floraux coréens. Bagues, colliers, boucles en résine et métal doré.", tags:["Bijoux","Corée","Artisanat"]},
-  {id:25, name:"Lotus Light",           cat:"bien",  loc:"tom", x:412, y:594, desc:"Cristaux, pierres naturelles et lithothérapie asiatique.", tags:["Bien-être","Cristaux","Lithothérapie"]},
-  {id:26, name:"Himalaya Shop",         cat:"bien",  loc:"tom", x:452, y:564, desc:"Produits du Népal et du Tibet — sel rose, tisanes, encens himalayens.", tags:["Népal","Naturel","Himalaya"]},
-];
-
-
-
-// ── STATE ──
-let curLoc='tom', mapCurFilter='all', curView='map';
-let svgScale=1, mapHighlighted=null;
-let dtouchY=0;
-
-// SVG virtual sizes
-const TOM_VW=560, TOM_VH=820;
-const CE_VW=440,  CE_VH=420;
-
-function curVendors(){
-  return MAP_V.filter(v=>v.loc===curLoc && (mapCurFilter==='all'||v.cat===mapCurFilter));
-}
-function allForLoc(){
-  return MAP_V.filter(v=>v.loc===curLoc);
-}
-
-// ── SVG HELPERS ──
-const NS='http://www.w3.org/2000/svg';
-function el(tag,attrs){
-  const e=document.createElementNS(NS,tag);
-  for(const[k,v2] of Object.entries(attrs)) e.setAttribute(k,v2);
-  return e;
-}
-function rr(x,y,w,h,r,fill,stroke,sw=2){
-  const p=el('rect',{x,y,width:w,height:h,rx:r});
-  if(fill) p.setAttribute('fill',fill);
-  if(stroke){p.setAttribute('stroke',stroke);p.setAttribute('stroke-width',sw);}
-  return p;
-}
-function svgTxt(content,x,y,attrs){
-  const t=el('text',{x,y,...attrs});
-  t.textContent=content;
-  return t;
-}
-
-// ── MAP TRANSFORM STATE ──
-let mapTX=0, mapTY=0; // translation offset from center
-
-function applyTransform(){
-  const world=document.getElementById('world');
-  world.setAttribute('transform',`translate(${mapTX},${mapTY}) scale(${svgScale})`);
-}
-
-function resetTransform(){
-  mapTX=0; mapTY=0;
-  applyTransform();
-}
-
-// ── BUILD MAP ──
-function buildMap(){
-  const wrap=document.getElementById('mapWrap');
-  const svg=document.getElementById('themap');
-  const vw=TOM_VW, vh=TOM_VH;
-  const ww=wrap.offsetWidth||360;
-  const wh=wrap.offsetHeight||500;
-
-  // Fit scale
-  svgScale=Math.min((ww/vw)*0.92,(wh/vh)*0.92);
-  svgScale=Math.max(0.2,Math.min(svgScale,3));
-
-  // SVG fills container exactly — transform does the work
-  svg.setAttribute('viewBox',`${-ww/2} ${-wh/2} ${ww} ${wh}`);
-  svg.setAttribute('width',ww);
-  svg.setAttribute('height',wh);
-  svg.style.margin='0';
-  svg.style.display='block';
-
-  // Reset pan — slight upward offset so top of map is visible
-  mapTX=0; mapTY=TOM_VH*0.08;
-
-  // Background — offset so map is centered in the viewBox
-  const ox=-TOM_VW/2, oy=-TOM_VH/2;
-  const bg=document.getElementById('mapBg');
-  bg.innerHTML='';
-  bg.append(
-    rr(ox,oy,TOM_VW,TOM_VH,0,'#f0ede5',null),
-    rr(ox,oy,TOM_VW,TOM_VH,0,'url(#grid)',null)
-  );
-
-  // Floor & Pins
-  document.getElementById('mapFloor').innerHTML='';
-  drawTOM();
-  mapBuildPins();
-
-  // Apply centered transform
-  applyTransform();
-}
-
-function drawTOM(){
-  const fl=document.getElementById('mapFloor');
-  // Offset so map is centered at SVG origin
-  const offX=-TOM_VW/2, offY=-TOM_VH/2;
-  const g=document.createElementNS(NS,'g');
-  g.setAttribute('transform',`translate(${offX},${offY})`);
-  fl.append(g);
-  const origAppend=fl.append.bind(fl);
-  // Temporarily redirect appends to the offset group
-  fl.append=(...args)=>g.append(...args);
-
-  const W=560, H=820, cx=W/2;
-  const ff="Figtree,sans-serif";
-
-  // ── FOND GÉNÉRAL ──
-  fl.append(rr(0,0,W,H,0,'#f8f6f1',null));
-
-  // ── TITRE ──
-  fl.append(svgTxt('MARCHÉ ASIASIE 2026',cx,16,{'text-anchor':'middle','font-size':'11','font-weight':'900','fill':'#1a1208','font-family':ff,'letter-spacing':'2'}));
-  fl.append(svgTxt('Time Out Market — Sainte-Catherine Ouest',cx,28,{'text-anchor':'middle','font-size':'7.5','fill':'#6b5a34','font-family':ff}));
-
-  // ── GRAND OVALE CENTRAL (gris très pâle, comme le vrai plan) ──
-  const ovalCX=cx, ovalCY=390, ovalRX=135, ovalRY=275;
-  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY,rx:ovalRX,ry:ovalRY,
-    fill:'#e8e4dc',stroke:'rgba(26,18,8,0.12)','stroke-width':'1.5'}));
-
-  // Sous-ovale RDC Centre Eaton (ovale blanc à l'intérieur en bas)
-  fl.append(el('ellipse',{cx:ovalCX,cy:ovalCY+80,rx:'85',ry:'55',
-    fill:'#fff',stroke:'rgba(26,18,8,0.12)','stroke-width':'1'}));
-  fl.append(svgTxt('RDC DU',ovalCX,ovalCY+68,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'#4a6090','font-family':ff}));
-  fl.append(svgTxt('CENTRE EATON',ovalCX,ovalCY+80,{'text-anchor':'middle','font-size':'8','font-weight':'800','fill':'#4a6090','font-family':ff}));
-
-  // Icônes escalier/ascenseur (↑↑ comme le vrai plan)
-  fl.append(svgTxt('↑↑',ovalCX,ovalCY+102,{'text-anchor':'middle','font-size':'11','fill':'#9fb3d4','font-family':ff}));
-
-  // ── ZONES DE TEXTE (sans rectangles) ──
-  // ESPACE ATELIER (haut droite — texte + flèche)
-  const atX=460, atY=80;
-  fl.append(el('rect',{x:atX-4,y:atY-18,width:'88',height:'38',rx:'5',
-    fill:'rgba(170,128,74,0.10)',stroke:'#aa804a','stroke-width':'1.2'}));
-  fl.append(svgTxt('ESPACE',atX+40,atY-2,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#aa804a','font-family':ff}));
-  fl.append(svgTxt('ATELIER',atX+40,atY+11,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#aa804a','font-family':ff}));
-  // Flèche verte vers atelier
-  fl.append(svgTxt('⟶',atX-22,atY+4,{'font-size':'13','fill':'#4a8a4a','font-family':ff}));
-
-  // UNIQLO (haut droite, carré rouge)
-  fl.append(el('rect',{x:'396',y:'38',width:'55',height:'35',rx:'4',
-    fill:'#fff0f0',stroke:'#cc0000','stroke-width':'1.5'}));
-  fl.append(svgTxt('UNIQLO',423,60,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#cc0000','font-family':ff}));
-
-  // ESPACE BAR / SCÈNE (bas gauche — fond vert pâle)
-  fl.append(el('ellipse',{cx:'82',cy:'700',rx:'66',ry:'48',
-    fill:'rgba(76,153,76,0.15)',stroke:'#4a8a4a','stroke-width':'1.5'}));
-  fl.append(svgTxt('ESPACE BAR',82,696,{'text-anchor':'middle','font-size':'7.5','font-weight':'900','fill':'#4a8a4a','font-family':ff}));
-  fl.append(svgTxt('(SCÈNE)',82,708,{'text-anchor':'middle','font-size':'7','font-weight':'700','fill':'#4a8a4a','font-family':ff}));
-
-  // DÉCATHLON (bas droite)
-  fl.append(svgTxt('DÉCATHLON',440,768,{'text-anchor':'middle','font-size':'8','font-weight':'900','fill':'#003082','font-family':ff}));
-
-  // WC (bas centre — petit cercle discret)
-  fl.append(el('circle',{cx:cx,cy:'766',r:'13',fill:'#e8e4dc',stroke:'rgba(26,18,8,0.2)','stroke-width':'1'}));
-  fl.append(svgTxt('WC',cx,770,{'text-anchor':'middle','font-size':'7.5','font-weight':'700','fill':'#6b5a34','font-family':ff}));
-
-  // HASHTAG
-  fl.append(svgTxt('#ASIASIEMTL',cx+90,790,{'text-anchor':'middle','font-size':'7','fill':'rgba(26,18,8,0.35)','font-family':ff,'font-style':'italic'}));
-
-  // BOUSSOLE
-  fl.append(el('circle',{cx:'530',cy:'790',r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'}));
-  fl.append(svgTxt('N',530,795,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#f06118','font-family':ff}));
-
-  // ── SÉPARATEURS DE ZONES (lignes légères, pas de rectangles) ──
-  // Lignes horizontales très légères pour délimiter les zones de stands
-  [150,280,420,560].forEach(y=>{
-    const sep=el('line',{x1:'12',y1:y,x2:'90',y2:y,stroke:'rgba(26,18,8,0.08)','stroke-width':'0.8'});
-    fl.append(sep);
-    const sep2=el('line',{x1:W-90,y1:y,x2:W-12,y2:y,stroke:'rgba(26,18,8,0.08)','stroke-width':'0.8'});
-    fl.append(sep2);
-  });
-
-  // Labels de zones (lettre discrète)
-  [['A',52,96],['B',52,216],['C',52,350],['D',52,490],['E',52,630]].forEach(([l,x,y])=>{
-    fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','font-weight':'700','fill':'rgba(26,18,8,0.22)','font-family':ff}));
-  });
-  [['▶',W-52,96],['▶',W-52,216],['▶',W-52,350],['▶',W-52,490],['▶',W-52,630]].forEach(([l,x,y])=>{
-    fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.18)','font-family':ff}));
-  });
-
-  // Flèches d'entrée gauche (comme le vrai plan)
-  [152,350,560].forEach(y=>{
-    fl.append(svgTxt('→',93,y,{'font-size':'12','fill':'#f06118','font-family':ff,'font-weight':'900'}));
-  });
-
-  // Restore fl.append
-  fl.append=origAppend;
-}
-
-function drawCE(){
-  const fl=document.getElementById('mapFloor');
-  const W=CE_VW-30, H=CE_VH-40, ox=15, oy=35;
-
-  // Outer
-  fl.append(rr(ox,oy,W,H,8,'#fff','#1a1208',2));
-  fl.append(rr(ox,oy,W,H,8,'rgba(159,179,212,0.1)',null));
-
-  // Allées
-  const cx=ox+W/2, cy=oy+H/2;
-  fl.append(rr(ox+10,cy-10,W-20,20,2,'rgba(26,18,8,0.04)',null));
-  fl.append(rr(cx-10,oy+10,20,H-20,2,'rgba(26,18,8,0.04)',null));
-
-  // Central atrium / scène
-  fl.append(rr(cx-50,cy-32,100,64,6,'#dce8f4','rgba(159,179,212,0.6)',1.5));
-  fl.append(svgTxt('SCÈNE',cx,cy-8,{'text-anchor':'middle','font-size':'10','font-weight':'900','fill':'#4a6090','font-family':'Figtree,sans-serif'}));
-  fl.append(svgTxt('EATON',cx,cy+7,{'text-anchor':'middle','font-size':'8','fill':'rgba(74,96,144,0.7)','font-family':'Figtree,sans-serif'}));
-
-  // Stand zones
-  [[ox+12,oy+12,75,60],[ox+W-87,oy+12,75,60],
-   [ox+12,oy+H-72,75,60],[ox+W-87,oy+H-72,75,60],
-   [cx-42,oy+12,84,38],[cx-42,oy+H-50,84,38]
-  ].forEach(([x,y,w,h])=>fl.append(rr(x,y,w,h,3,'#f0f4f8','rgba(159,179,212,0.4)',1)));
-
-  // Entrance
-  fl.append(rr(cx-30,oy+H-3,60,8,2,'#9fb3d4',null));
-  fl.append(svgTxt('ENTRÉE',cx,oy+H+8,{'text-anchor':'middle','font-size':'7','font-weight':'800','fill':'#4a6090','font-family':'Figtree,sans-serif'}));
-
-  // Labels
-  fl.append(svgTxt('CENTRE EATON',cx,oy-13,{'text-anchor':'middle','font-size':'13','font-weight':'900','fill':'#1a1208','font-family':'Figtree,sans-serif','letter-spacing':'1.5'}));
-  fl.append(svgTxt('Sainte-Catherine Ouest',cx,oy-1,{'text-anchor':'middle','font-size':'8','fill':'#6b5a34','font-family':'Figtree,sans-serif'}));
-
-  // Zone labels
-  [['G',ox+50,oy+42],['H',ox+W-50,oy+42],
-   ['I',ox+50,oy+H-42],['J',ox+W-50,oy+H-42]
-  ].forEach(([l,x,y])=>fl.append(svgTxt(l,x,y,{'text-anchor':'middle','font-size':'8','fill':'rgba(26,18,8,0.3)','font-family':'Figtree,sans-serif','font-weight':'700'})));
-
-  // Compass
-  fl.append(el('circle',{cx:ox+W-16,cy:oy+H+16,r:'13',fill:'#fff',stroke:'#1a1208','stroke-width':'1.5'}));
-  fl.append(svgTxt('N',ox+W-16,oy+H+20,{'text-anchor':'middle','font-size':'9','font-weight':'900','fill':'#9fb3d4','font-family':'Figtree,sans-serif'}));
-}
-
-function mapBuildPins(){
-  const pg=document.getElementById('mapPins');
-  pg.innerHTML='';
-  const offX=-TOM_VW/2, offY=-TOM_VH/2;
-  allForLoc().forEach(v=>{
-    const cat=MAP_CATS[v.cat];
-    const active=mapCurFilter==='all'||v.cat===mapCurFilter;
-    const hi=mapHighlighted===v.id;
-    const px=v.x+offX, py=v.y+offY;
-    const g=el('g',{'class':`kpin${!active?' dim':''}${hi?' hi':''}`, 'data-id':String(v.id)});
-
-    if(hi){
-      const ring=el('circle',{cx:px,cy:py,r:'20',fill:'none',stroke:cat.text,'stroke-width':'1.5',opacity:'0.3','class':'pin-ring'});
-      g.append(ring);
-    }
-
-    // Small filled circle — like real plan dots
-    const r = hi ? '13' : '11';
-    const circ=el('circle',{cx:px,cy:py,r,
-      fill: active ? cat.text : cat.bg,
-      stroke:'#fff',
-      'stroke-width':'1.5',
-      'class':hi?'pulse':''
-    });
-    // Number label — white inside
-    const lbl=el('text',{x:px,y:py,
-      'text-anchor':'middle','dominant-baseline':'central',
-      'font-size': hi?'9':'8',
-      'font-weight':'900',
-      'fill':'#fff',
-      'font-family':'Figtree,sans-serif',
-      'pointer-events':'none'
-    });
-    lbl.textContent=v.id;
-    g.append(circ,lbl);
-
-    g.addEventListener('click',e=>{e.stopPropagation();mapOpenDrawer(v.id);});
-    g.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();mapOpenDrawer(v.id);},{passive:false});
-    pg.append(g);
-  });
-}
-
-// ── ZOOM ──
-function zoom(f){
-  svgScale=Math.min(5,Math.max(0.2,svgScale*f));
-  applyTransform();
-}
-function resetZoom(){
-  svgScale=1; mapTX=0; mapTY=0;
-  buildMap();
-}
-
-// ── MOUSE PAN (desktop drag) ──
-(function(){
-  const wrap=document.getElementById('mapWrap');
-  let down=false,sx,sy,tx0,ty0;
-  wrap.addEventListener('mousedown',e=>{
-    if(e.target.closest('.zctrls')) return;
-    down=true; sx=e.clientX; sy=e.clientY;
-    tx0=mapTX; ty0=mapTY;
-    wrap.style.cursor='grabbing'; e.preventDefault();
-  });
-  window.addEventListener('mouseup',()=>{ down=false; wrap.style.cursor='grab'; });
-  window.addEventListener('mousemove',e=>{
-    if(!down) return;
-    mapTX=tx0+(e.clientX-sx)/svgScale;
-    mapTY=ty0+(e.clientY-sy)/svgScale;
-    applyTransform();
-  });
-  // Mouse wheel zoom centered on cursor
-  wrap.addEventListener('wheel',e=>{
-    e.preventDefault();
-    const rect=wrap.getBoundingClientRect();
-    const mx=(e.clientX-rect.left)-wrap.clientWidth/2;
-    const my=(e.clientY-rect.top)-wrap.clientHeight/2;
-    const f=e.deltaY<0?1.12:0.9;
-    // Adjust translation so zoom centers on cursor
-    mapTX=(mapTX-mx/svgScale)*f + mx/(svgScale*f);
-    mapTY=(mapTY-my/svgScale)*f + my/(svgScale*f);
-    svgScale=Math.min(5,Math.max(0.2,svgScale*f));
-    applyTransform();
-  },{passive:false});
-})();
-
-// ── PINCH ZOOM (touch) ──
-let pinch0=null, scale0=1, ptx0=0, pty0=0;
-const mw=document.getElementById('mapWrap');
-mw.addEventListener('touchstart',e=>{
-  if(e.touches.length===2){
-    pinch0=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
-    scale0=svgScale; ptx0=mapTX; pty0=mapTY;
-  }
-},{passive:true});
-mw.addEventListener('touchmove',e=>{
-  if(e.touches.length===2&&pinch0){
-    e.preventDefault();
-    const d=Math.hypot(e.touches[1].clientX-e.touches[0].clientX,e.touches[1].clientY-e.touches[0].clientY);
-    svgScale=Math.min(5,Math.max(0.2,scale0*d/pinch0));
-    applyTransform();
-  }
-},{passive:false});
-mw.addEventListener('touchend',e=>{if(e.touches.length<2)pinch0=null;},{passive:true});
-
-// ── TOUCH PAN (single finger) ──
-(function(){
-  let t0=null, tx0, ty0;
-  mw.addEventListener('touchstart',e=>{
-    if(e.touches.length===1){
-      t0=e.touches[0]; tx0=mapTX; ty0=mapTY;
-    }
-  },{passive:true});
-  mw.addEventListener('touchmove',e=>{
-    if(e.touches.length===1&&t0&&!pinch0){
-      e.preventDefault();
-      mapTX=tx0+(e.touches[0].clientX-t0.clientX)/svgScale;
-      mapTY=ty0+(e.touches[0].clientY-t0.clientY)/svgScale;
-      applyTransform();
-    }
-  },{passive:false});
-  mw.addEventListener('touchend',()=>{ t0=null; },{passive:true});
-})();
-
-// ── LOCATION (single venue) ──
-function setLoc(loc){ curLoc='tom'; }
-
-// ── FILTER ──
-function mapSetFilter(cat){
-  mapCurFilter=cat;
-  document.querySelectorAll('.fbtn').forEach(b=>{
-    const bc=b.dataset.cat||'all';
-    b.className='fbtn';
-    if(bc===cat) b.classList.add('act-'+cat);
-  });
-  mapBuildPins(); mapRenderList(); renderLegend();
-}
-
-// ── VIEW ──
-function mapShowView(v){
-  curView=v;
-  document.getElementById('mapPanel').style.display = v==='map' ? 'flex' : 'none';
-  document.getElementById('listPanel').style.display = v==='list' ? 'block' : 'none';
-  document.getElementById('btnMap').classList.toggle('on', v==='map');
-  document.getElementById('btnList').classList.toggle('on', v==='list');
-}
-
-// ── LIST ──
-function mapRenderList(){
-  const panel=document.getElementById('listPanel');
-  const cats=mapCurFilter==='all'?Object.keys(MAP_CATS):[mapCurFilter];
-  let html='';
-  cats.forEach(cat=>{
-    const items=MAP_V.filter(v=>v.loc===curLoc&&v.cat===cat);
-    if(!items.length)return;
-    const c=MAP_CATS[cat];
-    html+=`<div class="grptitle" style="color:${c.text}">${c.label} (${items.length})</div>`;
-    items.forEach(v=>{
-      html+=`<div class="vcard" onclick="mapOpenDrawer(${v.id})">
-        <div class="vnum">${v.id}</div>
-        <div class="vinfo"><div class="vname">${v.name}</div><div class="vsub">📍 ${'Time Out Market'}</div></div>
-        <button class="vlocate" onclick="event.stopPropagation();mapLocatePin(${v.id})" title="Voir sur la carte">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-          Carte
-        </button>
-        <div class="varr">›</div>
-      </div>`;
-    });
-  });
-  if(!html) html=`<div class="empty">Aucun marchand pour cette sélection</div>`;
-  panel.innerHTML=html;
-}
-
-// ── LEGEND (desktop sidebar) ──
-function renderLegend(){
-  const panel=document.getElementById('legendContent');
-  if(!panel) return;
-  const cats=mapCurFilter==='all'?Object.keys(MAP_CATS):[mapCurFilter];
-  let html='';
-  cats.forEach(cat=>{
-    const items=MAP_V.filter(v=>v.cat===cat);
-    if(!items.length) return;
-    const cd=MAP_CATS[cat];
-    html+=`<div class="legend-grp-title" style="color:${cd.text}">${cd.label}</div>`;
-    items.forEach(v=>{
-      html+=`<div class="legend-row" onclick="legendClick(${v.id})">
-        <div class="legend-num">${v.id}</div>
-        <div class="legend-dot-sm" style="background:${cd.text}"></div>
-        <div class="legend-name">${v.name}</div>
-      </div>`;
-    });
-  });
-  panel.innerHTML=html;
-}
-
-function legendClick(id){
-  mapLocatePin(id);
-  setTimeout(()=>mapOpenDrawer(id),450);
-}
-
-// ── DRAWER ──
-function mapOpenDrawer(id){
-  const v=MAP_V.find(x=>x.id===id); if(!v) return;
-  const c=MAP_CATS[v.cat];
-  document.getElementById('mapDhead').innerHTML=`
-    <div class="dbadge" style="background:${c.bg};color:${c.text};border-color:${c.bd}">${c.label}</div>
-    <div class="dtop"><span class="dnum">${v.id}</span><span class="dname">${v.name}</span></div>
-    <div class="dlieu">📍 ${'Time Out Market'}</div>`;
-  const tags=(v.tags||[]).map(t=>`<span class="dtag">${t}</span>`).join('');
-  document.getElementById('mapDbody').innerHTML=`
-    <p class="ddesc">${v.desc}</p>
-    ${tags?`<div class="dtags">${tags}</div>`:''}
-    <div class="dlocate" onclick="mapLocatePin(${v.id})">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg>
-      Voir sur la carte
-    </div>
-    <button class="dclose" onclick="mapCloseDrawer()">Fermer</button>`;
-  document.getElementById('mapDrawer').scrollTop=0;
-  requestAnimationFrame(()=>{
-    document.getElementById('mapOverlay').classList.add('on');
-    document.getElementById('mapDrawer').classList.add('on');
-    document.body.style.overflow='hidden';
-  });
-}
-function mapCloseDrawer(){
-  document.getElementById('mapOverlay').classList.remove('on');
-  document.getElementById('mapDrawer').classList.remove('on');
-  document.body.style.overflow='';
-}
-function mapLocatePin(id){
-  mapCloseDrawer();
-  const v=MAP_V.find(x=>x.id===id); if(!v) return;
-  mapShowView('map');
-  mapHighlighted=id;
-  mapBuildPins();
-  // Centre la carte sur le pin via transform
-  setTimeout(()=>{
-    // Pin is at (v.x - TOM_VW/2, v.y - TOM_VH/2) in SVG space
-    // To center it: translate so pin lands at (0,0) which is screen center
-    mapTX=-(v.x - TOM_VW/2);
-    mapTY=-(v.y - TOM_VH/2);
-    applyTransform();
-    setTimeout(()=>{ mapHighlighted=null; mapBuildPins(); },3000);
-  },400);
-}
-
-document.getElementById('mapDrawer').addEventListener('touchstart',e=>{dtouchY=e.touches[0].clientY;},{passive:true});
-document.getElementById('mapDrawer').addEventListener('touchmove',e=>{if(e.touches[0].clientY-dtouchY>70&&document.getElementById('mapDrawer').scrollTop<=0)mapCloseDrawer();},{passive:true});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')mapCloseDrawer();});
-
-window.addEventListener('resize',()=>{ if(window._carteInit){ svgScale=1; buildMap(); mapRenderList(); renderLegend(); } });
-window.addEventListener('orientationchange',()=>setTimeout(()=>{ if(window._carteInit){ svgScale=1; buildMap(); } },200));
 
 </script>
 </body>
